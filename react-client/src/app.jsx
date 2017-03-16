@@ -2,6 +2,8 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import $ from 'jquery';
 import Search from './components/search.jsx';
+import MapView from './components/map.jsx';
+import EventList from './components/event-list.jsx';
 
 var dummyData = [
 	{
@@ -42,15 +44,17 @@ class App extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			events: []
+			events: dummyData
 		}
 	}
 
 	render () {
 		return (
 			<div>
-				<h1>Day Tripper</h1>
+				<h1>DAY TRIPPER</h1>
 				<Search />
+				<MapView />
+				<EventList events={this.state.events}/>
 			</div>
 		)
 	}
