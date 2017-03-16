@@ -6,20 +6,27 @@ class Search extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			searchResuts: []
+			searchResults: [],
+			input: ''
 		}
+		this.onInputChange = this.onInputChange.bind(this)
+	}
+
+	onInputChange (e) {
+		this.setState({input: e.target.value})
+		console.log(e.target.value)
 	}
 
 	render () {
 		return (
 			<div>
-				<form>
+				<div>
 				  <label>
 				    Search:
-				    <input type="text" name="name" />
+				    <input type="text" onChange={this.onInputChange} />
 				  </label>
-				  <input type="submit" value="Submit" />
-				</form>
+				  <button>Submit</button>
+				</div>
 			</div>
 		)
 	}
