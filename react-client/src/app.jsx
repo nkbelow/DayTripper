@@ -52,8 +52,8 @@ class App extends React.Component {
 		return (
 			<div>
 				<h1>DAY TRIPPER</h1>
-				<Search />
 				<MapView />
+				<Search />
 				<EventList events={this.state.events}/>
 			</div>
 		)
