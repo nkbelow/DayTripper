@@ -20,5 +20,29 @@ var EventSchema = mongoose.Schema({
 	latitude: Number,
 });
 
-module.exports.Event = mongoose.model('Event', EventSchema);
+var Event = mongoose.model('Event', EventSchema);
 
+var selectAll = function(callback) {
+	Event.find({}, function(err, events) {
+		if (err) {
+			callback(err, null);
+		} else {
+			callback(null, events)
+		}
+	});
+}
+
+var createEvent = function(obj, callback) {
+	Event.create(obj, function(err, events) {
+		if (err) {
+			callback(err, null);
+		} else {
+			console.log('SUCCESS', events)
+			callback(null, events);
+		}
+	});
+}
+
+module.exports.createEvent = createEvent;
+module.exports.Event = Event;
+module.exports.selectAll = selectAll;
