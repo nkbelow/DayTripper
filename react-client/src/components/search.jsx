@@ -13,8 +13,8 @@ class Search extends React.Component {
 	}
 
 	onInputChange (e) {
-		this.setState({input: e.target.value})
-		console.log(e.target.value)
+		this.setState({input: e.target.value});
+		console.log(e.target.value);
 	}
 
 	render () {
