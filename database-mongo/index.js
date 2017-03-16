@@ -20,6 +20,5 @@ var EventSchema = mongoose.Schema({
 	latitude: Number,
 });
 
-var Event = mongoose.model({'Event', EventSchema});
+module.exports.Event = mongoose.model('Event', EventSchema);
 
-module.exports.Event = Event;
