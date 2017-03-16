@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import $ from 'jquery';
+import Search from './components/search.jsx';
 
 var dummyData = [
 	{
@@ -49,6 +50,7 @@ class App extends React.Component {
 		return (
 			<div>
 				<h1>Day Tripper</h1>
+				<Search />
 			</div>
 		)
 	}
