@@ -9,9 +9,13 @@ var app = express();
 app.use(express.static(__dirname + '/../react-client/dist'));
 app.use(bodyParser());
 
+
 app.get('/get', function(req, res) {
 	res.send('connected');
 });
+
+// db.Event === Event model from our database
+// Todo: db helper functions
 
 app.listen(3000, function() {
   console.log('Magic happens on port 3000!');
