@@ -1,5 +1,9 @@
 var express = require('express');
 var bodyParser = require('body-parser');
+var db = require('../database-mongo/index.js')
+var bodyParser = require('body-parser');
+
+
 var app = express();
 
 app.use(express.static(__dirname + '/../react-client/dist'));
