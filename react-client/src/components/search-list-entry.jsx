@@ -3,8 +3,8 @@ import React from 'react';
 // Test
 const SearchListEntry = (props) => (
 	<div>
-		{props.searchResult.id}
+		{props.result.name} – {props.result.review_count}
 	</div>
 	)
 
-export default SearchListEntry; 
+export default SearchListEntry;
