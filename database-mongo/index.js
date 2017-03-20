@@ -7,8 +7,6 @@ db.once('open', function() {
   console.log("Connected to MongoDB!");
 });
 
-
-// creates a user Schema. this will be the basis of how user data is stored in the db
 var EventSchema = mongoose.Schema({
 	eventTitle: String,
 	eventDescription: String,

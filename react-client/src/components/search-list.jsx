@@ -5,7 +5,7 @@ const SearchList = (props) => (
 		<div>
 			<h3>SEARCH LIST</h3>
 			<div>
-			{props.searchResults.map(searchResult => <SearchListEntry searchResult={searchResult}/>)}
+			{props.searchResults.map(result => <SearchListEntry key={result.name} result={result}/>)}
 			</div>
 		</div>
 	)
