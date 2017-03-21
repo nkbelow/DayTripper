@@ -3,9 +3,9 @@ import React from 'react';
 const EventEntry = (props) => (
   <div id='event-entry'>
     <li>
-      {props.event.eventDescription}
+      {props.event.description}
         <div>
-          {props.event.eventHours} at {props.event.business}
+          {props.event.start} – {props.event.end} at {props.event.location}
         </div>
     </li>
   </div>

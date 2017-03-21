@@ -35,7 +35,7 @@ app.get('/search', function(req, res) {
 	console.log('YELP QUERY', req.query);
 
   var yelpRequest = {
-    url: 'https://api.yelp.com/v3/businesses/search?sort_by=review_count&limit=5&location=' + req.query.zipCode + '&term=' + req.query.term,
+    url: 'https://api.yelp.com/v3/businesses/search?sort_by=review_count&limit=5&location=' + req.query.location + '&term=' + req.query.term,
     method: 'GET',
     json: true,
     headers: {
