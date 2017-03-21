@@ -12,9 +12,9 @@ class SearchListEntry extends React.Component {
 
   render() {
     return (
-    	<li>
-    		{this.props.result.name} – {this.props.result.review_count}
-    	</li>
+      <li>
+        {this.props.result.name} – {this.props.result.review_count}
+      </li>
     )
   };
 }
