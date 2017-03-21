@@ -10,7 +10,7 @@ app.use(express.static(__dirname + '/../react-client/dist'));
 app.use(bodyParser.json());
 
 
-app.get('/get', function(req, res) {
+app.get('/getEvents', function(req, res) {
 	db.selectAll(function(err, events){
 		if (err) {
 			res.setStatus(500);
@@ -23,11 +23,6 @@ app.get('/get', function(req, res) {
 // GET for Search component
 app.get('/search', function(req, res) {
 		console.log('YELP QUERY', req.query);
-	  // var yelpQuery = {
-	  // 	location: req.query.zipCode,
-	  // 	term: req.query.term,
-	  // 	limit: 5
-	  // };
 
 	  var yelpRequest = {
 	    url: 'https://api.yelp.com/v3/businesses/search?sort_by=review_count&limit=5&location=' + req.query.zipCode + '&term=' + req.query.term,

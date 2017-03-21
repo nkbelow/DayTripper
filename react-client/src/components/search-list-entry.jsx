@@ -1,10 +1,9 @@
 import React from 'react';
 
-// Test
 const SearchListEntry = (props) => (
-	<div>
+	<li>
 		{props.result.name} – {props.result.review_count}
-	</div>
+	</li>
 	)
 
 export default SearchListEntry;

@@ -13,18 +13,25 @@ class Search extends React.Component {
     }
     this.onZipInputChange = this.onZipInputChange.bind(this)
     this.onTermInputChange = this.onTermInputChange.bind(this)
-    this.onSearch = this.onSearch.bind(this)
-  }
+    this.pressEnterSearch = this.pressEnterSearch.bind(this)
+    this.search = this.search.bind(this)
+  };
 
   onZipInputChange (e) {
     this.setState({zipCode: e.target.value});
-  }
+  };
 
   onTermInputChange (e) {
     this.setState({term: e.target.value});
-  }
+  };
 
-  onSearch () {
+  pressEnterSearch (e) {
+    if (e.charCode == 13) {
+      this.search();
+    }
+  };
+
+  search () {
     var yelpQuery = {
     	zipCode: this.state.zipCode,
     	term: this.state.term
@@ -34,6 +41,7 @@ class Search extends React.Component {
       url: '/search',
       type: 'GET',
       data: yelpQuery,
+
       success: (data) => {
         this.setState({
           searchResults: data
@@ -45,17 +53,41 @@ class Search extends React.Component {
         console.error('Yelp failed!', error);
       }
     })
-  }
+  };
 
   render () {
+    var inputBox = {
+      width: 150,
+      marginRight: 15,
+      marginLeft: 5,
+      textAlign: 'center',
+      fontFamily: 'Century Gothic',
+      fontSize: 17.5,
+      border: 0,
+      outline: 0,
+      background: 'transparent',
+      borderBottom: '1px solid black',
+      display: 'inline-block'
+    };
     return (
       <div>
         <div>
-            Find:
-            <input type="text" onChange={this.onTermInputChange}/>
-            Zip Code:
-            <input type="text" onChange={this.onZipInputChange}/>
-          <button onClick={this.onSearch}>Submit</button>
+            FIND:
+            <input
+              placeholder='hmmm...'
+              style={inputBox}
+              type="text"
+              onChange={this.onTermInputChange}
+            />
+
+            | NEAR:
+            <input
+              placeholder='San Francisco'
+              style={inputBox}
+              type="text"
+              onChange={this.onZipInputChange}
+              onKeyPress={this.pressEnterSearch}
+            />
           <SearchList searchResults={this.state.searchResults} />
         </div>
       </div>
