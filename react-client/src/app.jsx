@@ -46,9 +46,44 @@ class App extends React.Component {
 		this.state = {
 			events: dummyData
 		}
+		this.getEvents = this.getEvents.bind(this);
+		this.createEvent = this.createEvent.bind(this);
 	}
 
-	render () {
+	getEvents() {
+		$.ajax({
+			url: '/getEvents',
+			type: 'GET',
+
+			success: (data) => {
+				this.setState({
+					events: data
+				})
+			},
+
+			error: () => {
+				console.error(error)
+			}
+		})
+	};
+
+	createEvent() {
+		$.ajax({
+			url: '/createEvent',
+			type: 'POST',
+			data: 'blah',
+
+			success: () => {
+				this.getEvents();
+			},
+
+			error: () => {
+				console.error(error);
+			}
+		})
+	};
+
+	render() {
 		return (
 			<div>
 				<h1>DAY TRIPPER</h1>
@@ -57,7 +92,7 @@ class App extends React.Component {
 				<EventList events={this.state.events}/>
 			</div>
 		)
-	}
+	};
 }
 
 ReactDOM.render(<App />, document.getElementById('app'));

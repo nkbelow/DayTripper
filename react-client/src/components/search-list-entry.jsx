@@ -1,10 +1,22 @@
 import React from 'react';
 
-// Test
-const SearchListEntry = (props) => (
-	<div>
-		{props.result.name} – {props.result.review_count}
-	</div>
-	)
+class SearchListEntry extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      createEvent: false,
+      eventDescription: '',
+      eventHours: ''
+    }
+  };
+
+  render() {
+    return (
+    	<li>
+    		{this.props.result.name} – {this.props.result.review_count}
+    	</li>
+    )
+  };
+}
 
 export default SearchListEntry;
