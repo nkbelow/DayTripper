@@ -92,7 +92,7 @@ class App extends React.Component {
 				<EventList events={this.state.events}/>
 			</div>
 		)
-	}
+	};
 }
 
 ReactDOM.render(<App />, document.getElementById('app'));

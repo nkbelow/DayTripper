@@ -8,10 +8,9 @@ db.once('open', function() {
 });
 
 var EventSchema = mongoose.Schema({
-	eventTitle: String,
 	eventDescription: String,
-	business: String,
 	eventHours: String,
+	business: String,
 	phone: String,
 	address: String,
 	longitude: Number,
