@@ -7,7 +7,7 @@ class Search extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      zipCode: '',
+      location: '',
       term: '',
       searchResults: []
     }
@@ -17,23 +17,23 @@ class Search extends React.Component {
     this.search = this.search.bind(this)
   };
 
-  onZipInputChange (e) {
-    this.setState({zipCode: e.target.value});
+  onZipInputChange(e) {
+    this.setState({location: e.target.value});
   };
 
-  onTermInputChange (e) {
+  onTermInputChange(e) {
     this.setState({term: e.target.value});
   };
 
-  pressEnterSearch (e) {
+  pressEnterSearch(e) {
     if (e.charCode == 13) {
       this.search();
     }
   };
 
-  search () {
+  search() {
     var yelpQuery = {
-    	zipCode: this.state.zipCode,
+    	location: this.state.location,
     	term: this.state.term
     };
 
@@ -55,7 +55,7 @@ class Search extends React.Component {
     })
   };
 
-  render () {
+  render() {
     var inputBox = {
       width: 150,
       marginRight: 15,
@@ -69,12 +69,13 @@ class Search extends React.Component {
       borderBottom: '1px solid black',
       display: 'inline-block'
     };
+
     return (
       <div>
         <div>
             FIND:
             <input
-              placeholder='hmmm...'
+              placeholder='HMMM...'
               style={inputBox}
               type="text"
               onChange={this.onTermInputChange}
@@ -92,7 +93,7 @@ class Search extends React.Component {
         </div>
       </div>
     )
-  }
+  };
 }
 
 export default Search;

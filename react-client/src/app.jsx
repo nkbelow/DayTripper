@@ -7,9 +7,10 @@ import EventList from './components/event-list.jsx';
 
 var dummyData = [
   {
-  eventDescription: 'Breakfast',
-  eventHours: '10AM - 11AM',
-  business: 'McDonalds',
+  description: 'Breakfast with Fred',
+  start: '9am',
+  end: '11am',
+  location: 'Omelette House',
   phone: '415-111-1111',
   address: '111 Street St San Francisco, CA 94102',
   longitude: 31.45,
@@ -17,9 +18,10 @@ var dummyData = [
   },
 
   {
-  eventDescription: 'Rest!',
-  eventHours: '1PM - 2PM',
-  business: 'Some cafe',
+  description: 'Greenfield with Beth',
+  start: '1pm',
+  end: '4pm',
+  location: '7Leaves Cafe',
   phone: '415-111-2222',
   address: '222 Holly St San Francisco, CA 94102',
   longitude: 38.45,
@@ -27,9 +29,10 @@ var dummyData = [
   },
 
   {
-  eventDescription: 'Clubbing',
-  eventHours: '9AM - 2AM',
-  business: 'Temple',
+  description: 'Clubbing with Marcus!',
+  start: '10pm',
+  end: '2am',
+  location: 'Temple',
   phone: '415-333-4444',
   address: '333 Street St San Francisco, CA 94106',
   longitude: 77.45,
