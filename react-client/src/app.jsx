@@ -13,7 +13,7 @@ class App extends React.Component {
     }
     this.getEvents = this.getEvents.bind(this);
     this.createEvent = this.createEvent.bind(this);
-
+    this.removeEvent = this.removeEvent.bind(this);
     this.getEvents();
   };
 
@@ -51,13 +51,31 @@ class App extends React.Component {
     })
   };
 
+  removeEvent(obj) {
+    $.ajax({
+      url: '/removeEvent',
+      type: 'POST',
+      contentType: 'application/json',
+      data: JSON.stringify(obj),
+      success: () => {
+        console.log('success');
+        this.getEvents();
+      },
+      error: () => {
+        console.error(error);
+      }
+    })
+  }
+
   render() {
     return (
       <div>
         <h1>DAY TRIPPER</h1>
         <MapView />
         <Search createEvent={this.createEvent}/>
-        <EventList events={this.state.events}/>
+        <EventList events={this.state.events}
+        removeEvent={this.removeEvent}
+        />
       </div>
     )
   };
