@@ -23,7 +23,7 @@ class SearchListEntry extends React.Component {
       end: this.state.end,
       location: this.props.result.name,
       phone: this.props.result.display_phone,
-      address: this.props.result.location.display_address,
+      address: this.props.result.location.display_address.join(', '),
       latitude: this.props.result.coordinates.latitude,
       longitude: this.props.result.coordinates.longitude
     };
@@ -59,7 +59,7 @@ class SearchListEntry extends React.Component {
     var timeBox = {
       width: 70,
       marginRight: 10,
-      marginLeft: 5,
+      marginLeft: 10,
       textAlign: 'center',
       fontFamily: 'Century Gothic',
       fontSize: 17,
@@ -88,38 +88,37 @@ class SearchListEntry extends React.Component {
       return (
         <li>
           <div onClick={this.ifCreateEvent}>
-          <a href={this.props.result.url.slice(0, this.props.result.url.indexOf('?'))}>
-          {this.props.result.name.toUpperCase()}
-          </a>
+            <a href={this.props.result.url.slice(0, this.props.result.url.indexOf('?'))}>
+            {this.props.result.name.toUpperCase()}
+            </a>
           </div>
 
           <div>
-          description:
-          <input
-            placeholder="life's purpose"
-            style={descBox}
-            type="text"
-            onChange={this.onDescChange}
-          />
+            description:
+            <input
+              style={descBox}
+              type="text"
+              onChange={this.onDescChange}
+            />
           </div>
 
           <div>
-          start:
-          <input
-            placeholder='9am'
-            style={timeBox}
-            type="text"
-            onChange={this.onStartChange}
-          />
+            <input
+              placeholder='start'
+              style={timeBox}
+              type="text"
+              onChange={this.onStartChange}
+            />
 
-          | end:
-          <input
-            placeholder='6pm'
-            style={timeBox}
-            type="text"
-            onChange={this.onEndChange}
-          />
-          <button onClick={this.onCreateEvent}>CREATE EVENT</button>
+            |
+            <input
+              placeholder='end'
+              style={timeBox}
+              type="text"
+              onChange={this.onEndChange}
+            />
+
+            <button onClick={this.onCreateEvent}>CREATE EVENT</button>
           </div>
         </li>
       )
@@ -128,14 +127,14 @@ class SearchListEntry extends React.Component {
       return (
         <li>
           <div onClick={this.ifCreateEvent}>
-          <a href={this.props.result.url.slice(0, this.props.result.url.indexOf('?'))}>
-          {this.props.result.name.toUpperCase()}
-          </a>
+            <a href={this.props.result.url.slice(0, this.props.result.url.indexOf('?'))}>
+            {this.props.result.name.toUpperCase()}
+            </a>
           </div>
         </li>
       )
     }
   };
-}
+};
 
 export default SearchListEntry;

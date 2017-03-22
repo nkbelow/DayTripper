@@ -41,14 +41,12 @@ class Search extends React.Component {
       url: '/search',
       type: 'GET',
       data: yelpQuery,
-
       success: (data) => {
         this.setState({
           searchResults: data
         })
         console.log('SEARCH RESULTS:', this.state.searchResults);
       },
-
       error: (error) => {
         console.error('Yelp failed!', error);
       }
@@ -57,7 +55,7 @@ class Search extends React.Component {
 
   render() {
     var inputBox = {
-      width: 150,
+      width: 200,
       marginRight: 15,
       marginLeft: 5,
       textAlign: 'center',
@@ -73,30 +71,32 @@ class Search extends React.Component {
     return (
       <div>
         <div>
-            FIND:
-            <input
-              placeholder='HMMM...'
-              style={inputBox}
-              type="text"
-              onChange={this.onTermChange}
-            />
+          FIND:
+          <input
+            placeholder='whatever'
+            style={inputBox}
+            type="text"
+            onChange={this.onTermChange}
+            onKeyPress={this.pressEnterSearch}
+          />
 
-            | NEAR:
-            <input
-              placeholder='San Francisco'
-              style={inputBox}
-              type="text"
-              onChange={this.onLocationChange}
-              onKeyPress={this.pressEnterSearch}
-            />
+          | NEAR:
+          <input
+            placeholder='San Francisco'
+            style={inputBox}
+            type="text"
+            onChange={this.onLocationChange}
+            onKeyPress={this.pressEnterSearch}
+          />
+
           <SearchList
-          searchResults={this.state.searchResults}
-          createEvent={this.props.createEvent}
+            searchResults={this.state.searchResults}
+            createEvent={this.props.createEvent}
           />
         </div>
       </div>
     )
   };
-}
+};
 
 export default Search;
