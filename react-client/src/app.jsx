@@ -13,8 +13,8 @@ var dummyData = [
   location: 'Omelette House',
   phone: '415-111-1111',
   address: '111 Street St San Francisco, CA 94102',
-  longitude: 31.45,
-  latitude: 34.45
+  latitude: 34.45,
+  longitude: 31.45
   },
 
   {
@@ -24,8 +24,8 @@ var dummyData = [
   location: '7Leaves Cafe',
   phone: '415-111-2222',
   address: '222 Holly St San Francisco, CA 94102',
-  longitude: 38.45,
-  latitude: 88.45
+  latitude: 88.45,
+  longitude: 38.45
   },
 
   {
@@ -35,8 +35,8 @@ var dummyData = [
   location: 'Temple',
   phone: '415-333-4444',
   address: '333 Street St San Francisco, CA 94106',
-  longitude: 77.45,
-  latitude: 89.45
+  latitude: 89.45,
+  longitude: 77.45
   }
 ]
 
@@ -44,11 +44,11 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      events: dummyData
+      events: []
     }
     this.getEvents = this.getEvents.bind(this);
     this.createEvent = this.createEvent.bind(this);
-  }
+  };
 
   getEvents() {
     $.ajax({
@@ -67,11 +67,12 @@ class App extends React.Component {
     })
   };
 
-  createEvent() {
+  createEvent(eventInfo) {
     $.ajax({
       url: '/createEvent',
       type: 'POST',
-      data: 'blah',
+      contentType: 'application/json',
+      data: JSON.stringify(eventInfo),
 
       success: () => {
         this.getEvents();
@@ -88,7 +89,7 @@ class App extends React.Component {
       <div>
         <h1>DAY TRIPPER</h1>
         <MapView />
-        <Search />
+        <Search createEvent={this.createEvent}/>
         <EventList events={this.state.events}/>
       </div>
     )

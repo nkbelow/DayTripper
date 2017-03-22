@@ -4,21 +4,58 @@ class SearchListEntry extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      createEvent: false,
-      eventDescription: '',
+      ifCreateEvent: false,
+      description: '',
       start: '',
       end: '',
     }
-    this.createEvent = this.createEvent.bind(this);
+    this.ifCreateEvent = this.ifCreateEvent.bind(this);
+    this.onCreateEvent = this.onCreateEvent.bind(this);
+    this.onDescChange = this.onDescChange.bind(this);
+    this.onStartChange = this.onStartChange.bind(this);
+    this.onEndChange = this.onEndChange.bind(this);
   };
 
-  createEvent() {
+  onCreateEvent() {
+    var eventInfo =   {
+      description: this.state.description,
+      start: this.state.start,
+      end: this.state.end,
+      location: this.props.result.name,
+      phone: this.props.result.display_phone,
+      address: this.props.result.location.display_address,
+      latitude: this.props.result.coordinates.latitude,
+      longitude: this.props.result.coordinates.longitude
+    };
+
+    this.props.createEvent(eventInfo);
+  };
+
+  ifCreateEvent() {
     this.setState({
-      createEvent: !this.state.createEvent
+      ifCreateEvent: !this.state.ifCreateEvent
     })
   };
 
-  render () {
+  onDescChange(e) {
+    this.setState({
+      description: e.target.value
+    })
+  };
+
+  onStartChange(e) {
+    this.setState({
+      start: e.target.value
+    })
+  };
+
+  onEndChange(e) {
+    this.setState({
+      end: e.target.value
+    })
+  };
+
+  render() {
     var timeBox = {
       width: 70,
       marginRight: 10,
@@ -47,23 +84,25 @@ class SearchListEntry extends React.Component {
       display: 'inline-block'
     };
 
-    if (this.state.createEvent) {
+    if (this.state.ifCreateEvent) {
       return (
         <li>
-          <div onClick={this.createEvent}>
+          <div onClick={this.ifCreateEvent}>
           <a href={this.props.result.url.slice(0, this.props.result.url.indexOf('?'))}>
           {this.props.result.name.toUpperCase()}
           </a>
           </div>
+
           <div>
           description:
           <input
             placeholder="life's purpose"
             style={descBox}
             type="text"
-            onChange={this.onStartChange}
+            onChange={this.onDescChange}
           />
           </div>
+
           <div>
           start:
           <input
@@ -80,6 +119,7 @@ class SearchListEntry extends React.Component {
             type="text"
             onChange={this.onEndChange}
           />
+          <button onClick={this.onCreateEvent}>CREATE EVENT</button>
           </div>
         </li>
       )
@@ -87,7 +127,7 @@ class SearchListEntry extends React.Component {
     } else {
       return (
         <li>
-          <div onClick={this.createEvent}>
+          <div onClick={this.ifCreateEvent}>
           <a href={this.props.result.url.slice(0, this.props.result.url.indexOf('?'))}>
           {this.props.result.name.toUpperCase()}
           </a>

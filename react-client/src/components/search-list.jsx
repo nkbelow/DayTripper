@@ -2,15 +2,16 @@ import React from 'react';
 import SearchListEntry from './search-list-entry.jsx';
 
 const SearchList = (props) => (
-		<div>
-			<h3> • SEARCH LIST </h3>
-			<ol>
-			{props.searchResults.map(result => <SearchListEntry
+  <div>
+    <h3> • SEARCH LIST </h3>
+    <ol>
+      {props.searchResults.map(result => <SearchListEntry
         key={result.name}
-        result={result}/>
+        result={result}
+        createEvent={props.createEvent}/>
       )}
-			</ol>
-		</div>
-	)
+    </ol>
+  </div>
+)
 
 export default SearchList;

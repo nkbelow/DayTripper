@@ -11,17 +11,17 @@ class Search extends React.Component {
       term: '',
       searchResults: []
     }
-    this.onZipInputChange = this.onZipInputChange.bind(this)
-    this.onTermInputChange = this.onTermInputChange.bind(this)
+    this.onLocationChange = this.onLocationChange.bind(this)
+    this.onTermChange = this.onTermChange.bind(this)
     this.pressEnterSearch = this.pressEnterSearch.bind(this)
     this.search = this.search.bind(this)
   };
 
-  onZipInputChange(e) {
+  onLocationChange(e) {
     this.setState({location: e.target.value});
   };
 
-  onTermInputChange(e) {
+  onTermChange(e) {
     this.setState({term: e.target.value});
   };
 
@@ -78,7 +78,7 @@ class Search extends React.Component {
               placeholder='HMMM...'
               style={inputBox}
               type="text"
-              onChange={this.onTermInputChange}
+              onChange={this.onTermChange}
             />
 
             | NEAR:
@@ -86,10 +86,13 @@ class Search extends React.Component {
               placeholder='San Francisco'
               style={inputBox}
               type="text"
-              onChange={this.onZipInputChange}
+              onChange={this.onLocationChange}
               onKeyPress={this.pressEnterSearch}
             />
-          <SearchList searchResults={this.state.searchResults} />
+          <SearchList
+          searchResults={this.state.searchResults}
+          createEvent={this.props.createEvent}
+          />
         </div>
       </div>
     )
