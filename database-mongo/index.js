@@ -41,6 +41,18 @@ var createEvent = function(obj, callback) {
 	});
 }
 
+var removeEvent = function(obj, callback) {
+	Event.remove(obj, function(err, events) {
+		if (err) {
+			callback(err, null);
+		} else {
+			console.log('Removed', events)
+			callback(null, events);
+		}
+	})
+}
+
 module.exports.createEvent = createEvent;
+module.exports.removeEvent = removeEvent;
 module.exports.Event = Event;
 module.exports.selectAll = selectAll;
