@@ -20,6 +20,16 @@ app.get('/getEvents', function(req, res) {
 	})
 });
 
+app.post('/createUser', function(req, res) {
+  db.createUser(req.body, function(err, user) {
+    if (err) {
+      res.send(err);
+    } else {
+      res.status(200).send();
+    }
+  })
+})
+
 app.post('/createEvent', function(req, res) {
 	db.createEvent(req.body, function(err, events) {
 		if (err) {
