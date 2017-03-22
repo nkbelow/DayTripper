@@ -8,6 +8,7 @@ db.once('open', function() {
 });
 
 var EventSchema = mongoose.Schema({
+	username: String,
 	description: String,
 	start: String,
 	end: String,
@@ -19,6 +20,24 @@ var EventSchema = mongoose.Schema({
 });
 
 var Event = mongoose.model('Event', EventSchema);
+
+var UserSchema = mongoose.Schema({
+	username: String,
+	password: String,
+})
+
+var User = mongoose.model('User', UserSchema);
+
+var createUser = function(obj, callback) {
+	User.create(obj, function(err, user) {
+		if (err) {
+			callback(err, null);
+		} else {
+			callback(null, user);
+			console.log(user)
+		}
+	})
+}
 
 var selectAll = function(callback) {
 	Event.find({}, function(err, events) {
@@ -55,4 +74,5 @@ var removeEvent = function(obj, callback) {
 module.exports.Event = Event;
 module.exports.selectAll = selectAll;
 module.exports.createEvent = createEvent;
+module.exports.createUser = createUser;
 module.exports.removeEvent = removeEvent;
