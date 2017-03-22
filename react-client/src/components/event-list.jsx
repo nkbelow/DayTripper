@@ -5,7 +5,9 @@ const EventList = (props) => (
   <div id='event-list'>
     <h3> • EVENT LIST </h3>
     <ol>
-    {props.events.map(event => <EventEntry event={event}/>)}
+    {props.events.map(event => <EventEntry event={event}
+      removeEvent={props.removeEvent}
+      />)}
     </ol>
   </div>
 )
