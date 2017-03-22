@@ -5,6 +5,7 @@ class EventEntry extends React.Component {
     super(props);
     this.state = {
       ifRemoveEvent: false,
+      selectedEvent: {}
     }
     this.ifRemoveEvent = this.ifRemoveEvent.bind(this);
   }
@@ -21,7 +22,7 @@ class EventEntry extends React.Component {
     if (!this.state.ifRemoveEvent) {
       return (
         <div id='event-entry' onClick={this.ifRemoveEvent}>
-          <li onClick={this.props.removeEvent}>
+          <li>
             {this.props.event.description}
               <div>
                 {this.props.event.start} – {this.props.event.end} at {this.props.event.location}
@@ -38,7 +39,7 @@ class EventEntry extends React.Component {
                 {this.props.event.start} – {this.props.event.end} at {this.props.event.location}
               </div>
               <div>
-                <input type="text" />
+                <button onClick={this.props.removeEvent}>Remove</button>
               </div>
           </li>
         </div>  
