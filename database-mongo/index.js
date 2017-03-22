@@ -14,8 +14,8 @@ var EventSchema = mongoose.Schema({
 	location: String,
 	phone: String,
 	address: String,
-	longitude: Number,
 	latitude: Number,
+	longitude: Number,
 });
 
 var Event = mongoose.model('Event', EventSchema);
