@@ -30,6 +30,16 @@ app.post('/createEvent', function(req, res) {
 	})
 })
 
+app.post('/removeEvent', function(req, res) {
+  db.removeEvent(req.body, function(err, events) {
+    if (err) {
+      res.send(err);
+    } else {
+      res.status(200).send();
+    }
+  })
+})
+
 // GET for Search component
 app.get('/search', function(req, res) {
 	console.log('YELP QUERY', req.query);
