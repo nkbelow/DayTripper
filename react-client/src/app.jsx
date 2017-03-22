@@ -21,13 +21,11 @@ class App extends React.Component {
     $.ajax({
       url: '/getEvents',
       type: 'GET',
-
       success: (data) => {
         this.setState({
           events: data
         })
       },
-
       error: () => {
         console.error(error)
       }
@@ -40,32 +38,29 @@ class App extends React.Component {
       type: 'POST',
       contentType: 'application/json',
       data: JSON.stringify(eventInfo),
-
       success: () => {
         this.getEvents();
       },
-
       error: () => {
         console.error(error);
       }
     })
   };
 
-  removeEvent(obj) {
+  removeEvent(eventObj) {
     $.ajax({
       url: '/removeEvent',
       type: 'POST',
       contentType: 'application/json',
-      data: JSON.stringify(obj),
+      data: JSON.stringify(eventObj),
       success: () => {
-        console.log('success');
         this.getEvents();
       },
       error: () => {
         console.error(error);
       }
     })
-  }
+  };
 
   render() {
     return (
@@ -73,12 +68,13 @@ class App extends React.Component {
         <h1>DAY TRIPPER</h1>
         <MapView />
         <Search createEvent={this.createEvent}/>
-        <EventList events={this.state.events}
-        removeEvent={this.removeEvent}
+        <EventList
+          events={this.state.events}
+          removeEvent={this.removeEvent}
         />
       </div>
     )
   };
-}
+};
 
 ReactDOM.render(<App />, document.getElementById('app'));

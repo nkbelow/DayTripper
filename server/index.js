@@ -28,7 +28,7 @@ app.post('/createEvent', function(req, res) {
 			res.status(200).send();
 		}
 	})
-})
+});
 
 app.post('/removeEvent', function(req, res) {
   db.removeEvent(req.body, function(err, events) {
@@ -38,7 +38,7 @@ app.post('/removeEvent', function(req, res) {
       res.status(200).send();
     }
   })
-})
+});
 
 // GET for Search component
 app.get('/search', function(req, res) {

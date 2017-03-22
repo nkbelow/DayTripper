@@ -6,12 +6,12 @@ const SearchList = (props) => (
     <h3> • SEARCH LIST </h3>
     <ol>
       {props.searchResults.map(result => <SearchListEntry
-        key={result.name}
+        key={result.id}
         result={result}
         createEvent={props.createEvent}/>
       )}
     </ol>
   </div>
-)
+);
 
 export default SearchList;

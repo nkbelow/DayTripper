@@ -28,31 +28,31 @@ var selectAll = function(callback) {
 			callback(null, events)
 		}
 	});
-}
+};
 
 var createEvent = function(obj, callback) {
 	Event.create(obj, function(err, events) {
 		if (err) {
 			callback(err, null);
 		} else {
-			console.log('SUCCESS', events)
+			console.log('CREATE --->', events)
 			callback(null, events);
 		}
 	});
-}
+};
 
 var removeEvent = function(obj, callback) {
 	Event.remove(obj, function(err, events) {
 		if (err) {
 			callback(err, null);
 		} else {
-			console.log('Removed', events)
+			console.log('---> EVENT REMOVED!')
 			callback(null, events);
 		}
 	})
-}
+};
 
-module.exports.createEvent = createEvent;
-module.exports.removeEvent = removeEvent;
 module.exports.Event = Event;
 module.exports.selectAll = selectAll;
+module.exports.createEvent = createEvent;
+module.exports.removeEvent = removeEvent;
