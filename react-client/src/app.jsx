@@ -52,19 +52,19 @@ class App extends React.Component {
   };
 
   removeEvent(obj) {
-    // $.ajax({
-    //   url: '/removeEvent',
-    //   type: 'POST',
-    //   contentType: 'application/json',
-    //   data: JSON.stringify(obj),
-    //   success: () => {
-    //     console.log('success');
-    //   },
-    //   error: () => {
-    //     console.error(error);
-    //   }
-    // })
-    console.log('Removed')
+    $.ajax({
+      url: '/removeEvent',
+      type: 'POST',
+      contentType: 'application/json',
+      data: JSON.stringify(obj),
+      success: () => {
+        console.log('success');
+        this.getEvents();
+      },
+      error: () => {
+        console.error(error);
+      }
+    })
   }
 
   render() {

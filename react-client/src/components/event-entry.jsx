@@ -5,9 +5,9 @@ class EventEntry extends React.Component {
     super(props);
     this.state = {
       ifRemoveEvent: false,
-      selectedEvent: {}
     }
     this.ifRemoveEvent = this.ifRemoveEvent.bind(this);
+    this.onRemoveEvent = this.onRemoveEvent.bind(this);
   }
 
 
@@ -15,7 +15,14 @@ class EventEntry extends React.Component {
     this.setState({
       ifRemoveEvent: !this.state.ifRemoveEvent
     })
-    console.log(this.state.ifRemoveEvent);
+  }
+
+
+
+  onRemoveEvent() {
+    console.log('index', this.props.events[this.props.index]);
+    const selectedEvent = this.props.events[this.props.index];
+    this.props.removeEvent(selectedEvent)
   }
 
   render () {
@@ -39,7 +46,7 @@ class EventEntry extends React.Component {
                 {this.props.event.start} – {this.props.event.end} at {this.props.event.location}
               </div>
               <div>
-                <button onClick={this.props.removeEvent}>Remove</button>
+                <button onClick={this.onRemoveEvent}>Remove</button>
               </div>
           </li>
         </div>  
