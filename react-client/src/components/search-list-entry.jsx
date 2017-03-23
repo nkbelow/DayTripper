@@ -17,7 +17,8 @@ class SearchListEntry extends React.Component {
   };
 
   onCreateEvent() {
-    var eventInfo =   {
+    var eventInfo = {
+      username: this.props.username,
       description: this.state.description,
       start: this.state.start,
       end: this.state.end,

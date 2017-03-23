@@ -9,18 +9,44 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      events: []
+      events: [],
+      username: ''
     }
     this.getEvents = this.getEvents.bind(this);
     this.createEvent = this.createEvent.bind(this);
     this.removeEvent = this.removeEvent.bind(this);
+    this.login = this.login.bind(this);
     this.getEvents();
   };
 
+  login(loginInfo) {
+    $.ajax({
+      url: '/login',
+      type: 'GET',
+      contentType: 'application/json',
+      data: JSON.stringify(loginInfo),
+      success: (data) => {
+        this.setState({
+          username: data
+        });
+        this.getEvents();
+      },
+      error: () => {
+        console.error(error);
+      }
+    })
+  };
+
   getEvents() {
+    const userInfo = {
+      username: this.state.username
+    };
+
     $.ajax({
       url: '/getEvents',
       type: 'GET',
+      contentType: 'application/json'
+      data: JSON.stringify(userInfo),
       success: (data) => {
         this.setState({
           events: data
@@ -67,7 +93,10 @@ class App extends React.Component {
       <div>
         <h1>DAY TRIPPER</h1>
         <MapView />
-        <Search createEvent={this.createEvent}/>
+        <Search
+          createEvent={this.createEvent}
+          username={this.state.username}
+        />
         <EventList
           events={this.state.events}
           removeEvent={this.removeEvent}

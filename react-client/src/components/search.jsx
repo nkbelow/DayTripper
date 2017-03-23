@@ -92,6 +92,7 @@ class Search extends React.Component {
           <SearchList
             searchResults={this.state.searchResults}
             createEvent={this.props.createEvent}
+            username={this.props.username}
           />
         </div>
       </div>
