@@ -5,59 +5,109 @@ import Search from './components/search.jsx';
 import MapView from './components/map.jsx';
 import EventList from './components/event-list.jsx';
 
-var dummyData = [
-	{
-	eventTitle: 'Breakfast',
-	eventDescription: 'Eat',
-	business: 'McDonalds',
-	eventHours: '10AM - 11AM',
-	phone: '415-111-1111',
-	address: '111 Street St San Francisco, CA 94102',
-	longitude: 31.45,
-	latitude: 34.45
-	},
-
-	{
-	eventTitle: 'Afternoon',
-	eventDescription: 'Rest!',
-	business: 'Some cafe',
-	eventHours: '1PM - 2PM',
-	phone: '415-111-2222',
-	address: '222 Holly St San Francisco, CA 94102',
-	longitude: 38.45,
-	latitude: 88.45
-	},
-
-	{
-	eventTitle: 'Clubbing',
-	eventDescription: 'Turn up',
-	business: 'Temple',
-	eventHours: '9AM - 2AM',
-	phone: '415-333-4444',
-	address: '333 Street St San Francisco, CA 94106',
-	longitude: 77.45,
-	latitude: 89.45
-	}
-]
-
 class App extends React.Component {
-	constructor(props) {
-		super(props);
-		this.state = {
-			events: dummyData
-		}
-	}
+  constructor(props) {
+    super(props);
+    this.state = {
+      events: [],
+      username: ''
+    }
+    this.getEvents = this.getEvents.bind(this);
+    this.createEvent = this.createEvent.bind(this);
+    this.removeEvent = this.removeEvent.bind(this);
+    this.login = this.login.bind(this);
+    this.getEvents();
+  };
 
-	render () {
-		return (
-			<div>
-				<h1>DAY TRIPPER</h1>
-				<MapView />
-				<Search />
-				<EventList events={this.state.events}/>
-			</div>
-		)
-	}
+  login(loginInfo) {
+    $.ajax({
+      url: '/login',
+      type: 'GET',
+      contentType: 'application/json',
+      data: JSON.stringify(loginInfo),
+      success: (data) => {
+        this.setState({
+          username: data
+        });
+        this.getEvents();
+      },
+      error: () => {
+        console.error(error);
+      }
+    })
+  };
+
+  getEvents() {
+    const userInfo = {
+      username: this.state.username
+    };
+
+    $.ajax({
+      url: '/getEvents',
+      type: 'GET',
+      contentType: 'application/json',
+      data: JSON.stringify(userInfo),
+      success: (data) => {
+        this.setState({
+          events: data
+        })
+      },
+
+      error: () => {
+        console.error(error)
+      }
+    })
+  };
+
+  createEvent(eventInfo) {
+    $.ajax({
+      url: '/createEvent',
+      type: 'POST',
+      contentType: 'application/json',
+      data: JSON.stringify(eventInfo),
+
+      success: () => {
+        this.getEvents();
+      },
+
+      error: () => {
+        console.error(error);
+      }
+    })
+  };
+
+  removeEvent(obj) {
+    $.ajax({
+      url: '/removeEvent',
+      type: 'POST',
+      contentType: 'application/json',
+      data: JSON.stringify(obj),
+      success: () => {
+        console.log('success');
+        this.getEvents();
+      },
+      error: () => {
+        console.error(error);
+      }
+    })
+  }
+
+  render() {
+    return (
+      <div>
+        <h1>DAY TRIPPER</h1>
+        <MapView />
+        <Search
+          createEvent={this.createEvent}
+          username={this.state.username}
+        />
+        <EventList
+          events={this.state.events}
+          removeEvent={this.removeEvent}
+        />
+      </div>
+    )
+  };
 }
 
 ReactDOM.render(<App />, document.getElementById('app'));
