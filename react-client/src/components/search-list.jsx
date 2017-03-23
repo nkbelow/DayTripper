@@ -8,7 +8,8 @@ const SearchList = (props) => (
       {props.searchResults.map(result => <SearchListEntry
         key={result.id}
         result={result}
-        createEvent={props.createEvent}/>
+        createEvent={props.createEvent}
+        username={props.username}/>
       )}
     </ol>
   </div>
