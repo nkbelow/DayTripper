@@ -45,13 +45,14 @@ class App extends React.Component {
     $.ajax({
       url: '/getEvents',
       type: 'GET',
-      contentType: 'application/json'
+      contentType: 'application/json',
       data: JSON.stringify(userInfo),
       success: (data) => {
         this.setState({
           events: data
         })
       },
+
       error: () => {
         console.error(error)
       }
@@ -64,29 +65,32 @@ class App extends React.Component {
       type: 'POST',
       contentType: 'application/json',
       data: JSON.stringify(eventInfo),
+
       success: () => {
         this.getEvents();
       },
+
       error: () => {
         console.error(error);
       }
     })
   };
 
-  removeEvent(eventObj) {
+  removeEvent(obj) {
     $.ajax({
       url: '/removeEvent',
       type: 'POST',
       contentType: 'application/json',
-      data: JSON.stringify(eventObj),
+      data: JSON.stringify(obj),
       success: () => {
+        console.log('success');
         this.getEvents();
       },
       error: () => {
         console.error(error);
       }
     })
-  };
+  }
 
   render() {
     return (
@@ -104,6 +108,6 @@ class App extends React.Component {
       </div>
     )
   };
-};
+}
 
 ReactDOM.render(<App />, document.getElementById('app'));
