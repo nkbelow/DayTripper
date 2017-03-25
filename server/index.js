@@ -28,7 +28,7 @@ app.post('/createUser', function(req, res) {
       res.status(200).send();
     }
   })
-})
+});
 
 app.post('/createEvent', function(req, res) {
 	db.createEvent(req.body, function(err, events) {

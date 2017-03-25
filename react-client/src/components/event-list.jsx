@@ -10,7 +10,8 @@ const EventList = (props) => (
         index={index}
         event={event}
         events={props.events}
-        removeEvent={props.removeEvent}/>
+        removeEvent={props.removeEvent}
+        updateEvent={props.updateEvent}/>
       )}
     </ol>
   </div>
