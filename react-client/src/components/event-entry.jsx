@@ -100,18 +100,6 @@ class EventEntry extends React.Component {
     if (this.state.ifEditEvent) {
       return (
         <li>
-          <div onClick={this.ifOptions}>
-            {this.props.event.description}
-            <div>
-            {this.props.event.start} – {this.props.event.end} at {this.props.event.location}
-            </div>
-          </div>
-
-          <div>
-            <button onClick={this.onRemoveEvent}>REMOVE</button>
-            <button onClick={this.ifEditEvent}>EDIT</button>
-          </div>
-
           <div>
             description:
             <input
