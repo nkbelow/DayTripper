@@ -13,7 +13,7 @@ app.use(bodyParser.json());
 app.get('/getEvents', function(req, res) {
 	db.selectAll(function(err, events){
 		if (err) {
-			res.setStatus(500);
+			res.send(err);
 		} else {
 			res.send(events);
 		}
@@ -31,13 +31,23 @@ app.post('/createUser', function(req, res) {
 });
 
 app.post('/createEvent', function(req, res) {
-	db.createEvent(req.body, function(err, events) {
-		if (err) {
-			res.send(err);
-		} else {
-			res.status(200).send();
-		}
-	})
+  db.createEvent(req.body, function(err, events) {
+    if (err) {
+      res.send(err);
+    } else {
+      res.status(200).send();
+    }
+  })
+});
+
+app.post('/updateEvent', function(req, res) {
+  db.updateEvent(req.body.location, req.body.newInfo, function(err, events) {
+    if (err) {
+      res.send(err);
+    } else {
+      res.status(200).send();
+    }
+  })
 });
 
 app.post('/removeEvent', function(req, res) {

@@ -60,6 +60,17 @@ var createEvent = function(obj, callback) {
 	});
 };
 
+var updateEvent = function(id, newInfo, callback) {
+	Event.update(id, newInfo, function(err, events) {
+		if (err) {
+			callback(err, null);
+		} else {
+			console.log('UPDATE --->', events)
+			callback(null, events);
+		}
+	});
+};
+
 var removeEvent = function(obj, callback) {
 	Event.remove(obj, function(err, events) {
 		if (err) {
@@ -76,3 +87,4 @@ module.exports.selectAll = selectAll;
 module.exports.createEvent = createEvent;
 module.exports.createUser = createUser;
 module.exports.removeEvent = removeEvent;
+module.exports.updateEvent = updateEvent;

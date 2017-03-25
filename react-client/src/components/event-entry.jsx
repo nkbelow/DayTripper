@@ -14,6 +14,9 @@ class EventEntry extends React.Component {
     this.ifEditEvent = this.ifEditEvent.bind(this);
     this.onRemoveEvent = this.onRemoveEvent.bind(this);
     this.onUpdateEvent = this.onUpdateEvent.bind(this);
+    this.onDescChange = this.onDescChange.bind(this);
+    this.onStartChange = this.onStartChange.bind(this);
+    this.onEndChange = this.onEndChange.bind(this);
   };
 
   ifOptions() {
@@ -47,15 +50,15 @@ class EventEntry extends React.Component {
   };
 
   onUpdateEvent() {
-    console.log('EVENT UPDATED!')
     var newEventInfo = {
       location: {location: this.props.event.location},
       newInfo: {description: this.state.description,
                 start: this.state.start,
                 end: this.state.end}
     };
-
     this.props.updateEvent(newEventInfo);
+    this.ifOptions();
+    this.ifEditEvent();
   };
 
   onRemoveEvent() {
@@ -112,6 +115,7 @@ class EventEntry extends React.Component {
           <div>
             description:
             <input
+              placeholder={this.props.event.description}
               style={descBox}
               type="text"
               onChange={this.onDescChange}
@@ -120,7 +124,7 @@ class EventEntry extends React.Component {
 
           <div>
             <input
-              placeholder='start'
+              placeholder={this.props.event.start}
               style={timeBox}
               type="text"
               onChange={this.onStartChange}
@@ -128,7 +132,7 @@ class EventEntry extends React.Component {
 
             |
             <input
-              placeholder='end'
+              placeholder={this.props.event.end}
               style={timeBox}
               type="text"
               onChange={this.onEndChange}
