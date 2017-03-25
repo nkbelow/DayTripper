@@ -77,7 +77,7 @@ class App extends React.Component {
 
   updateEvent(eventInfo) {
     $.ajax({
-      url: '/createEvent',
+      url: '/updateEvent',
       type: 'POST',
       contentType: 'application/json',
       data: JSON.stringify(eventInfo),
@@ -107,8 +107,6 @@ class App extends React.Component {
   };
 
   mapRender() {
-    console.log('this.state.events: ', this.state.events);
-
     if (this.state.events.length === 0) {
       this.setState({
         mapUrl: 'https://www.google.com/maps/embed/v1/place?key=AIzaSyAX5TQtLwqyLjSV4TIk1I0ePRUUut8rAf0&q=944+Market+Street,San+Francisco'
@@ -143,7 +141,6 @@ class App extends React.Component {
     return (
       <div>
         <h1>DAY TRIPPER</h1>
-        <MapView url={this.state.mapUrl}/>
         <Search
           createEvent={this.createEvent}
           username={this.state.username}
@@ -153,6 +150,7 @@ class App extends React.Component {
           removeEvent={this.removeEvent}
           updateEvent={this.updateEvent}
         />
+        <MapView url={this.state.mapUrl}/>
       </div>
     )
   };
