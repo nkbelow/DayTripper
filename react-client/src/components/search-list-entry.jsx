@@ -30,6 +30,7 @@ class SearchListEntry extends React.Component {
     };
 
     this.props.createEvent(eventInfo);
+    this.ifCreateEvent();
   };
 
   ifCreateEvent() {

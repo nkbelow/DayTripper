@@ -84,7 +84,7 @@ var removeEvent = function(obj, callback) {
 
 module.exports.Event = Event;
 module.exports.selectAll = selectAll;
-module.exports.createEvent = createEvent;
 module.exports.createUser = createUser;
+module.exports.createEvent = createEvent;
 module.exports.removeEvent = removeEvent;
 module.exports.updateEvent = updateEvent;
