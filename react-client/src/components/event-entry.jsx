@@ -5,7 +5,10 @@ class EventEntry extends React.Component {
     super(props);
     this.state = {
       ifOptions: false,
-      ifEditEvent: false
+      ifEditEvent: false,
+      description: '',
+      start: '',
+      end: ''
     }
     this.ifOptions = this.ifOptions.bind(this);
     this.ifEditEvent = this.ifEditEvent.bind(this);
@@ -25,13 +28,34 @@ class EventEntry extends React.Component {
     })
   };
 
+  onDescChange(e) {
+    this.setState({
+      description: e.target.value
+    })
+  };
+
+  onStartChange(e) {
+    this.setState({
+      start: e.target.value
+    })
+  };
+
+  onEndChange(e) {
+    this.setState({
+      end: e.target.value
+    })
+  };
+
   onUpdateEvent() {
     console.log('EVENT UPDATED!')
+    var newEventInfo = {
+      location: {location: this.props.event.location},
+      newInfo: {description: this.state.description,
+                start: this.state.start,
+                end: this.state.end}
+    };
 
-    // console.log('DELETED EVENT:', this.props.events[this.props.index]);
-
-    // const selectedEvent = this.props.events[this.props.index];
-    // this.props.updateEvent(selectedEvent)
+    this.props.updateEvent(newEventInfo);
   };
 
   onRemoveEvent() {
@@ -69,7 +93,6 @@ class EventEntry extends React.Component {
       borderBottom: '1px solid black',
       display: 'inline-block'
     };
-
 
     if (this.state.ifEditEvent) {
       return (

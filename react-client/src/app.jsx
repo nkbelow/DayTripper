@@ -16,6 +16,7 @@ class App extends React.Component {
     this.getEvents = this.getEvents.bind(this);
     this.createEvent = this.createEvent.bind(this);
     this.removeEvent = this.removeEvent.bind(this);
+    this.updateEvent = this.updateEvent.bind(this);
     this.login = this.login.bind(this);
     this.mapRender = this.mapRender.bind(this);
     this.getEvents();
@@ -25,15 +26,14 @@ class App extends React.Component {
     $.ajax({
       url: '/login',
       type: 'GET',
-      contentType: 'application/json',
-      data: JSON.stringify(loginInfo),
+      data: loginInfo,
       success: (data) => {
         this.setState({
           username: data
         });
         this.getEvents();
       },
-      error: () => {
+      error: (error) => {
         console.error(error);
       }
     })
@@ -43,18 +43,18 @@ class App extends React.Component {
     const userInfo = {
       username: this.state.username
     };
+
     $.ajax({
       url: '/getEvents',
       type: 'GET',
-      contentType: 'application/json',
-      data: JSON.stringify(userInfo),
+      data: userInfo,
       success: (data) => {
         this.setState({
           events: data
         })
         this.mapRender();
       },
-      error: () => {
+      error: (error) => {
         console.error(error)
       }
     })
@@ -66,12 +66,25 @@ class App extends React.Component {
       type: 'POST',
       contentType: 'application/json',
       data: JSON.stringify(eventInfo),
-
       success: () => {
         this.getEvents();
       },
+      error: (error) => {
+        console.error(error);
+      }
+    })
+  };
 
-      error: () => {
+  updateEvent(eventInfo) {
+    $.ajax({
+      url: '/createEvent',
+      type: 'POST',
+      contentType: 'application/json',
+      data: JSON.stringify(eventInfo),
+      success: () => {
+        this.getEvents();
+      },
+      error: (error) => {
         console.error(error);
       }
     })
@@ -87,7 +100,7 @@ class App extends React.Component {
         console.log('success');
         this.getEvents();
       },
-      error: () => {
+      error: (error) => {
         console.error(error);
       }
     })
@@ -95,6 +108,7 @@ class App extends React.Component {
 
   mapRender() {
     console.log('this.state.events: ', this.state.events);
+
     if (this.state.events.length === 0) {
       this.setState({
         mapUrl: 'https://www.google.com/maps/embed/v1/place?key=AIzaSyAX5TQtLwqyLjSV4TIk1I0ePRUUut8rAf0&q=944+Market+Street,San+Francisco'
@@ -103,11 +117,13 @@ class App extends React.Component {
       this.setState({
         mapUrl: `https://www.google.com/maps/embed/v1/place?key=AIzaSyAX5TQtLwqyLjSV4TIk1I0ePRUUut8rAf0&q=${this.state.events[0].address.split(' ').join('+')}`
       })
-    }
+    };
+
     var baseUrl = `https://www.google.com/maps/embed/v1/directions?key=AIzaSyAX5TQtLwqyLjSV4TIk1I0ePRUUut8rAf0`;
     var origin = `&origin=${this.state.events[0].address.split(' ').join('+')}`;
     var destination = `&destination=${this.state.events[this.state.events.length - 1].address.split(' ').join('+')}`;
     var url = baseUrl + origin + destination;
+
     for (var i = 1; i < this.state.events.length - 1; i++) {
       var queried = this.state.events[i].address.split(' ').join('+');
       if (i === 1) {
@@ -115,12 +131,13 @@ class App extends React.Component {
       } else {
         url += `${queried}|`;
       }
-    }
+    };
+
     url = url.slice(0, url.length - 1);
     this.setState({
       mapUrl: url,
-    })
-  }
+    });
+  };
 
   render() {
     return (
@@ -134,10 +151,11 @@ class App extends React.Component {
         <EventList
           events={this.state.events}
           removeEvent={this.removeEvent}
+          updateEvent={this.updateEvent}
         />
       </div>
     )
   };
-}
+};
 
 ReactDOM.render(<App />, document.getElementById('app'));
