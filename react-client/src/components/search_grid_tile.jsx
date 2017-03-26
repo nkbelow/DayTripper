@@ -4,7 +4,7 @@ import IconButton from 'material-ui/IconButton';
 import Subheader from 'material-ui/Subheader';
 import StarBorder from 'material-ui/svg-icons/toggle/star-border';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import DialogExampleModal from './search_dialog.jsx';
+import SearchDialogModal from './search_dialog.jsx';
 
 
 class SearchGridTile extends React.Component {
@@ -15,6 +15,7 @@ class SearchGridTile extends React.Component {
     }
     this.handleOpen = this.handleOpen.bind(this);
     this.handleClose = this.handleClose.bind(this);
+    this.clickImage = this.clickImage.bind(this);
   }
 
   handleClose () {
@@ -26,18 +27,23 @@ class SearchGridTile extends React.Component {
     this.setState({open: true});
   };
 
+  clickImage () {
+    console.log('clicked Image', this.props.result.url);
+    window.location = this.props.result.url
+  }
+
   render () {
-    return (      
+    return (
       <GridTile
         key={this.props.result.id}
         title={this.props.result.name}
         actionPosition="left"
         titlePosition="top"
         titleBackground="linear-gradient(to bottom, rgba(0,0,0,0.7) 0%,rgba(0,0,0,0.3) 70%,rgba(0,0,0,0) 100%)"
-        cols={this.props.result.featured ? 2 : 1}
-        rows={this.props.result.featured ? 2 : 1}
+        cols={3}
+        rows={2}
         actionIcon={<IconButton onClick={this.handleOpen}><StarBorder color="white" />
-        <DialogExampleModal
+        <SearchDialogModal
           createEvent={this.props.createEvent}
           result={this.props.result}
           handleClose={this.handleClose}
@@ -45,9 +51,9 @@ class SearchGridTile extends React.Component {
         />
         </IconButton>}
       > 
-        <img src={this.props.result.image_url} />
+        <img onClick={this.clickImage} src={this.props.result.image_url} />
       </GridTile>
-    )  
+    )    
   }
 }
 

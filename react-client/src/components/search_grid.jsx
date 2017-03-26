@@ -20,26 +20,29 @@ const styles = {
   },
 };
 
-/**
- * A simple example of a scrollable `GridList` containing a [Subheader](/#/components/subheader).
- */
-const SearchGridList = (props) => (
-  <MuiThemeProvider>
-    <div style={styles.root}>
-      <GridList
-        cellHeight={180}
-        style={styles.gridList}
-      >
-        {props.searchResults.map((result) => (
-          <SearchGridTile 
-            createEvent={props.createEvent}
-            key={result.id}
-            result={result}
-          />
-        ))}
-      </GridList>
-    </div>
-  </MuiThemeProvider>
-);
+const SearchGridList = function (props) {
+  if (props.searchResults.length) {
+    return (
+      <MuiThemeProvider>
+        <div style={styles.root}>
+          <GridList
+            cellHeight={180}
+            style={styles.gridList}
+          >
+            {props.searchResults.map((result) => (
+              <SearchGridTile 
+                createEvent={props.createEvent}
+                searchResults={props.searchResults}
+                key={result.id}
+                result={result}
+              />
+            ))}
+          </GridList>
+        </div>
+      </MuiThemeProvider>
+    ) 
+  }
+  return <div></div>
+};
 
 export default SearchGridList;

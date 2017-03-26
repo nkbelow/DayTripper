@@ -3,7 +3,7 @@ import Dialog from 'material-ui/Dialog';
 import FlatButton from 'material-ui/FlatButton';
 import RaisedButton from 'material-ui/RaisedButton';
 
-export default class DialogExampleModal extends React.Component {
+export default class SearchDialogModal extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -89,7 +89,7 @@ export default class DialogExampleModal extends React.Component {
         onClick={this.props.handleClose}
       />,
       <FlatButton
-        label="Submit"
+        label="Create"
         primary={true}
         onClick={this.onCreateEvent}
       />,
