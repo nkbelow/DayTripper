@@ -2,6 +2,8 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import $ from 'jquery';
 import SearchList from './search-list.jsx';
+import SearchGridList from './search_grid.jsx';
+
 
 class Search extends React.Component {
   constructor(props) {
@@ -88,7 +90,9 @@ class Search extends React.Component {
             onChange={this.onLocationChange}
             onKeyPress={this.pressEnterSearch}
           />
-
+          <SearchGridList 
+            searchResults={this.state.searchResults}
+          />
           <SearchList
             searchResults={this.state.searchResults}
             createEvent={this.props.createEvent}
