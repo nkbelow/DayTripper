@@ -92,6 +92,7 @@ class Search extends React.Component {
           />
           <SearchGridList 
             searchResults={this.state.searchResults}
+            createEvent={this.props.createEvent}
           />
           <SearchList
             searchResults={this.state.searchResults}

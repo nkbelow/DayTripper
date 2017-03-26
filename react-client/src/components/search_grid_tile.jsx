@@ -14,7 +14,13 @@ class SearchGridTile extends React.Component {
       open: false,
     }
     this.handleOpen = this.handleOpen.bind(this);
+    this.handleClose = this.handleClose.bind(this);
   }
+
+  handleClose () {
+    this.setState({open: false});
+  };
+
   handleOpen () {
     console.log("this.props.result", this.props.result)
     this.setState({open: true});
@@ -32,6 +38,9 @@ class SearchGridTile extends React.Component {
         rows={this.props.result.featured ? 2 : 1}
         actionIcon={<IconButton onClick={this.handleOpen}><StarBorder color="white" />
         <DialogExampleModal
+          createEvent={this.props.createEvent}
+          result={this.props.result}
+          handleClose={this.handleClose}
           open={this.state.open}
         />
         </IconButton>}

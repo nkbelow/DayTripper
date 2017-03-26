@@ -8,30 +8,90 @@ export default class DialogExampleModal extends React.Component {
     super(props)
     this.state = {
       open: false,
+      description: '',
+      start: '',
+      end: '',
     };
-    this.handleClose = this.handleClose.bind(this);
+    this.onCreateEvent = this.onCreateEvent.bind(this);
+    this.onDescChange = this.onDescChange.bind(this);
+    this.onStartChange = this.onStartChange.bind(this);
+    this.onEndChange = this.onEndChange.bind(this);
   }
 
-
-  handleOpen() {
-    this.setState({open: true});
+  onCreateEvent() {
+    var eventInfo = {
+      description: this.state.description,
+      start: this.state.start,
+      end: this.state.end,
+      location: this.props.result.name,
+      phone: this.props.result.display_phone,
+      address: this.props.result.location.display_address.join(', '),
+      latitude: this.props.result.coordinates.latitude,
+      longitude: this.props.result.coordinates.longitude
+    };
+    console.log('on create event info', eventInfo)
+    this.props.createEvent(eventInfo);
+    this.props.handleClose();
   };
 
-  handleClose () {
-    this.setState({open: false});
+
+  onDescChange(e) {
+    this.setState({
+      description: e.target.value
+    })
+  };
+
+  onStartChange(e) {
+    this.setState({
+      start: e.target.value
+    })
+  };
+
+  onEndChange(e) {
+    this.setState({
+      end: e.target.value
+    })
   };
 
   render() {
+      const timeBox = {
+      width: 70,
+      marginRight: 10,
+      marginLeft: 10,
+      textAlign: 'center',
+      fontFamily: 'Century Gothic',
+      fontSize: 17,
+      border: 0,
+      outline: 0,
+      background: 'transparent',
+      borderBottom: '1px solid black',
+      display: 'inline-block'
+    };
+
+    const descBox = {
+      width: 300,
+      marginRight: 15,
+      marginLeft: 5,
+      textAlign: 'center',
+      fontFamily: 'Century Gothic',
+      fontSize: 17,
+      border: 0,
+      outline: 0,
+      background: 'transparent',
+      borderBottom: '1px solid black',
+      display: 'inline-block'
+    };
+
     const actions = [
       <FlatButton
         label="Cancel"
         primary={true}
-        onClick={this.handleClose}
+        onClick={this.props.handleClose}
       />,
       <FlatButton
         label="Submit"
         primary={true}
-        onClick={this.handleClose}
+        onClick={this.onCreateEvent}
       />,
     ];
 
@@ -43,6 +103,31 @@ export default class DialogExampleModal extends React.Component {
           modal={true}
           open={this.props.open}
         >
+          <div>
+            description:
+            <input
+              style={descBox}
+              type="text"
+              onChange={this.onDescChange}
+            />
+          </div>
+
+          <div>
+            <input
+              placeholder='start'
+              style={timeBox}
+              type="text"
+              onChange={this.onStartChange}
+            />
+
+            |
+            <input
+              placeholder='end'
+              style={timeBox}
+              type="text"
+              onChange={this.onEndChange}
+            />
+          </div>
         </Dialog>
       </div>
     );

@@ -32,6 +32,7 @@ const SearchGridList = (props) => (
       >
         {props.searchResults.map((result) => (
           <SearchGridTile 
+            createEvent={props.createEvent}
             key={result.id}
             result={result}
           />
