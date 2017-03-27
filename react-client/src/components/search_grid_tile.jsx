@@ -16,7 +16,7 @@ class SearchGridTile extends React.Component {
     this.handleOpen = this.handleOpen.bind(this);
     this.handleClose = this.handleClose.bind(this);
     this.clickImage = this.clickImage.bind(this);
-  }
+  };
 
   handleClose () {
     this.setState({open: false});
@@ -27,8 +27,8 @@ class SearchGridTile extends React.Component {
   };
 
   clickImage () {
-    window.location = this.props.result.url
-  }
+    window.open(this.props.result.url);
+  };
 
   render () {
     return (
@@ -50,12 +50,13 @@ class SearchGridTile extends React.Component {
         </IconButton>}
       > 
         <img 
+          className = "tile"
           onClick={this.clickImage} 
           src={this.props.result.image_url}
         />
       </GridTile>
     )    
   }
-}
+};
 
 export default SearchGridTile;

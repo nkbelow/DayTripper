@@ -35,7 +35,6 @@ class Search extends React.Component {
   };
 
   onTermChange(e) {
-    console.log(e.target.value)
     this.setState({term: e.target.value});
   };
 
@@ -59,7 +58,6 @@ class Search extends React.Component {
         this.setState({
           searchResults: data
         })
-        console.log('SEARCH RESULTS:', this.state.searchResults);
       },
       error: (error) => {
         console.error('Yelp failed!', error);
@@ -71,7 +69,7 @@ class Search extends React.Component {
 
     return (
       <div>
-        <div style={formContainerStyle}>
+        <div>
         <Form inline style={formStyle}>
           <FormGroup controlId="formInlineName" style={{marginRight: 20}}>
             <ControlLabel>Find</ControlLabel>
@@ -117,10 +115,6 @@ const formStyle = {
   fontSize: 18,
   paddingBottom: 20,
   display: 'inline-block',
-}
-
-const formContainerStyle = {
-
-}
+};
 
 export default Search;
