@@ -83,6 +83,6 @@ app.get('/search', function(req, res) {
   });
 });
 
-app.listen(3000, function() {
+app.listen(process.env.PORT, function() {
   console.log('Magic happens on port 3000!');
 });
