@@ -1,13 +1,13 @@
-# Project Name
+# Day Tripper
 
-> Pithy project description
+> Day Tripper is an itinerary building application. Users can pick location for events accessing the Yelp API adding a description and time frame. Once an event is added, the location will show up on the Google Map and give directions for the user. The map can take up to 23 events/points
 
-## Team
+## Magnanimous Monkeys
 
-  - teamMember
-  - teamMember
-  - teamMember
-  - teamMember
+  - Brian Jin
+  - Allen Le
+  - Bryan Nguyen
+  - Mona Taleb-Agha
 
 ## Table of Contents
 
@@ -21,7 +21,7 @@
 
 ## Usage
 
-> Some usage instructions
+> Enter a search query and location to access the Yelp API, the results appear below the 'Search' element. All results are links to their respective Yelp pages, by clicking the star on the top left, the user can add that location as an event to their itinerary while adding an event description and time. Once added, the event location appears on the map with a route once mulitple points are added. By clicking event entries in the list, the user can edit the description and time of the event as well as delete the event entry. 
 
 ## Requirements
 
@@ -35,17 +35,17 @@
 
 ### Installing Dependencies
 
+** ALL DEPENDENCIES ARE IN package.json **
+
 From within the root directory:
 
 ```sh
-npm install -g bower
 npm install
-bower install
 ```
 
 ### Roadmap
 
-View the project roadmap [here](LINK_TO_DOC)
+View the project roadmap [here](https://docs.google.com/spreadsheetsd/1bOXT9hQPl6X1fnEfR1SkLDgdEW8AT8ms8ggeuHtlce0/edit?ts=58c83072#gid=0)
 
 
 ## Contributing
