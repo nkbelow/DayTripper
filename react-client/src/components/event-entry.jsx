@@ -1,5 +1,11 @@
 import React from 'react';
-import {Button} from 'react-bootstrap'
+import { 
+  Form,
+  FormGroup,
+  FormControl,
+  ControlLabel,
+  Button,
+} from 'react-bootstrap';
 
 class EventEntry extends React.Component {
   constructor(props) {
@@ -84,66 +90,56 @@ class EventEntry extends React.Component {
       cursor: 'pointer'
     };
 
-    var timeBox = {
-      width: 70,
-      marginRight: 10,
-      marginLeft: 10,
-      textAlign: 'center',
-      fontFamily: 'Century Gothic',
-      fontSize: 17,
-      border: 0,
-      outline: 0,
-      background: 'transparent',
-      borderBottom: '1px solid black',
-      display: 'inline-block'
-    };
-
-    var descBox = {
-      width: 300,
-      marginRight: 15,
-      marginLeft: 5,
-      textAlign: 'center',
-      fontFamily: 'Century Gothic',
-      fontSize: 17,
-      border: 0,
-      outline: 0,
-      background: 'transparent',
-      borderBottom: '1px solid black',
-      display: 'inline-block'
+    const formStyle = {
+      width: 600,
+      fontSize: 18,
     };
 
     if (this.state.ifEditEvent) {
       return (
-        <li>
-          <div>
-            description:
-            <input
-              placeholder={this.props.event.description}
-              style={descBox}
-              type="text"
-              onChange={this.onDescChange}
-            />
-          </div>
+        <li style={{width:600}}>
+          <Form >
 
-          <div style={{width:680}}>
-            <input
-              placeholder={this.props.event.start}
-              style={timeBox}
-              type="text"
-              onChange={this.onStartChange}
-            />
+            <FormGroup controlId="description">
+              <ControlLabel>description</ControlLabel>
+              {' '}
+              <FormControl 
+                placeholder={this.props.event.description}
+                type="text"
+                onChange={this.onDescChange}
+                style={{width:600, marginBottom:10}}
+              />
+            </FormGroup>
+            {' '}
+            </Form>
+            <Form inline>
+            <FormGroup controlId="startTime">
+              <ControlLabel>start</ControlLabel>
+              {' '}
+              <FormControl 
+                placeholder={this.props.event.start}
+                type="text"
+                onChange={this.onStartChange} 
+                style={{width:150}}
+              />
+            </FormGroup>
+            {' '}
 
-            |
-            <input
-              placeholder={this.props.event.end}
-              style={timeBox}
-              type="text"
-              onChange={this.onEndChange}
-            />
+            <FormGroup controlId="endTime">
+              <ControlLabel>end</ControlLabel>
+              {' '}
+              <FormControl 
+                placeholder={this.props.event.end}
+                type="text"
+                onChange={this.onEndChange} 
+                style={{width:150}} 
+              />
+            </FormGroup>
+            {' '}
 
-            <Button style={{marginBottom: 10}} onClick={this.onUpdateEvent}>UPDATE</Button>
-            <Button style={{marginBottom: 10}} onClick={this.ifEditEvent}>CANCEL</Button>
-          </div>
+            <Button style={{margin: 10}} onClick={this.onUpdateEvent}>UPDATE</Button>
+            <Button style={{margin: 10}} onClick={this.ifEditEvent}>CANCEL</Button>
+          </Form>
         </li>
       )
     };

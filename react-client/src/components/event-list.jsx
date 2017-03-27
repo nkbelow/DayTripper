@@ -17,7 +17,7 @@ const EventList = (props) => (
       style={eventTitleStyle}
     />
   </MuiThemeProvider>
-    <ol>
+    <ol style={{overflow: 'auto', width: 680, height: 180}} >
       {props.events.map((event, index) => <EventEntry
         key={index}
         index={index}
