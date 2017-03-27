@@ -1,4 +1,5 @@
 import React from 'react';
+import {Button} from 'react-bootstrap'
 
 class EventEntry extends React.Component {
   constructor(props) {
@@ -27,7 +28,8 @@ class EventEntry extends React.Component {
 
   ifEditEvent() {
     this.setState({
-      ifEditEvent: !this.state.ifEditEvent
+      ifEditEvent: !this.state.ifEditEvent,
+      ifOptions: false,
     })
   };
 
@@ -69,6 +71,19 @@ class EventEntry extends React.Component {
   };
 
   render() {
+    const eventStyle = {
+      width: 600,
+      fontSize: 18,
+      paddingBottom: 15,
+      cursor: 'pointer'
+    };
+
+    const eventStyleIfOptions = {
+      width: 600,
+      fontSize: 18,
+      cursor: 'pointer'
+    };
+
     var timeBox = {
       width: 70,
       marginRight: 10,
@@ -110,7 +125,7 @@ class EventEntry extends React.Component {
             />
           </div>
 
-          <div>
+          <div style={{width:680}}>
             <input
               placeholder={this.props.event.start}
               style={timeBox}
@@ -126,7 +141,8 @@ class EventEntry extends React.Component {
               onChange={this.onEndChange}
             />
 
-            <button onClick={this.onUpdateEvent}>UPDATE</button>
+            <Button style={{marginBottom: 10}} onClick={this.onUpdateEvent}>UPDATE</Button>
+            <Button style={{marginBottom: 10}} onClick={this.ifEditEvent}>CANCEL</Button>
           </div>
         </li>
       )
@@ -135,16 +151,16 @@ class EventEntry extends React.Component {
     if (this.state.ifOptions) {
       return (
         <li>
-          <div onClick={this.ifOptions}>
-            {this.props.event.description}
+          <div style={eventStyleIfOptions} onClick={this.ifOptions}>
+            {this.props.event.description} – from {this.props.event.start} to {this.props.event.end}
             <div>
-            {this.props.event.start} – {this.props.event.end} at {this.props.event.location}
+            at {this.props.event.location} ({this.props.event.address})
             </div>
           </div>
 
           <div>
-            <button onClick={this.onRemoveEvent}>REMOVE</button>
-            <button onClick={this.ifEditEvent}>EDIT</button>
+            <Button style={{marginBottom: 10}} onClick={this.onRemoveEvent}>REMOVE</Button>
+            <Button style={{marginBottom: 10}} onClick={this.ifEditEvent}>EDIT</Button>
           </div>
         </li>
       )
@@ -152,10 +168,10 @@ class EventEntry extends React.Component {
     } else {
       return (
         <li>
-          <div onClick={this.ifOptions}>
-            {this.props.event.description}
+          <div style={eventStyle} onClick={this.ifOptions}>
+            {this.props.event.description} – from {this.props.event.start} to {this.props.event.end}
             <div>
-            {this.props.event.start} – {this.props.event.end} at {this.props.event.location}
+            at {this.props.event.location} ({this.props.event.address})
             </div>
           </div>
         </li>
