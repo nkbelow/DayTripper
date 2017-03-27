@@ -49,7 +49,10 @@ class SearchGridTile extends React.Component {
         />
         </IconButton>}
       > 
-        <img onClick={this.clickImage} src={this.props.result.image_url} />
+        <img 
+          onClick={this.clickImage} 
+          src={this.props.result.image_url}
+        />
       </GridTile>
     )    
   }

@@ -78,7 +78,7 @@ class Search extends React.Component {
             {' '}
             <FormControl 
               type="text" 
-              placeholder="Search"
+              placeholder="prime rib, cognac, etc."
               onChange={this.onTermChange} 
               style={{width:200}}
             />
@@ -97,7 +97,7 @@ class Search extends React.Component {
           </FormGroup>
           {'  '}
           <Button onClick={this.search}>
-            Submit
+            SEARCH
           </Button>
         </Form>
         </div>

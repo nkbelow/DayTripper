@@ -1,9 +1,22 @@
 import React from 'react';
 import EventEntry from './event-entry.jsx'
+import AppBar from 'material-ui/AppBar';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+
+const eventTitleStyle = {
+  background: '#22363F',
+  marginBottom: 15,
+  width: 680
+};
 
 const EventList = (props) => (
-  <div id='event-list' style={eventsStyle}>
-    <h3> Events </h3>
+  <div id='event-list'>
+  <MuiThemeProvider>
+    <AppBar
+      title="EVENTS"
+      style={eventTitleStyle}
+    />
+  </MuiThemeProvider>
     <ol>
       {props.events.map((event, index) => <EventEntry
         key={index}
@@ -16,11 +29,5 @@ const EventList = (props) => (
     </ol>
   </div>
 );
-
-const eventsStyle = {
-  display: 'inline-block',
-  float: 'left',
-  marginTop: 20,
-};
 
 export default EventList;
