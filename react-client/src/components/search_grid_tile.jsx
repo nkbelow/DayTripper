@@ -23,12 +23,10 @@ class SearchGridTile extends React.Component {
   };
 
   handleOpen () {
-    console.log("this.props.result", this.props.result)
     this.setState({open: true});
   };
 
   clickImage () {
-    console.log('clicked Image', this.props.result.url);
     window.location = this.props.result.url
   }
 

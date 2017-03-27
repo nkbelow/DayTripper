@@ -140,20 +140,62 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        <h1>DAY TRIPPER</h1>
+      <img src="http://i65.tinypic.com/2igc483.png" style={bannerStyle}/>
+      <div style={appStyle}>
         <Search
           createEvent={this.createEvent}
           username={this.state.username}
+          style={searchStyle}
         />
+        <div style={eventsMapStyle}>
+        <MapView url={this.state.mapUrl}/>
         <EventList
           events={this.state.events}
           removeEvent={this.removeEvent}
           updateEvent={this.updateEvent}
+          style={eventStyle}
         />
-        <MapView url={this.state.mapUrl}/>
+        </div>
+      </div>
       </div>
     )
   };
 };
+
+const appStyle = {
+  margin: 'auto',
+  paddingTop: 20,
+  paddingBottom: 30,
+  paddingLeft: 30,
+  paddingRight: 30,
+  display: 'flex',
+  flexStyle: 1,
+  alignItems: 'center',
+  fontFamily: 'Roboto',
+}
+
+const bannerStyle = {
+  display: 'flex',
+  alignItems: 'center',
+  flexStyle: 1,
+  backgroundColor: '#31434C',
+}
+
+const searchStyle = {
+  display: 'inline-block',
+  top: 0,
+}
+
+const eventStyle = {
+  display: 'inline-block',
+  marginTop: 20,
+  width: 200,
+}
+
+const eventsMapStyle = {
+  display: 'inline-block',
+  width: 200,
+  marginLeft: 50,
+}
 
 ReactDOM.render(<App />, document.getElementById('app'));

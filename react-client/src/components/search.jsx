@@ -3,14 +3,21 @@ import ReactDOM from 'react-dom';
 import $ from 'jquery';
 import SearchList from './search-list.jsx';
 import SearchGridList from './search_grid.jsx';
+import { 
+  Form,
+  FormGroup,
+  FormControl,
+  ControlLabel,
+  Button,
+} from 'react-bootstrap'
 
 
 class Search extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      location: '',
-      term: '',
+      location: 'San Francisco',
+      term: 'food',
       searchResults: []
     }
     this.onLocationChange = this.onLocationChange.bind(this)
@@ -19,11 +26,16 @@ class Search extends React.Component {
     this.search = this.search.bind(this)
   };
 
+  componentDidMount() {
+    this.search();
+  }
+
   onLocationChange(e) {
     this.setState({location: e.target.value});
   };
 
   onTermChange(e) {
+    console.log(e.target.value)
     this.setState({term: e.target.value});
   };
 
@@ -56,40 +68,40 @@ class Search extends React.Component {
   };
 
   render() {
-    var inputBox = {
-      width: 200,
-      marginRight: 15,
-      marginLeft: 5,
-      textAlign: 'center',
-      fontFamily: 'Century Gothic',
-      fontSize: 17.5,
-      border: 0,
-      outline: 0,
-      background: 'transparent',
-      borderBottom: '1px solid black',
-      display: 'inline-block'
-    };
 
     return (
       <div>
+        <div style={formContainerStyle}>
+        <Form inline style={formStyle}>
+          <FormGroup controlId="formInlineName" style={{marginRight: 20}}>
+            <ControlLabel>Find</ControlLabel>
+            {' '}
+            <FormControl 
+              type="text" 
+              placeholder="Search"
+              onChange={this.onTermChange} 
+              style={{width:200}}
+            />
+          </FormGroup>
+          {' '}
+          <FormGroup controlId="formInlineEmail">
+            <ControlLabel>Near</ControlLabel>
+            {'  '}
+            <FormControl 
+              type="text" 
+              placeholder="San Francisco"
+              onChange={this.onLocationChange}
+              onKeyPress={this.pressEnterSearch}
+              style={{width:200}}
+               />
+          </FormGroup>
+          {'  '}
+          <Button onClick={this.search}>
+            Submit
+          </Button>
+        </Form>
+        </div>
         <div>
-          FIND:
-          <input
-            placeholder='whatever'
-            style={inputBox}
-            type="text"
-            onChange={this.onTermChange}
-            onKeyPress={this.pressEnterSearch}
-          />
-
-          | NEAR:
-          <input
-            placeholder='San Francisco'
-            style={inputBox}
-            type="text"
-            onChange={this.onLocationChange}
-            onKeyPress={this.pressEnterSearch}
-          />
           <SearchGridList 
             searchResults={this.state.searchResults}
             createEvent={this.props.createEvent}
@@ -99,5 +111,16 @@ class Search extends React.Component {
     )
   };
 };
+
+const formStyle = {
+  width: 600,
+  fontSize: 18,
+  paddingBottom: 20,
+  display: 'inline-block',
+}
+
+const formContainerStyle = {
+
+}
 
 export default Search;

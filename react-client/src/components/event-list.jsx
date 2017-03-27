@@ -2,8 +2,8 @@ import React from 'react';
 import EventEntry from './event-entry.jsx'
 
 const EventList = (props) => (
-  <div id='event-list'>
-    <h3> • EVENT LIST </h3>
+  <div id='event-list' style={eventsStyle}>
+    <h3> Events </h3>
     <ol>
       {props.events.map((event, index) => <EventEntry
         key={index}
@@ -16,5 +16,11 @@ const EventList = (props) => (
     </ol>
   </div>
 );
+
+const eventsStyle = {
+  display: 'inline-block',
+  float: 'left',
+  marginTop: 20,
+};
 
 export default EventList;

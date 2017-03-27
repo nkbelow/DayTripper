@@ -98,7 +98,7 @@ export default class SearchDialogModal extends React.Component {
     return (
       <div>
         <Dialog
-          title="Dialog With Actions"
+          title="Schedule an event"
           actions={actions}
           modal={true}
           open={this.props.open}

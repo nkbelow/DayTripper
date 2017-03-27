@@ -11,11 +11,10 @@ const styles = {
   root: {
     display: 'flex',
     flexWrap: 'wrap',
-    justifyContent: 'space-around',
   },
   gridList: {
-    width: 500,
-    height: 450,
+    width: 600,
+    height: 600,
     overflowY: 'auto',
   },
 };
@@ -26,7 +25,7 @@ const SearchGridList = function (props) {
       <MuiThemeProvider>
         <div style={styles.root}>
           <GridList
-            cellHeight={180}
+            cellHeight={300}
             style={styles.gridList}
           >
             {props.searchResults.map((result) => (
