@@ -1,13 +1,18 @@
 {
-  "name": "github-fetcher-fullstack-v2",
+  "name": "mm-day-tripper",
   "version": "1.0.0",
+  "engines": {
+    "node": "7.7.3"
+  },
   "description": "",
   "main": "index.js",
   "scripts": {
     "react-dev": "webpack -d --watch",
-    "server-dev": "nodemon server/index.js"
+    "server-dev": "nodemon server/index.js",
+    "start": "node server/index.js",
+    "heroku-postbuild": "webpack -p --config ./webpack.prod.config.js --progress"
   },
-  "author": "Beth Johnson",
+  "author": "Magnanimous Monkeys",
   "license": "ISC",
   "devDependencies": {
     "babel-core": "^6.23.1",
