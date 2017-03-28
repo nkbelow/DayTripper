@@ -1,6 +1,7 @@
 {
   "name": "DayTripper",
   "scripts": {
+    "build": "webpack -p"
   },
   "env": {
   },
