@@ -140,7 +140,6 @@ class App extends React.Component {
   render() {
     return (
       <div>
-      <img src= style={bannerStyle}/>
       <div style={appStyle}>
         <Search
           createEvent={this.createEvent}
@@ -174,12 +173,12 @@ const appStyle = {
   fontFamily: 'Roboto',
 }
 
-const bannerStyle = {
-  display: 'flex',
-  alignItems: 'center',
-  flexStyle: 1,
-  backgroundColor: '#31434C',
-}
+// const bannerStyle = {
+//   display: 'flex',
+//   alignItems: 'center',
+//   flexStyle: 1,
+//   backgroundColor: '#31434C',
+// }
 
 const searchStyle = {
   display: 'inline-block',
