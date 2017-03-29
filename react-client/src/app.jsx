@@ -140,6 +140,7 @@ class App extends React.Component {
   render() {
     return (
       <div>
+      <img src="http://i65.tinypic.com/2igc483.png" style={bannerStyle}/>
       <div style={appStyle}>
         <Search
           createEvent={this.createEvent}
