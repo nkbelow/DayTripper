@@ -1,7 +1,7 @@
 {
   "name": "DayTripper",
   "scripts": {
-    "build": "webpack -p"
+    "build": "webpack --config ./webpack.config.js --progress"
   },
   "env": {
   },
