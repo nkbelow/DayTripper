@@ -11,7 +11,7 @@
   "formation": {
   },
   "addons": [
-    "mLab MongoDB :: Mongodb"
+    
   ],
   "buildpacks": [
     {
