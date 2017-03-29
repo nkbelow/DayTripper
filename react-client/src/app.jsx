@@ -4,6 +4,7 @@ import $ from 'jquery';
 import Search from './components/search.jsx';
 import MapView from './components/map.jsx';
 import EventList from './components/event-list.jsx';
+import Navbar from './components/navbar.jsx';
 
 class App extends React.Component {
   constructor(props) {
@@ -140,7 +141,7 @@ class App extends React.Component {
   render() {
     return (
       <div>
-      <img src="http://i65.tinypic.com/2igc483.png" style={bannerStyle}/>
+      <Navbar/>
       <div style={appStyle}>
         <Search
           createEvent={this.createEvent}
@@ -174,13 +175,6 @@ const appStyle = {
   fontFamily: 'Roboto',
 }
 
-const bannerStyle = {
-  display: 'flex',
-  alignItems: 'center',
-  flexStyle: 1,
-  backgroundColor: '#31434C',
-}
-
 const searchStyle = {
   display: 'inline-block',
   top: 0,
@@ -191,6 +185,16 @@ const eventStyle = {
   marginTop: 20,
   width: 200,
 }
+
+const bannerStyle = {
+  display: 'flex',
+  alignItems: 'center',
+  flexStyle: 1,
+  backgroundImage: 'url("http://i65.tinypic.com/2igc483.png"',
+  backgroundColor: '#31434C',
+  width: '100%',
+  height: '40em'
+};
 
 const eventsMapStyle = {
   display: 'inline-block',
