@@ -4,11 +4,14 @@
     "build": "webpack --config ./webpack.config.js --progress"
   },
   "env": {
+    "MONGODB_URI": {
+      "required": true
+    }
   },
   "formation": {
   },
   "addons": [
-
+    
   ],
   "buildpacks": [
     {
