@@ -3,7 +3,7 @@ import React from 'react';
 const Navbar = (props) => (
   <header style={bannerStyle}>
     <a href='#' className="navItem">Trips</a>
-    <a href='#' className="navItem">Login/Signup</a>
+    <a href="#" className="navItem">Login/Signup</a>
   </header>
 );
 
@@ -18,6 +18,7 @@ const bannerStyle = {
   justifyContent: 'space-between',
   padding: '0.5em',
   fontSize: '2em',
+  backgroundSize: 'cover'
 };
 
 export default Navbar;

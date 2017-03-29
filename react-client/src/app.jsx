@@ -5,6 +5,7 @@ import Search from './components/search.jsx';
 import MapView from './components/map.jsx';
 import EventList from './components/event-list.jsx';
 import Navbar from './components/navbar.jsx';
+import TripGridList from './components/trip_grid.jsx';
 
 class App extends React.Component {
   constructor(props) {
@@ -13,7 +14,7 @@ class App extends React.Component {
       events: [],
       username: '',
       mapUrl: null,
-    }
+    };
     this.getEvents = this.getEvents.bind(this);
     this.createEvent = this.createEvent.bind(this);
     this.removeEvent = this.removeEvent.bind(this);
@@ -141,25 +142,31 @@ class App extends React.Component {
   render() {
     return (
       <div>
-      <Navbar/>
-      <div style={appStyle}>
-        <Search
-          createEvent={this.createEvent}
-          username={this.state.username}
-          style={searchStyle}
-        />
-        <div style={eventsMapStyle}>
-        <MapView url={this.state.mapUrl}/>
-        <EventList
-          events={this.state.events}
-          removeEvent={this.removeEvent}
-          updateEvent={this.updateEvent}
-          style={eventStyle}
-        />
-        </div>
-      </div>
+        <Navbar/>
+        <TripGridList/>
       </div>
     )
+    // return (
+    //   <div>
+    //   <Navbar/>
+    //   <div style={appStyle}>
+    //     <Search
+    //       createEvent={this.createEvent}
+    //       username={this.state.username}
+    //       style={searchStyle}
+    //     />
+    //     <div style={eventsMapStyle}>
+    //     <MapView url={this.state.mapUrl}/>
+    //     <EventList
+    //       events={this.state.events}
+    //       removeEvent={this.removeEvent}
+    //       updateEvent={this.updateEvent}
+    //       style={eventStyle}
+    //     />
+    //     </div>
+    //   </div>
+    //   </div>
+    // )
   };
 };
 
