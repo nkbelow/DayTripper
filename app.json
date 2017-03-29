@@ -11,7 +11,7 @@
   "formation": {
   },
   "addons": [
-    "heroku_q2w5b7p0"
+    "mLab MongoDB :: Mongodb"
   ],
   "buildpacks": [
     {
