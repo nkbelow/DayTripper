@@ -174,12 +174,12 @@ const appStyle = {
   fontFamily: 'Roboto',
 }
 
-// const bannerStyle = {
-//   display: 'flex',
-//   alignItems: 'center',
-//   flexStyle: 1,
-//   backgroundColor: '#31434C',
-// }
+const bannerStyle = {
+  display: 'flex',
+  alignItems: 'center',
+  flexStyle: 1,
+  backgroundColor: '#31434C',
+}
 
 const searchStyle = {
   display: 'inline-block',
