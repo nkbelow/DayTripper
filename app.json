@@ -4,8 +4,8 @@
     "build": "webpack --config ./webpack.config.js --progress"
   },
   "env": {
-    "INHERIT_THIS_CONFIG_VAR": {
-      "MONGODB_URI": true
+    "MONGODB_URI": {
+      "required": true
     }
   },
   "formation": {
