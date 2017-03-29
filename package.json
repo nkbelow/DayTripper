@@ -13,6 +13,9 @@
     "build": "webpack",
     "heroku-postbuild" : "webpack --config ./webpack.config.js --progress"
   },
+  "keywords": [
+    "heroku"
+  ],
   "author": "Magnanimous Monkeys",
   "license": "ISC",
   "devDependencies": {
