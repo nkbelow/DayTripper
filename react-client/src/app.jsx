@@ -140,33 +140,39 @@ class App extends React.Component {
   };
 
   render() {
-    return (
-      <div>
-        <Navbar/>
-        <TripGridList/>
-      </div>
-    )
     // return (
     //   <div>
-    //   <Navbar/>
-    //   <div style={appStyle}>
-    //     <Search
-    //       createEvent={this.createEvent}
-    //       username={this.state.username}
-    //       style={searchStyle}
-    //     />
-    //     <div style={eventsMapStyle}>
-    //     <MapView url={this.state.mapUrl}/>
-    //     <EventList
-    //       events={this.state.events}
-    //       removeEvent={this.removeEvent}
-    //       updateEvent={this.updateEvent}
-    //       style={eventStyle}
-    //     />
-    //     </div>
-    //   </div>
+    //     <Navbar/>
+    //     <TripGridList/>
     //   </div>
     // )
+    return (
+      <div>
+      <Navbar/>
+      <div style={appStyle}>
+        <div className="row">
+          <div className="col-md-6 col-xs-12">
+            <Search
+              createEvent={this.createEvent}
+              username={this.state.username}
+              style={searchStyle}
+            />
+          </div>
+          <div className="col-md-6 col-xs-12">
+            <div style={eventsMapStyle}>
+            <MapView url={this.state.mapUrl}/>
+            <EventList
+              events={this.state.events}
+              removeEvent={this.removeEvent}
+              updateEvent={this.updateEvent}
+              style={eventStyle}
+            />
+            </div>
+          </div>
+        </div>
+      </div>
+      </div>
+    )
   };
 };
 
@@ -205,7 +211,7 @@ const bannerStyle = {
 
 const eventsMapStyle = {
   display: 'inline-block',
-  width: 200,
+  width: '100%',
   marginLeft: 50,
 }
 
