@@ -107,7 +107,7 @@ var removeEvent = function(obj, callback) {
       console.log('---> EVENT REMOVED!')
       callback(null, events);
     }
-  })
+  });
 };
 
 
@@ -118,3 +118,4 @@ module.exports.createEvent = createEvent;
 module.exports.removeEvent = removeEvent;
 module.exports.updateEvent = updateEvent;
 module.exports.findUser = findUser;
+module.exports.createTrip = createTrip;
