@@ -1,13 +1,22 @@
 var express = require('express');
 var bodyParser = require('body-parser');
-var db = require('../database-mongo/index.js')
+var cookieParser = require('cookie-parser');
+var session = require('express-session');
+var db = require('../database-mongo/index.js');
 var bodyParser = require('body-parser');
 var request = require('request');
+var passport = require('./middleware/initGoogle.js');
 
 var app = express();
 
 app.use(express.static(__dirname + '/../react-client/dist'));
 app.use(bodyParser.json());
+app.use(passport.initialize());
+app.use(passport.session({
+  secret: 'Victoria\'s',
+  resave: true,
+  saveUninitialized: true
+}));
 
 
 app.get('/getEvents', function(req, res) {
@@ -58,6 +67,13 @@ app.post('/removeEvent', function(req, res) {
       res.status(200).send();
     }
   })
+});
+
+app.get('/authenticate', passport.authenticate('google', { scope : ['profile', 'email'] }), function(req, res) {
+});
+
+app.get('/auth/google/callback', passport.authenticate('google'), function(req, res) {
+  res.redirect('/');
 });
 
 // GET for Search component
