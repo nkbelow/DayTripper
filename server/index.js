@@ -69,13 +69,12 @@ app.post('/removeEvent', function(req, res) {
   })
 });
 
-app.get('/authenticate', passport.authenticate('google-token'), function(req, res) {
-  console.log(req.user);
+app.get('/authenticate', passport.authenticate('google', { scope : ['profile', 'email'] }), function(req, res) {
 });
 
-// app.get('/auth/google/callback', passport.authenticate('google'), function(req, res) {
-//   res.redirect('/');
-// });
+app.get('/auth/google/callback', passport.authenticate('google'), function(req, res) {
+  res.redirect('/');
+});
 
 // GET for Search component
 app.get('/search', function(req, res) {
