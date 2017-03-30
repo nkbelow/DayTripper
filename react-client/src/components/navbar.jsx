@@ -2,8 +2,9 @@ import React from 'react';
 
 const Navbar = (props) => (
   <header style={bannerStyle}>
+    <a href='#' className="navItem">Home</a>
     <a href='#' className="navItem">Trips</a>
-    <a href="#" className="navItem">Login/Signup</a>
+    <a href="#" className="navItem" id="logout">Logout</a>
   </header>
 );
 
@@ -15,8 +16,8 @@ const bannerStyle = {
   backgroundColor: '#31434C',
   width: '100%',
   height: '200px',
-  justifyContent: 'space-between',
-  padding: '0.5em',
+  justifyContent: 'flex-start',
+  padding: '0.2em',
   fontSize: '2em',
   backgroundSize: 'cover'
 };
