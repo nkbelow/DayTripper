@@ -209,7 +209,7 @@ const bannerStyle = {
   backgroundColor: '#31434C',
   width: '100%',
   height: '40em'
-};
+}
 
 const eventsMapStyle = {
   display: 'inline-block',
