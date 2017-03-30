@@ -25,6 +25,27 @@ var UserSchema = mongoose.Schema({
 
 var User = mongoose.model('User', UserSchema);
 
+var TripSchema = mongoose.Schema({
+  id: Number,
+  events: Array, 
+  name: String,
+  photos: Array,
+  participants: Array
+});
+
+var Trip = mongoose.model('Trip', TripSchema);
+
+var createTrip = function(obj, callback) {
+  Trip.create(obj, function(err, trip) {
+    if (err) {
+      callback(err, null);
+    } else {
+      callback(null, trip);
+      console.log(trip);
+    }
+  })
+}
+
 var createUser = function(obj, callback) {
   User.create(obj, function(err, user) {
     if (err) {
@@ -88,6 +109,7 @@ var removeEvent = function(obj, callback) {
     }
   })
 };
+
 
 module.exports.Event = Event;
 module.exports.selectAll = selectAll;
