@@ -27,15 +27,11 @@
     "body-parser": "^1.17.1",
     "cookie-parser": "^1.4.3",
     "express": "^4.15.0",
-<<<<<<< 5f06fed1b830baa4287c9119e59762cb3492ad2d
     "express-session": "^1.15.2",
-=======
->>>>>>> start tests for server side code
     "file-loader": "^0.10.1",
     "image-webpack-loader": "^3.3.0",
     "jquery": "^3.1.1",
     "material-ui": "^0.17.1",
-    "mocha": "^3.2.0",
     "mongodb": "^2.2.24",
     "mongoose": "^4.9.0",
     "passport": "^0.3.2",

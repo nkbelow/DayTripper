@@ -140,33 +140,33 @@ class App extends React.Component {
   };
 
   render() {
-    // return (
-    //   <div>
-    //     <Navbar/>
-    //     <TripGridList/>
-    //   </div>
-    // )
     return (
       <div>
-      <Navbar/>
-      <div style={appStyle}>
-        <Search
-          createEvent={this.createEvent}
-          username={this.state.username}
-          style={searchStyle}
-        />
-        <div style={eventsMapStyle}>
-        <MapView url={this.state.mapUrl}/>
-        <EventList
-          events={this.state.events}
-          removeEvent={this.removeEvent}
-          updateEvent={this.updateEvent}
-          style={eventStyle}
-        />
-        </div>
-      </div>
+        <Navbar/>
+        <TripGridList/>
       </div>
     )
+    // return (
+    //   <div>
+    //   <Navbar/>
+    //   <div style={appStyle}>
+    //     <Search
+    //       createEvent={this.createEvent}
+    //       username={this.state.username}
+    //       style={searchStyle}
+    //     />
+    //     <div style={eventsMapStyle}>
+    //     <MapView url={this.state.mapUrl}/>
+    //     <EventList
+    //       events={this.state.events}
+    //       removeEvent={this.removeEvent}
+    //       updateEvent={this.updateEvent}
+    //       style={eventStyle}
+    //     />
+    //     </div>
+    //   </div>
+    //   </div>
+    // )
   };
 };
 
