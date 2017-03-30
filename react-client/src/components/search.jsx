@@ -111,7 +111,7 @@ class Search extends React.Component {
 };
 
 const formStyle = {
-  width: 600,
+  width: '100%',
   fontSize: 18,
   paddingBottom: 20,
   display: 'inline-block',

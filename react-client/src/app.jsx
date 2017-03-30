@@ -140,33 +140,41 @@ class App extends React.Component {
   };
 
   render() {
-    return (
-      <div>
-        <Navbar/>
-        <TripGridList/>
-      </div>
-    )
     // return (
     //   <div>
-    //   <Navbar/>
-    //   <div style={appStyle}>
-    //     <Search
-    //       createEvent={this.createEvent}
-    //       username={this.state.username}
-    //       style={searchStyle}
-    //     />
-    //     <div style={eventsMapStyle}>
-    //     <MapView url={this.state.mapUrl}/>
-    //     <EventList
-    //       events={this.state.events}
-    //       removeEvent={this.removeEvent}
-    //       updateEvent={this.updateEvent}
-    //       style={eventStyle}
-    //     />
-    //     </div>
-    //   </div>
+    //     <Navbar/>
+    //     <TripGridList/>
     //   </div>
     // )
+    return (
+      <div>
+      <Navbar/>
+      <div style={appStyle}>
+        <div className="row">
+          <div className="col-md-6 col-xs-12">
+            <Search
+              createEvent={this.createEvent}
+              username={this.state.username}
+              style={searchStyle}
+            />
+          </div>
+          <div className="col-md-6 col-xs-12">
+            <div style={eventsMapStyle}>
+            <MapView url={this.state.mapUrl}/>
+            </div>
+            </div>
+          <div className="col-md-6 col-xs-12">
+            <EventList
+              events={this.state.events}
+              removeEvent={this.removeEvent}
+              updateEvent={this.updateEvent}
+              style={eventStyle}
+            />
+            </div>
+          </div>
+        </div>
+      </div>
+    )
   };
 };
 
@@ -176,7 +184,7 @@ const appStyle = {
   paddingBottom: 30,
   paddingLeft: 30,
   paddingRight: 30,
-  display: 'flex',
+  // display: 'flex',
   flexStyle: 1,
   alignItems: 'center',
   fontFamily: 'Roboto',
@@ -190,7 +198,7 @@ const searchStyle = {
 const eventStyle = {
   display: 'inline-block',
   marginTop: 20,
-  width: 200,
+  width: '100%',
 }
 
 const bannerStyle = {
@@ -205,8 +213,8 @@ const bannerStyle = {
 
 const eventsMapStyle = {
   display: 'inline-block',
-  width: 200,
-  marginLeft: 50,
+  width: '100%',
+  // marginLeft: 50,
 }
 
 ReactDOM.render(<App />, document.getElementById('app'));

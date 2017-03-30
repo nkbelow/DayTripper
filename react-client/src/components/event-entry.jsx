@@ -78,20 +78,20 @@ class EventEntry extends React.Component {
 
   render() {
     const eventStyle = {
-      width: 600,
+      width: '100%',
       fontSize: 18,
       paddingBottom: 15,
       cursor: 'pointer'
     };
 
     const eventStyleIfOptions = {
-      width: 600,
+      width: '100%',
       fontSize: 18,
       cursor: 'pointer'
     };
 
     const formStyle = {
-      width: 600,
+      width: '100%',
       fontSize: 18,
     };
 
