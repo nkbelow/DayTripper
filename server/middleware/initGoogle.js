@@ -6,7 +6,7 @@ let db = require('../../database-mongo/index.js');
 
 passport.use(new GoogleTokenStrategy({
   clientID: process.env.GOOGLE_CLIENT_ID,
-  clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+  clientSecret: process.env.GOOGLE_CLIENT_SECRET
   // callbackURL: process.env.GOOGLE_CAllBACK_URL
 },
 function(accesstoken, refreshToken, profile, done) {
