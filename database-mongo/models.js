@@ -2,7 +2,7 @@ var mongoose = require('mongoose');
 var connection = require('./index');
 
 var EventSchema = mongoose.Schema({
-  username: String,
+  userId: String,
   description: String,
   start: String,
   end: String,
