@@ -4,7 +4,7 @@ import IconButton from 'material-ui/IconButton';
 import Subheader from 'material-ui/Subheader';
 import StarBorder from 'material-ui/svg-icons/toggle/star-border';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import SearchGridTile from './search_grid_tile.jsx'
+import SearchGridTile from './search_grid_tile.jsx';
 
 
 const styles = {
