@@ -162,6 +162,7 @@ class App extends React.Component {
             <div style={eventsMapStyle}>
             <MapView url={this.state.mapUrl}/>
             </div>
+            </div>
           <div className="col-md-6 col-xs-12">
             <EventList
               events={this.state.events}
@@ -172,7 +173,6 @@ class App extends React.Component {
             </div>
           </div>
         </div>
-      </div>
       </div>
     )
   };
@@ -214,7 +214,7 @@ const bannerStyle = {
 const eventsMapStyle = {
   display: 'inline-block',
   width: '100%',
-  marginLeft: 50,
+  // marginLeft: 50,
 }
 
 ReactDOM.render(<App />, document.getElementById('app'));
