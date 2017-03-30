@@ -2,12 +2,12 @@ let GoogleStrategy = require('passport-google-oauth20').Strategy;
 
 let GoogleTokenStrategy = require('passport-google-token').Strategy;
 let passport = require('passport');
-let db = require('../../database-mongo/index.js');
+let db = require('../../database-mongo/models.js');
 
 passport.use(new GoogleStrategy({
   clientID: '898316907945-kk9tkv33a46v17qej06tfce8hmv88g44.apps.googleusercontent.com',
   clientSecret: 'SE4ddGm2SWQt8jezDRARRl7U',
-  callbackURL: 'https://ss-day-tripper-staging.herokuapp.com/auth/google/callback'
+  callbackURL: 'http://localhost:3000/auth/google/callback'
 },
 function(accesstoken, refreshToken, profile, done) {
   // console.log('this is the accesstoken', accesstoken);
