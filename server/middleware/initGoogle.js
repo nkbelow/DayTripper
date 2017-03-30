@@ -1,4 +1,6 @@
 let GoogleStrategy = require('passport-google-oauth20').Strategy;
+
+let GoogleTokenStrategy = require('passport-google-token');
 let passport = require('passport');
 let db = require('../../database-mongo/index.js');
 
