@@ -161,6 +161,8 @@ class App extends React.Component {
           <div className="col-md-6 col-xs-12">
             <div style={eventsMapStyle}>
             <MapView url={this.state.mapUrl}/>
+            </div>
+          <div className="col-md-6 col-xs-12">
             <EventList
               events={this.state.events}
               removeEvent={this.removeEvent}
@@ -177,12 +179,12 @@ class App extends React.Component {
 };
 
 const appStyle = {
-  // margin: 'auto',
+  margin: 'auto',
   paddingTop: 20,
   paddingBottom: 30,
   paddingLeft: 30,
   paddingRight: 30,
-  display: 'flex',
+  // display: 'flex',
   flexStyle: 1,
   alignItems: 'center',
   fontFamily: 'Roboto',
