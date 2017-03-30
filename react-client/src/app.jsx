@@ -9,6 +9,9 @@ import TripGridList from './components/trip_grid.jsx';
 import SaveTripButton from './components/save_trip_button.jsx';
 import { Router, Route, Link, IndexRoute, hashHistory, browserHistory } from 'react-router';
 import Login from './components/login.jsx';
+import IndividualTrip from './components/individual_trip.js';
+
+
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -157,8 +160,38 @@ class App extends React.Component {
     //     <TripGridList/>
     //   </div>
     // )
+    // return (
+    //   <div>
+    //   <Navbar/>
+    //   <div style={appStyle}>
+    //     <div className="row">
+    //       <div className="col-md-6 col-xs-12">
+    //         <Search
+    //           createEvent={this.createEvent}
+    //           username={this.state.username}
+    //           style={searchStyle}
+    //         />
+    //       </div>
+    //       <div className="col-md-6 col-xs-12">
+    //         <div style={eventsMapStyle}>
+    //         <MapView url={this.state.mapUrl}/>
+    //         </div>
+    //         </div>
+    //       <div className="col-md-6 col-xs-12">
+    //         <EventList
+    //           events={this.state.events}
+    //           removeEvent={this.removeEvent}
+    //           updateEvent={this.updateEvent}
+    //           style={eventStyle}
+    //         />
+    //         </div>
+    //       </div>
+    //     </div>
+    //   </div>
+    // )
     return (
       <div>
+<<<<<<< HEAD
       <Login />
       <Navbar/>
       <div style={appStyle}>
@@ -189,8 +222,11 @@ class App extends React.Component {
 
           </div>
         </div>
+=======
+        <IndividualTrip />
+>>>>>>> Add IndividualTrip view component, update app.jsx to import it
       </div>
-    )
+      );
   };
 };
 
