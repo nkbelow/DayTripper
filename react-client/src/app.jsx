@@ -177,7 +177,7 @@ class App extends React.Component {
 };
 
 const appStyle = {
-  margin: 'auto',
+  // margin: 'auto',
   paddingTop: 20,
   paddingBottom: 30,
   paddingLeft: 30,
@@ -196,7 +196,7 @@ const searchStyle = {
 const eventStyle = {
   display: 'inline-block',
   marginTop: 20,
-  width: 200,
+  width: '100%',
 }
 
 const bannerStyle = {
