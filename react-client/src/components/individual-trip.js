@@ -2,8 +2,8 @@ import React from 'react';
 import Navbar from './navbar.jsx';
 import TripEventList from './trip-event-list.js';
 import TripMapView from './trip-map.js';
-import PhotoScroller from './photo-scroller.js';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import Memories from './memories.js';
 
 class IndividualTrip extends React.Component {
   constructor(props) {
@@ -13,10 +13,12 @@ class IndividualTrip extends React.Component {
         //events - populates from table of events associated with the trip.
         //trip id?  user id? title of trip?
         //map url
+      clicked: false
 
     };
     //bind methods here
-
+    this.showMemoriesClick = this.showMemoriesClick.bind(this);
+    this.addMemoriesClick = this.addMemoriesClick.bind(this);
 
   };
   //add new methods here
@@ -26,6 +28,13 @@ class IndividualTrip extends React.Component {
     //new method for getting data for friends?
     //new method for getting data for photos
       //data for photos should allow for titling of photos
+  showMemoriesClick() {
+    this.setState({clicked: !this.state.clicked});
+  };
+
+  addMemoriesClick() {
+
+  }
 
 
 
@@ -40,11 +49,14 @@ class IndividualTrip extends React.Component {
               <TripEventList 
               removeEvent={this.props.removeEvent}
               updateEvent={this.props.updateEvent}
-              events={this.props.events} 
+              events={this.props.events}
+              showMemories={this.showMemoriesClick} 
             />
             </div>
-            <div className="col-md-6">  
-              <TripMapView mapUrl={this.props.mapUrl}/>
+            <div className="col-md-6">
+            { this.state.clicked ? 
+              <MuiThemeProvider> <Memories /> </MuiThemeProvider> 
+              : <TripMapView mapUrl={this.props.mapUrl}/> }  
             </div>
             
           </div>
