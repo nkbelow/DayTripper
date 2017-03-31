@@ -2,6 +2,7 @@ var express = require('express');
 var bodyParser = require('body-parser');
 var cookieParser = require('cookie-parser');
 var session = require('express-session');
+var connection = require('../database-mongo/index.js');
 var db = require('../database-mongo/models.js');
 var bodyParser = require('body-parser');
 var request = require('request');
