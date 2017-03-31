@@ -172,7 +172,10 @@ class App extends React.Component {
               style={eventStyle}
             />
             </div>
-            <div><SaveTripButton /></div>
+            <div>
+            <SaveTripButton events={this.state.events}/>
+            </div>
+
           </div>
         </div>
       </div>
