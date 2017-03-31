@@ -1,80 +1,44 @@
 import React from 'react';
+import $ from 'jquery';
+import GoogleLogin from 'react-google-login';
+import GoogleCredentials from '../../../server/middleware/authConfig';
 
-class Login extends React.Componenet {
+class Login extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      username: '',
-      password: ''
-    }
-    this.pressEnterLogin = this.pressEnterLogin.bind(this);
-    this.onUsernameChange = this.onUsernameChange.bind(this);
-    this.onPasswordChange = this.onPasswordChange.bind(this);
-    this.onLogin = this.onLogin.bind(this);
-  };
-
-  pressEnterLogin(e) {
-    if (e.charCode == 13) {
-      this.login();
-    }
-  };
-
-  onLogin() {
-    const loginInfo = {
-      username: this.state.username,
-      password: this.state.password
-    };
-
-    this.props.login(loginInfo);
-  };
-
-  onUsernameChange(e) {
-    this.setState({
-      username: e.target.value
-    })
-  };
-
-  onPasswordChange(e) => {
-    this.setState({
-      password: e.target.value
-    })
-  };
-
+  }
+  componentDidMount() {
+    $('body').addClass('loginPage');
+  }
+  componentWillUnmount() {
+    $('body').removeClass('loginPage');
+  }
+  responseGoogle(response) {
+    console.log(response);
+    $.ajaxSetup({
+      beforeSend: function(xhr) {
+        xhr.setRequestHeader('Authorization', 'Bearer ' + response.accessToken);
+      }
+    });
+    
+  }
   render() {
-    var inputBox = {
-      width: 200,
-      marginRight: 15,
-      marginLeft: 5,
-      textAlign: 'center',
-      fontFamily: 'Century Gothic',
-      fontSize: 17.5,
-      border: 0,
-      outline: 0,
-      background: 'transparent',
-      borderBottom: '1px solid black',
-      display: 'inline-block'
-    };
-
     return (
       <div>
-        USERNAME
-        <input
-          style={inputBox}
-          type="text"
-          onChange={this.onUsernameChange}
-        />
-      <div>
-      </div>
-        PASSWORD
-        <input
-          style={inputBox}
-          type="text"
-          onChange={this.onPasswordChange}
-          onKeyPress={this.pressEnterLogin}
-        />
-      </div>
-    )
-  };
-};
+        <div className='loginLogo row'>
+        </div>
+        <div className='center row'>
+          <div className='col-md-12'>
+          <GoogleLogin
+          clientId={GoogleCredentials.googleClientId}
+          buttonText="Login"
+          onSuccess={this.responseGoogle.bind(this)} />
+          </div>
+          </div>
+        </div>
+
+    );
+  }
+}
 
 export default Login;
