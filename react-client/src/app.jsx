@@ -6,6 +6,7 @@ import MapView from './components/map.jsx';
 import EventList from './components/event-list.jsx';
 import Navbar from './components/navbar.jsx';
 import TripGridList from './components/trip_grid.jsx';
+import SaveTripButton from './components/save_trip_button.jsx';
 
 class App extends React.Component {
   constructor(props) {
@@ -171,6 +172,10 @@ class App extends React.Component {
               style={eventStyle}
             />
             </div>
+            <div>
+            <SaveTripButton events={this.state.events}/>
+            </div>
+
           </div>
         </div>
       </div>
