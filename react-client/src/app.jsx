@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import $ from 'jquery';
 import Search from './components/search.jsx';
@@ -7,6 +7,7 @@ import EventList from './components/event-list.jsx';
 import Navbar from './components/navbar.jsx';
 import TripGridList from './components/trip_grid.jsx';
 import SaveTripButton from './components/save_trip_button.jsx';
+import { Router, Route, Link, IndexRoute, hashHistory, browserHistory } from 'react-router';
 
 class App extends React.Component {
   constructor(props) {
@@ -158,7 +159,7 @@ class App extends React.Component {
     // )
     return (
       <div>
-      <Navbar/>
+      <Navbar />
       <div style={appStyle}>
         <div className="row">
           <div className="col-md-6 col-xs-12">
