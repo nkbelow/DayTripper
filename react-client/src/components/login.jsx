@@ -32,8 +32,7 @@ class Login extends React.Component {
           <GoogleLogin
           clientId={GoogleCredentials.googleClientId}
           buttonText="Login"
-          onSuccess={this.responseGoogle.bind(this)}
-          onFailure={/*place route pushing to login page*/} />
+          onSuccess={this.responseGoogle.bind(this)} />
           </div>
         </div>
       </div>
