@@ -34,3 +34,29 @@
   font-size: 32px;
   padding-top: 20px;
 }
+
+.loginLogo {
+  background: url('./media-lib/day-tripper-logo-transparent.png') 50% 50% no-repeat;
+  vertical-align: middle;
+  border-bottom: none;
+  position: absolute;
+  top:0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+}
+
+.center {
+  text-align: center;
+  vertical-align: middle;
+}
+
+.loginPage {
+  background: url('./media-lib/rsz_trees-1210028_1920.jpg') no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
