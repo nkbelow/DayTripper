@@ -7,7 +7,7 @@ import EventList from './components/event-list.jsx';
 import Navbar from './components/navbar.jsx';
 import TripGridList from './components/trip_grid.jsx';
 import SaveTripButton from './components/save_trip_button.jsx';
-
+import Login from './components/login.jsx';
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -158,6 +158,7 @@ class App extends React.Component {
     // )
     return (
       <div>
+      <Login />
       <Navbar/>
       <div style={appStyle}>
         <div className="row">
