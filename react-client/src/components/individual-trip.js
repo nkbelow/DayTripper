@@ -1,6 +1,7 @@
 import React from 'react';
 import Navbar from './navbar.jsx';
 import TripEventList from './trip-event-list.js';
+import TripMapView from './trip-map.js';
 
 class IndividualTrip extends React.Component {
   constructor(props) {
@@ -28,11 +29,12 @@ class IndividualTrip extends React.Component {
     return (
       <div>
         <Navbar />
+        <TripMapView mapUrl={this.props.mapUrl}/>
         <TripEventList 
         removeEvent={this.props.removeEvent}
         updateEvent={this.props.updateEvent}
         events={this.props.events} 
-        mapUrl={this.props.mapUrl}/>
+        />
       </div>
     );
   };
