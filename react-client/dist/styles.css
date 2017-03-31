@@ -11,3 +11,11 @@
 #logout {
   margin-left: auto;
 }
+
+#save-trip {
+  font-size: 32px;
+  color: white;
+  background-color: #e2871f;
+  padding: 12px 12px 12px 12px;
+  border-radius: 12px;
+}
