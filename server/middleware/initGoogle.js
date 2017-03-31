@@ -20,7 +20,7 @@ function(accesstoken, refreshToken, profile, done) {
     lastname: profile.name.familyName,
     email: profile.emails[0].value
   };
-  console.log(user);
+  
   db.findUser(user.userId, function(err, person) {
     if (err) {
     } else if (person.length === 0) {
@@ -32,8 +32,8 @@ function(accesstoken, refreshToken, profile, done) {
         }
       });
     }
-  });
   done(null, user);
+  });
 
 }));
 
@@ -42,7 +42,7 @@ passport.serializeUser(function(user, done) {
 });
 
 passport.deserializeUser(function(id, done) {
-  db.findUser(user.userId, function(err, user) {
+  db.findUser(id, function(err, user) {
     if (err) {
       done(err);
     } else {

@@ -22,6 +22,9 @@ class App extends React.Component {
     this.updateEvent = this.updateEvent.bind(this);
     this.login = this.login.bind(this);
     this.mapRender = this.mapRender.bind(this);
+  };
+  
+  componentDidMount() {
     this.getEvents();
   };
 
@@ -69,8 +72,14 @@ class App extends React.Component {
       type: 'POST',
       contentType: 'application/json',
       data: JSON.stringify(eventInfo),
-      success: () => {
-        this.getEvents();
+      success: (event) => {
+        console.log(event);
+        let events = this.state.events.slice();
+        events.push(event);
+        this.setState({
+          events: events
+        });
+        this.mapRender();
       },
       error: (error) => {
         console.error(error);
@@ -96,7 +105,7 @@ class App extends React.Component {
   removeEvent(obj) {
     $.ajax({
       url: '/removeEvent',
-      type: 'POST',
+      type: 'DELETE',
       contentType: 'application/json',
       data: JSON.stringify(obj),
       success: () => {

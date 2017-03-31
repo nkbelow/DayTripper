@@ -2,6 +2,7 @@ var express = require('express');
 var bodyParser = require('body-parser');
 var cookieParser = require('cookie-parser');
 var session = require('express-session');
+var connection = require('../database-mongo/index.js');
 var db = require('../database-mongo/models.js');
 var bodyParser = require('body-parser');
 var request = require('request');
@@ -11,16 +12,19 @@ var app = express();
 
 app.use(express.static(__dirname + '/../react-client/dist'));
 app.use(bodyParser.json());
-app.use(passport.initialize());
-app.use(passport.session({
+app.use(cookieParser());
+app.use(session({
   secret: 'Victoria\'s',
   resave: true,
   saveUninitialized: true
 }));
+app.use(passport.initialize());
+app.use(passport.session());
 
 
 app.get('/getEvents', function(req, res) {
-	db.selectAll(function(err, events){
+	
+  db.getEvents(req.session.passport.user, function(err, events){
 		if (err) {
 			res.send(err);
 		} else {
@@ -34,17 +38,19 @@ app.post('/createUser', function(req, res) {
     if (err) {
       res.send(err);
     } else {
-      res.status(200).send();
+      res.status(201).send();
     }
   })
 });
 
 app.post('/createEvent', function(req, res) {
-  db.createEvent(req.body, function(err, events) {
+  req.body.userId = req.session.passport.user;
+  db.createEvent(req.body, function(err, event) {
     if (err) {
-      res.send(err);
+      console.log(err)
+      res.status(500).send(err);
     } else {
-      res.status(200).send();
+      res.status(201).json(event);
     }
   })
 });
@@ -59,7 +65,7 @@ app.post('/updateEvent', function(req, res) {
   })
 });
 
-app.post('/removeEvent', function(req, res) {
+app.delete('/removeEvent', function(req, res) {
   db.removeEvent(req.body, function(err, events) {
     if (err) {
       res.send(err);
