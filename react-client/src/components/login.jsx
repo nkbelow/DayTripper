@@ -34,8 +34,8 @@ class Login extends React.Component {
           buttonText="Login"
           onSuccess={this.responseGoogle.bind(this)} />
           </div>
+          </div>
         </div>
-      </div>
 
     );
   }
