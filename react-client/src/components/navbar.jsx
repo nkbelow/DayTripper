@@ -1,7 +1,11 @@
 import React from 'react';
+import TripGridList from './trip_grid.jsx';
+import App from '../app.jsx';
+import { Router, Route, Link, IndexRoute, hashHistory, browserHistory } from 'react-router';
 
 const Navbar = (props) => (
   <header style={bannerStyle}>
+
     <a href='#' className="navItem">Home</a>
     <a href='#' className="navItem">Trips</a>
     <a href="#" className="navItem" id="logout">Logout</a>
