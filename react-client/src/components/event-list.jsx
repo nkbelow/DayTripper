@@ -12,10 +12,7 @@ const eventTitleStyle = {
 const EventList = (props) => (
   <div id='event-list'>
     <MuiThemeProvider>
-      <AppBar
-        title="EVENTS"
-        style={eventTitleStyle}
-      />
+      <h4 id="event-header">Events</h4>
     </MuiThemeProvider>
     <ol style={{overflow: 'auto', width: '100%', height: 180}} >
       {props.events.map((event, index) => <EventEntry
