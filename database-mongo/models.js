@@ -1,5 +1,4 @@
 var mongoose = require('mongoose');
-var connection = require('./index');
 
 var EventSchema = mongoose.Schema({
   userId: String,
