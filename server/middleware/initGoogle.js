@@ -32,8 +32,8 @@ function(accesstoken, refreshToken, profile, done) {
         }
       });
     }
-  });
   done(null, user);
+  });
 
 }));
 
@@ -42,7 +42,7 @@ passport.serializeUser(function(user, done) {
 });
 
 passport.deserializeUser(function(id, done) {
-  db.findUser(user.userId, function(err, user) {
+  db.findUser(id, function(err, user) {
     if (err) {
       done(err);
     } else {

@@ -1,7 +1,10 @@
 var mongoose = require('mongoose');
 
 var EventSchema = mongoose.Schema({
-  userId: String,
+  userId: {
+    type: String,
+    required: [true, 'events must have a userId']
+  },
   description: String,
   start: String,
   end: String,
@@ -57,6 +60,7 @@ var createUser = function(obj, callback) {
 };
 
 var findUser = function(userId, callback) {
+  console.log(userId);
   User.find({userId: userId}, function(err, user) {
     if (err) {
       callback(err, null);
@@ -66,8 +70,8 @@ var findUser = function(userId, callback) {
   })
 }
 
-var selectAll = function(callback) {
-  Event.find({}, function(err, events) {
+var getEvents = function(id, callback) {
+  Event.find({userId: id}, function(err, events) {
     if (err) {
       callback(err, null);
     } else {
@@ -111,7 +115,7 @@ var removeEvent = function(obj, callback) {
 
 
 module.exports.Event = Event;
-module.exports.selectAll = selectAll;
+module.exports.getEvents = getEvents;
 module.exports.createUser = createUser;
 module.exports.createEvent = createEvent;
 module.exports.removeEvent = removeEvent;

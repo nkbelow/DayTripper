@@ -12,16 +12,19 @@ var app = express();
 
 app.use(express.static(__dirname + '/../react-client/dist'));
 app.use(bodyParser.json());
-app.use(passport.initialize());
-app.use(passport.session({
+app.use(cookieParser());
+app.use(session({
   secret: 'Victoria\'s',
   resave: true,
   saveUninitialized: true
 }));
+app.use(passport.initialize());
+app.use(passport.session());
 
 
 app.get('/getEvents', function(req, res) {
-	db.selectAll(function(err, events){
+	console.log('testing the entire world', req.isAuthenticated(), req, req.cookie);
+  db.getEvents(req.session.passport.user, function(err, events){
 		if (err) {
 			res.send(err);
 		} else {
@@ -41,6 +44,7 @@ app.post('/createUser', function(req, res) {
 });
 
 app.post('/createEvent', function(req, res) {
+  req.body.userId = req.session.passport.user;
   db.createEvent(req.body, function(err, events) {
     if (err) {
       res.send(err);
