@@ -54,7 +54,6 @@ var createUser = function(obj, callback) {
       callback(err, null);
     } else {
       callback(null, user);
-      console.log(user)
     }
   });
 };
@@ -81,12 +80,12 @@ var getEvents = function(id, callback) {
 };
 
 var createEvent = function(obj, callback) {
-  Event.create(obj, function(err, events) {
+  Event.create(obj, function(err, event) {
     if (err) {
       callback(err, null);
     } else {
-      console.log('CREATE --->', events)
-      callback(null, events);
+      console.log('CREATE --->', event)
+      callback(null, event);
     }
   });
 };

@@ -72,8 +72,14 @@ class App extends React.Component {
       type: 'POST',
       contentType: 'application/json',
       data: JSON.stringify(eventInfo),
-      success: () => {
-        this.getEvents();
+      success: (event) => {
+        console.log(event);
+        let events = this.state.events.slice();
+        events.push(event);
+        this.setState({
+          events: events
+        });
+        this.mapRender();
       },
       error: (error) => {
         console.error(error);

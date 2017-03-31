@@ -23,7 +23,7 @@ app.use(passport.session());
 
 
 app.get('/getEvents', function(req, res) {
-	console.log('testing the entire world', req.isAuthenticated(), req, req.cookie);
+	
   db.getEvents(req.session.passport.user, function(err, events){
 		if (err) {
 			res.send(err);
@@ -38,18 +38,19 @@ app.post('/createUser', function(req, res) {
     if (err) {
       res.send(err);
     } else {
-      res.status(200).send();
+      res.status(201).send();
     }
   })
 });
 
 app.post('/createEvent', function(req, res) {
   req.body.userId = req.session.passport.user;
-  db.createEvent(req.body, function(err, events) {
+  db.createEvent(req.body, function(err, event) {
     if (err) {
-      res.send(err);
+      console.log(err)
+      res.status(500).send(err);
     } else {
-      res.status(200).send();
+      res.status(201).json(event);
     }
   })
 });
