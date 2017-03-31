@@ -64,7 +64,7 @@ app.post('/updateEvent', function(req, res) {
   })
 });
 
-app.post('/removeEvent', function(req, res) {
+app.delete('/removeEvent', function(req, res) {
   db.removeEvent(req.body, function(err, events) {
     if (err) {
       res.send(err);
