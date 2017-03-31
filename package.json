@@ -11,6 +11,7 @@
     "server-dev": "nodemon server/index.js",
     "start": "nodemon server/index.js",
     "build": "webpack",
+    "test": "mocha spec/serverSpec.js",
     "heroku-postbuild": "webpack --config ./webpack.config.js --progress"
   },
   "keywords": [
