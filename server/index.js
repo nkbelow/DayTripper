@@ -73,6 +73,21 @@ app.get('/authenticate', passport.authenticate('google', { scope : ['profile', '
 });
 
 app.get('/auth/google/callback', passport.authenticate('google'), function(req, res) {
+
+  // var exampleTrip = {
+  //   id: 23,
+  //   events: [{'name': 'hello', 'number': 3}, {'name': 'goodbye', 'number': 4}],
+  //   name: 'this is a string',
+  //   photos: ['string1', 'string2', 'string3'],
+  //   participants: ['nick', 'below', 'anthony', 'gus']
+  // };
+  // db.createTrip(exampleTrip, function(err, events) {
+  //   if (err) {
+  //     console.log(err, 'this is my err');
+  //   } else {
+  //     console.log(events, 'this is my event');
+  //   }
+  // });
   res.redirect('/');
 });
 

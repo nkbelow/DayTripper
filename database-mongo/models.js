@@ -2,7 +2,7 @@ var mongoose = require('mongoose');
 var connection = require('./index');
 
 var EventSchema = mongoose.Schema({
-  username: String,
+  userId: String,
   description: String,
   start: String,
   end: String,
@@ -24,6 +24,27 @@ var UserSchema = mongoose.Schema({
 });
 
 var User = mongoose.model('User', UserSchema);
+
+var TripSchema = mongoose.Schema({
+  id: Number,
+  events: Array, 
+  name: String,
+  photos: Array,
+  participants: Array
+});
+
+var Trip = mongoose.model('Trip', TripSchema);
+
+var createTrip = function(obj, callback) {
+  Trip.create(obj, function(err, trip) {
+    if (err) {
+      callback(err, null);
+    } else {
+      callback(null, trip);
+      console.log(trip);
+    }
+  })
+}
 
 var createUser = function(obj, callback) {
   User.create(obj, function(err, user) {
@@ -86,8 +107,9 @@ var removeEvent = function(obj, callback) {
       console.log('---> EVENT REMOVED!')
       callback(null, events);
     }
-  })
+  });
 };
+
 
 module.exports.Event = Event;
 module.exports.selectAll = selectAll;
@@ -96,3 +118,4 @@ module.exports.createEvent = createEvent;
 module.exports.removeEvent = removeEvent;
 module.exports.updateEvent = updateEvent;
 module.exports.findUser = findUser;
+module.exports.createTrip = createTrip;
