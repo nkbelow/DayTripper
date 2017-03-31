@@ -6,6 +6,7 @@
 .navItem {
   color: white;
   margin: 0 0.5em;
+  font-family: Roboto;
 }
 
 #logout {
@@ -13,9 +14,23 @@
 }
 
 #save-trip {
+  font-family: Roboto;
   font-size: 32px;
   color: white;
+  margin-top: 50px;
   background-color: #e2871f;
   padding: 12px 12px 12px 12px;
   border-radius: 12px;
+  /*float: right;*/
+  position:relative;
+    top:50%;
+    left:50%;
+}
+
+#event-header {
+  background-color: #3558a0;
+  color: white;
+  font-family: Roboto;
+  font-size: 32px;
+  padding-top: 20px;
 }
