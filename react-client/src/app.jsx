@@ -10,6 +10,8 @@ import SaveTripButton from './components/save_trip_button.jsx';
 import { Router, Route, Link, IndexRoute, hashHistory, browserHistory } from 'react-router';
 import Login from './components/login.jsx';
 import IndividualTrip from './components/individual_trip.js';
+import IndividualTrip from './components/individual-trip.js';
+
 
 
 class App extends React.Component {
@@ -192,6 +194,7 @@ class App extends React.Component {
     return (
       <div>
 <<<<<<< HEAD
+<<<<<<< HEAD
       <Login />
       <Navbar/>
       <div style={appStyle}>
@@ -225,6 +228,11 @@ class App extends React.Component {
 =======
         <IndividualTrip />
 >>>>>>> Add IndividualTrip view component, update app.jsx to import it
+=======
+        <IndividualTrip 
+        mapUrl={this.state.mapUrl}
+        events={this.state.events}/>
+>>>>>>> Change file name from _ to -. Update app.jsx. Pass props down from app
       </div>
       );
   };
