@@ -6,6 +6,8 @@ import StarBorder from 'material-ui/svg-icons/toggle/star-border';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import TripGridTile from './trip_grid_tile.jsx';
 import Navbar from './navbar.jsx';
+import ajax from 'jquery';
+
 
 const styles = {
   root: {
@@ -35,6 +37,23 @@ class TripGridList extends React.Component {
       trips: trips
     }
   }
+  
+  // componentDidMount() {
+  //   ajax({
+  //     url: '/getTrips',
+  //     type: 'GET',
+  //     success: (trips) => {
+  //       this.setState({
+  //         trips: trips
+  //       });
+  //     },
+  //     error: (response) => {
+  //       if (response.status >= 500) {
+  //         alert('Internal Server Error, please try again later');
+  //       }
+  //     }
+  //   });
+  // }
 
   render() {
     return (
