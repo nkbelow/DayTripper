@@ -11,8 +11,10 @@ class SaveTripButton extends React.Component {
     super(props);
 
     this.state = {
-      title: ''
+      title: '',
+      accessToken: this.props.accessToken 
     }
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   showModal () {
@@ -30,21 +32,24 @@ class SaveTripButton extends React.Component {
   }
 
 
-  handleSubmit () {
+  handleSubmit (event) {
+    event.preventDefault();
     let trip = {
       events: this.props.events,
       name: this.state.name,
       photos: [],
       participants: []
     };
-
+    console.log(this.state.accessToken, 'imm passing down');
     $.ajax({
       url: '/createTrip',
       type: 'POST',
+      header: {access_token: this.state.accessToken},
       contentType: 'application/json',
       data: JSON.stringify(trip),
       success: (trip) => {
         console.log('success', trip);
+        this.hideModal();
       },
       error: (error) => {
         console.log(error);
@@ -59,7 +64,7 @@ class SaveTripButton extends React.Component {
       <div>
         <div><button onClick={this.showModal.bind(this)} id="save-trip">Save My Trip</button></div>
         <Modal ref="modal">
-          <form onSubmit={this.handleSubmit.bind(this)}>
+          <form onSubmit={this.handleSubmit}>
 
             <div className="col-md-8">
               <h4 className='create'>Give your event a title</h4>
