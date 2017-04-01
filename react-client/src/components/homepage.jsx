@@ -16,6 +16,7 @@ class Homepage extends React.Component {
       events: [],
       username: '',
       mapUrl: null,
+      accessToken: this.props.authtoken
     }
     this.getEvents = this.getEvents.bind(this);
     this.createEvent = this.createEvent.bind(this);
@@ -159,7 +160,7 @@ class Homepage extends React.Component {
               />
               </div>
               <div>
-              <SaveTripButton events={this.state.events}/>
+              <SaveTripButton accessToken={this.state.accessToken} events={this.state.events}/>
             </div>
 
           </div>

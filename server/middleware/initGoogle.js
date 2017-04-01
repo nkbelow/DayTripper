@@ -4,10 +4,10 @@ let GoogleTokenStrategy = require('passport-google-token').Strategy;
 let passport = require('passport');
 let db = require('../../database-mongo/models.js');
 
-passport.use(new GoogleStrategy({
+passport.use(new GoogleTokenStrategy({
   clientID: process.env.GOOGLE_CLIENT_ID,
   clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-  callbackURL: process.env.GOOGLE_CALLBACK_URL
+  // callbackURL: process.env.GOOGLE_CALLBACK_URL
 },
 function(accesstoken, refreshToken, profile, done) {
   // console.log('this is the accesstoken', accesstoken);
@@ -32,7 +32,7 @@ function(accesstoken, refreshToken, profile, done) {
         }
       });
     }
-  done(null, user);
+    done(null, user);
   });
 
 }));

@@ -33,6 +33,7 @@
     "cloudinary": "^1.8.0",
     "cookie-parser": "^1.4.3",
     "express": "^4.15.0",
+    "express-busboy": "^6.0.1",
     "express-session": "^1.15.2",
     "file-loader": "^0.10.1",
     "image-webpack-loader": "^3.3.0",
