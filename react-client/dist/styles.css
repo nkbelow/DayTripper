@@ -34,11 +34,12 @@ body, html {
 }
 
 #event-header {
-  background-color: #3558a0;
+  background-color: #5b6491;
   color: white;
   font-family: Roboto;
   font-size: 32px;
   padding-top: 20px;
+  border-radius: 7px;
 }
 
 

@@ -20,7 +20,7 @@ function(accesstoken, refreshToken, profile, done) {
     lastname: profile.name.familyName,
     email: profile.emails[0].value
   };
-  
+
   db.findUser(user.userId, function(err, person) {
     if (err) {
     } else if (person.length === 0) {
