@@ -9,6 +9,10 @@ import TripGridList from './components/trip_grid.jsx';
 import SaveTripButton from './components/save_trip_button.jsx';
 import { Router, Route, Link, IndexRoute, hashHistory, browserHistory } from 'react-router';
 import Login from './components/login.jsx';
+import IndividualTrip from './components/individual-trip.js';
+
+
+
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -151,14 +155,10 @@ class App extends React.Component {
   };
 
   render() {
-    // return (
-    //   <div>
-    //     <Navbar/>
-    //     <TripGridList/>
-    //   </div>
-    // )
+
     return (
       <div>
+
       <Login />
       <Navbar/>
       <div style={appStyle}>
@@ -190,9 +190,15 @@ class App extends React.Component {
           </div>
         </div>
       </div>
-    )
+      );
   };
 };
+
+//This is used in the render function above in order to test the 'Trip' page
+//Don't forget to remove the {}, you need to wrap it in {}
+        // {<IndividualTrip 
+        // mapUrl={this.state.mapUrl}
+        // events={this.state.events}/>}
 
 const appStyle = {
   margin: 'auto',
