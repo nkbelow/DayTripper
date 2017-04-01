@@ -20,11 +20,12 @@ class IndividualTrip extends React.Component {
 
   };
   //add new methods here
-    //reuse map methods
+    //reuse map methods?
       //will need slight alterations to fit specifications of this page
     //reuse get events method?
     //new method for getting data for friends?
     //new method for getting data for photos
+      //data for photos should allow for titling of photos
 
 
 
@@ -33,18 +34,28 @@ class IndividualTrip extends React.Component {
       <div className="container-fluid">
         <Navbar />
         <h1>Title of My Trip</h1>
-        <TripMapView mapUrl={this.props.mapUrl}/>
-        <MuiThemeProvider>
-          <PhotoScroller />
-        </MuiThemeProvider>          
-        <TripEventList 
-        removeEvent={this.props.removeEvent}
-        updateEvent={this.props.updateEvent}
-        events={this.props.events} 
-        />
+
+          <div className="row">
+            <div className="col-md-6">   
+              <TripEventList 
+              removeEvent={this.props.removeEvent}
+              updateEvent={this.props.updateEvent}
+              events={this.props.events} 
+            />
+            </div>
+            <div className="col-md-6">  
+              <TripMapView mapUrl={this.props.mapUrl}/>
+            </div>
+            
+          </div>
+
       </div>
     );
   };
 };
 
 export default IndividualTrip;
+
+        // <MuiThemeProvider>
+        //   <PhotoScroller />
+        // </MuiThemeProvider> 

@@ -163,14 +163,14 @@ class TripEventEntry extends React.Component {
 
     } else {
       return (
-        <li>
+        <div>
           <div style={eventStyle} onClick={this.ifOptions}>
             {this.props.event.description} – from {this.props.event.start} to {this.props.event.end}
             <div>
             at {this.props.event.location} ({this.props.event.address})
             </div>
           </div>
-        </li>
+        </div>
       )
     }
   };
