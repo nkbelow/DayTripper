@@ -120,7 +120,13 @@ app.delete('/removeTrip', passport.authenticate('google-token'), function(req, r
 
 app.post('/trips/photos', function(req, res) {
   cloudinary.uploader.upload(req.files.photo.file, function(result) {
-    res.send(result);
+    db.addPhoto(req.body.tripId, result, function(err, result) {
+      if (err) {
+        res.status(500).send(err);
+      } else {
+        res.status(201).json(result);
+      }
+    })
   });
 });
 
