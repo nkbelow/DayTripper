@@ -40,7 +40,7 @@ class SaveTripButton extends React.Component {
       photos: [],
       participants: []
     };
-    console.log(this.state.accessToken, 'imm passing down');
+    console.log(this.state.accessToken, 'imm passing down the access token in the savetripbutton file in the handlesubmit func');
     $.ajax({
       url: '/createTrip',
       type: 'POST',
