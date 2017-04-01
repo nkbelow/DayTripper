@@ -1,14 +1,13 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import $ from 'jquery';
-
 import SaveTripButton from './components/save_trip_button.jsx';
 import {BrowserRouter as Router, Route, Link} from 'react-router-dom';
-
 import Login from './components/login.jsx';
 import Homepage from './components/homepage.jsx';
 import TripGridList from './components/trip_grid.jsx';
 import Navbar from './components/navbar.jsx';
+import IndividualTrip from './components/individual-trip.js';
 
 
 
@@ -19,11 +18,10 @@ class App extends React.Component {
       authtoken: ''
     };
 
-<<<<<<< HEAD
   }
   setToken(authtoken) {
     console.log(authtoken, 'this is the token');
-=======
+
     $.ajax({
       url: '/getEvents',
       type: 'GET',
@@ -145,8 +143,6 @@ class App extends React.Component {
   };
 };
 
-  };
-};
 
 //This is used in the render function above in order to test the 'Trip' page
 //Don't forget to remove the {}, you need to wrap it in {}
