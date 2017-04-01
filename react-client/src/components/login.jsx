@@ -15,29 +15,26 @@ class Login extends React.Component {
   }
   responseGoogle(response) {
     console.log(response);
+    console.log(response.accessToken);
     $.ajaxSetup({
       beforeSend: function(xhr) {
-        xhr.setRequestHeader('Authorization', 'Bearer ' + response.accessToken);
+        xhr.setRequestHeader('access_token', response.accessToken);
       }
     });
-
     this.props.history.push('/homepage');
-
   }
   render() {
     return (
-      <div>
-        <div className='loginLogo row'>
-        </div>
-        <div className='center row'>
-          <div className='col-md-12'>
+      <div className='container-fluid'>
+        <img className='center-block img-responsive' src='../../media-lib/day-tripper-logo-transparent.png' />
+        <div className='center'>
           <GoogleLogin
+          className='btn btn-lg btn-primary'
           clientId={GoogleCredentials.googleClientId}
-          buttonText="Login"
+          buttonText="Login With Google"
           onSuccess={this.responseGoogle.bind(this)} />
-          </div>
-          </div>
         </div>
+      </div>
 
     );
   }
