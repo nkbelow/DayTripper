@@ -54,9 +54,7 @@ class IndividualTrip extends React.Component {
             />
             </div>
             <div className="col-md-6">
-            { this.state.clicked ? 
-              <MuiThemeProvider> <Memories /> </MuiThemeProvider> 
-              : <TripMapView mapUrl={this.props.mapUrl}/> }  
+            { this.state.clicked ? <MuiThemeProvider><Memories /></MuiThemeProvider> : <TripMapView mapUrl={this.props.mapUrl}/> }  
             </div>
             
           </div>
