@@ -20,7 +20,7 @@ const styles = {
 };
 
 class TripGridList extends React.Component {
-  
+
   constructor(props) {
     super(props)
     let trips = [];
@@ -45,7 +45,7 @@ class TripGridList extends React.Component {
             cellHeight={300}
           >
             {this.state.trips.map((result) => (
-              <TripGridTile 
+              <TripGridTile
                 key={result.id}
                 result={result}
               />
@@ -53,7 +53,7 @@ class TripGridList extends React.Component {
           </GridList>
         </div>
       </MuiThemeProvider>
-    ) 
+    )
   };
 }
 
