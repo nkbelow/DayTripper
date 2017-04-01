@@ -21,3 +21,4 @@ const TripEventTile = (props) => (
 );
 
 export default TripEventTile;
+

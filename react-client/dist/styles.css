@@ -60,3 +60,11 @@
   background-size: cover;
 }
 
+.tripEventTile {
+  margin-bottom: 10px;
+  padding-top: 10px;
+  background-color: #22363F;
+  color: white;
+  border-radius: 5px;
+}
+

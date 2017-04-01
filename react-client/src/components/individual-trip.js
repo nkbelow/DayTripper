@@ -33,7 +33,7 @@ class IndividualTrip extends React.Component {
     return (
       <div className="container-fluid">
         <Navbar />
-        <h1>Title of My Trip</h1>
+        <h1 className="text-center">Title of My Trip</h1>
 
           <div className="row">
             <div className="col-md-6">   
