@@ -10,7 +10,7 @@ const Navbar = (props) => (
       <header style={bannerStyle}>
         <Link to='/homepage' className="navItem">Home</Link>
         <Link to='/trips' className="navItem">Trips</Link>
-        <Link to='/homepage' className="navItem" id="logout">Logout</Link>
+        <Link to='/login' className="navItem" id="logout">Logout</Link>
       </header>
 
       {/*Route path='/homepage' component={Homepage} />*/}
