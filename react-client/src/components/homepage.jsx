@@ -6,6 +6,8 @@ import EventList from './event-list.jsx';
 import Navbar from './navbar.jsx';
 import Login from './login.jsx';
 import SaveTripButton from './save_trip_button.jsx';
+import {Route, Link} from 'react-router-dom';
+import TripGridList from './trip_grid.jsx';
 
 
 
@@ -136,7 +138,7 @@ class Homepage extends React.Component {
   render () {
     return (
       <div>
-        <Navbar/>
+      <Navbar />
         <div style={appStyle}>
           <div className="row">
             <div className="col-md-6 col-xs-12">
@@ -198,6 +200,7 @@ const eventStyle = {
   marginTop: 20,
   width: '100%',
 }
+
 
 const bannerStyle = {
   display: 'flex',

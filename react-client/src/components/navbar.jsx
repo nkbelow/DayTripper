@@ -3,20 +3,16 @@ import TripGridList from './trip_grid.jsx';
 import App from '../app.jsx';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 import Homepage from './homepage.jsx';
+import Login from './login.jsx';
 
 const Navbar = (props) => (
-  <Router>
     <div>
       <header style={bannerStyle}>
         <Link to='/homepage' className="navItem">Home</Link>
         <Link to='/trips' className="navItem">Trips</Link>
-        <Link to='/login' className="navItem" id="logout">Logout</Link>
+        <Link to='/logout' className="navItem" id="logout">Logout</Link>
       </header>
-
-      {/*Route path='/homepage' component={Homepage} />*/}
-      <Route path='/trips' component={TripGridList} />
     </div>
-  </Router>
 );
 
 const bannerStyle = {
