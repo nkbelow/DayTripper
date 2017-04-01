@@ -14,7 +14,7 @@ class IndividualTrip extends React.Component {
         //trip id?  user id? title of trip?
         //map url
       clicked: false
-
+      
     };
     //bind methods here
     this.showMemoriesClick = this.showMemoriesClick.bind(this);
@@ -51,7 +51,8 @@ class IndividualTrip extends React.Component {
               updateEvent={this.props.updateEvent}
               events={this.props.events}
               showMemories={this.showMemoriesClick} 
-            />
+              addMemories={this.addMemoriesClick}
+              />
             </div>
             <div className="col-md-6">
             { this.state.clicked ? <MuiThemeProvider><Memories /></MuiThemeProvider> : <TripMapView mapUrl={this.props.mapUrl}/> }  

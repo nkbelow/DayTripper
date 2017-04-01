@@ -19,15 +19,113 @@ class App extends React.Component {
       authtoken: ''
     };
 
+<<<<<<< HEAD
   }
   setToken(authtoken) {
     console.log(authtoken, 'this is the token');
+=======
+    $.ajax({
+      url: '/getEvents',
+      type: 'GET',
+      data: userInfo,
+      success: (data) => {
+        console.log('event data (app.js getEvents) :', data);
+        this.setState({
+          events: data
+        })
+        this.mapRender();
+      },
+      error: (error) => {
+        console.error(error)
+      }
+    })
+  };
+
+  createEvent(eventInfo) {
+    $.ajax({
+      url: '/createEvent',
+      type: 'POST',
+      contentType: 'application/json',
+      data: JSON.stringify(eventInfo),
+      success: (event) => {
+        console.log(event);
+        let events = this.state.events.slice();
+        events.push(event);
+        this.setState({
+          events: events
+        });
+        this.mapRender();
+      },
+      error: (error) => {
+        console.error('error in app.jsx createEvent function', error);
+      }
+    })
+  };
+
+  updateEvent(eventInfo) {
+    $.ajax({
+      url: '/updateEvent',
+      type: 'POST',
+      contentType: 'application/json',
+      data: JSON.stringify(eventInfo),
+      success: () => {
+        this.getEvents();
+      },
+      error: (error) => {
+        console.error(error);
+      }
+    })
+  };
+
+  removeEvent(obj) {
+    $.ajax({
+      url: '/removeEvent',
+      type: 'DELETE',
+      contentType: 'application/json',
+      data: JSON.stringify(obj),
+      success: () => {
+        console.log('success');
+        this.getEvents();
+      },
+      error: (error) => {
+        console.error(error);
+      }
+    })
+  };
+
+  mapRender() {
+    if (this.state.events.length === 0) {
+      this.setState({
+        mapUrl: 'https://www.google.com/maps/embed/v1/place?key=AIzaSyAX5TQtLwqyLjSV4TIk1I0ePRUUut8rAf0&q=944+Market+Street,San+Francisco'
+      })
+    } else if (this.state.events.length === 1) {
+      this.setState({
+        mapUrl: `https://www.google.com/maps/embed/v1/place?key=AIzaSyAX5TQtLwqyLjSV4TIk1I0ePRUUut8rAf0&q=${this.state.events[0].address.split(' ').join('+')}`
+      })
+    };
+
+    var baseUrl = `https://www.google.com/maps/embed/v1/directions?key=AIzaSyAX5TQtLwqyLjSV4TIk1I0ePRUUut8rAf0`;
+    var origin = `&origin=${this.state.events[0].address.split(' ').join('+')}`;
+    var destination = `&destination=${this.state.events[this.state.events.length - 1].address.split(' ').join('+')}`;
+    var url = baseUrl + origin + destination;
+
+    for (var i = 1; i < this.state.events.length - 1; i++) {
+      var queried = this.state.events[i].address.split(' ').join('+');
+      if (i === 1) {
+        url += `&waypoints=${queried}|`;
+      } else {
+        url += `${queried}|`;
+      }
+    };
+
+    url = url.slice(0, url.length - 1);
     this.setState({
       authtoken: authtoken
     });
   }
 
   render() {
+
     return (
       <Router>
         <div>
@@ -46,6 +144,18 @@ class App extends React.Component {
     )
   };
 };
+
+  };
+};
+
+//This is used in the render function above in order to test the 'Trip' page
+//Don't forget to remove the {}, you need to wrap it in {}
+       // <Login />
+    //        return (
+    //           <IndividualTrip 
+    //     mapUrl={this.state.mapUrl}
+    //     events={this.state.events}/>
+    // );
 
 
 

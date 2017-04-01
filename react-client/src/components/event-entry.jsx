@@ -64,6 +64,7 @@ class EventEntry extends React.Component {
                 start: this.state.start,
                 end: this.state.end}
     };
+    console.log('newEventInfo from event-entry', newEventInfo);
     this.props.updateEvent(newEventInfo);
     this.ifOptions();
     this.ifEditEvent();
