@@ -162,9 +162,9 @@ app.get('/search', passport.authenticate('google-token'), function(req, res) {
   });
 });
 
-// app.get('*', function(req, res) {
-//   res.redirect('/');
-// });
+app.get('*', function(req, res) {
+  res.redirect('/');
+});
 
 app.listen(process.env.PORT || 3000, function() {
   console.log('Magic happens on port 3000!');
