@@ -49,7 +49,7 @@ app.post('/createEvent', passport.authenticate('google-token'), function(req, re
   req.body.userId = req.session.passport.user;
   db.createEvent(req.body, function(err, event) {
     if (err) {
-      console.log(err)
+      console.log('Error in server/index.js /createEvent', err)
       res.status(500).send(err);
     } else {
       res.status(201).json(event);

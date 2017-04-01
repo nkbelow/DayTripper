@@ -29,7 +29,7 @@ export default class SearchDialogModal extends React.Component {
       latitude: this.props.result.coordinates.latitude,
       longitude: this.props.result.coordinates.longitude
     };
-    console.log('on create event info', eventInfo)
+    console.log('on create event info in search_dialog.jsx', eventInfo)
     this.props.createEvent(eventInfo);
     this.props.handleClose();
   };
