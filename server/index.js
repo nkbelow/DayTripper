@@ -1,17 +1,19 @@
 var express = require('express');
-var bodyParser = require('body-parser');
 var cookieParser = require('cookie-parser');
 var session = require('express-session');
 var connection = require('../database-mongo/index.js');
 var db = require('../database-mongo/models.js');
-var bodyParser = require('body-parser');
 var request = require('request');
 var passport = require('./middleware/initGoogle.js');
+var busboy = require('express-busboy');
+var cloudinary = require('cloudinary');
 
 var app = express();
+busboy.extend(app, {
+  upload: true
+});
 
 app.use(express.static(__dirname + '/../react-client/dist'));
-app.use(bodyParser.json());
 app.use(cookieParser());
 app.use(session({
   secret: 'Victoria\'s',
@@ -76,11 +78,19 @@ app.delete('/removeEvent', function(req, res) {
 });
 
 app.post('/createTrip', function(req, res) {
-  db.createTrip(req.body, function(err, trip) {
+  const trip = req.body;
+  trip.userId = req.session.passport.user;
+  db.createTrip(trip, function(err, trip) {
     if (err) {
       res.status(500).send(err);
     } else {
-      res.status(201).json(trip);
+      db.removeEvent(req.session.passport.user, function(err, events) {
+        if (err) {
+          res.status(404).send(err);
+        } else {
+          res.status(201).json(trip);
+        }
+      });
     }
   });
 });
@@ -102,8 +112,14 @@ app.delete('/removeTrip', function(req, res) {
     } else {
       res.status(204).send();
     }
-  })
-})
+  });
+});
+
+app.post('/trips/photos', function(req, res) {
+  cloudinary.uploader.upload(req.files.photo.file, function(result) {
+    res.send(result);
+  });
+});
 
 app.get('/authenticate', passport.authenticate('google', { scope : ['profile', 'email'] }), function(req, res) {
 });
