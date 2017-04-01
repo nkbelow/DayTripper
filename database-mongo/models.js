@@ -13,6 +13,7 @@ var EventSchema = mongoose.Schema({
   address: String,
   latitude: Number,
   longitude: Number,
+  photos: Array
   
 });
 
@@ -30,9 +31,8 @@ var User = mongoose.model('User', UserSchema);
 
 var TripSchema = mongoose.Schema({
   userId: String,
-  events: Array, 
+  events: [EventSchema], 
   name: String,
-  photos: Array,
   participants: Array
 });
 
@@ -60,7 +60,7 @@ var getTrips = function(id, callback) {
 };
 
 var removeTrip =function(objId, callback) {
-  Trip.remove({ObjectId: objId}, function(err, trip) {
+  Trip.remove({'_id': objId}, function(err, trip) {
     if (err) {
       callback(err, null);
     } else {
@@ -122,10 +122,25 @@ var updateEvent = function(id, newInfo, callback) {
   });
 };
 
-var addPhoto = function(tripId, photo, callback) {
-  Trip.update({'_id': tripId},
-    {$push: {'photos': photo}},
-    callback);
+var addPhoto = function(tripId, eventId, photo, callback) {
+  // Trip.update({'_id': tripId},
+  //   {$push: {'photos': photo}},
+  //   callback);
+  Trip.findOne({'_id': tripId}).exec(
+    function(err, trip) {
+      if (err) {
+        callback(err, null);
+      } else {
+        trip.events.id(eventId).photos.push(photo);
+        trip.save(function(err) {
+          if (err) {
+            callback(err, null);
+          } else {
+            callback(null, 'photo uploaded successfully');
+          }
+        });
+      }
+    });
 };
 
 var removeEvent = function(obj, callback) {
