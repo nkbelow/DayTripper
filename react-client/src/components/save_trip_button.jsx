@@ -50,6 +50,8 @@ class SaveTripButton extends React.Component {
       success: (trip) => {
         console.log('success', trip);
         this.hideModal();
+        //call a function that will remove the events from the array that is passing down to this component
+        this.props.clearEvents();
       },
       error: (error) => {
         console.log(error);
