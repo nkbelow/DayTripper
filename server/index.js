@@ -24,7 +24,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 
-app.get('/getEvents', function(req, res) {
+app.get('/getEvents', passport.authenticate('google-token'), function(req, res) {
 	
   db.getEvents(req.session.passport.user, function(err, events){
 		if (err) {
@@ -35,7 +35,7 @@ app.get('/getEvents', function(req, res) {
 	})
 });
 
-app.post('/createUser', function(req, res) {
+app.post('/createUser', passport.authenticate('google-token'), function(req, res) {
   db.createUser(req.body, function(err, user) {
     if (err) {
       res.send(err);
@@ -45,7 +45,7 @@ app.post('/createUser', function(req, res) {
   })
 });
 
-app.post('/createEvent', function(req, res) {
+app.post('/createEvent', passport.authenticate('google-token'), function(req, res) {
   req.body.userId = req.session.passport.user;
   db.createEvent(req.body, function(err, event) {
     if (err) {
@@ -57,7 +57,7 @@ app.post('/createEvent', function(req, res) {
   })
 });
 
-app.post('/updateEvent', function(req, res) {
+app.post('/updateEvent', passport.authenticate('google-token'), function(req, res) {
   db.updateEvent(req.body.location, req.body.newInfo, function(err, events) {
     if (err) {
       res.send(err);
@@ -67,17 +67,17 @@ app.post('/updateEvent', function(req, res) {
   })
 });
 
-app.delete('/removeEvent', function(req, res) {
+app.delete('/removeEvent', passport.authenticate('google-token'), function(req, res) {
   db.removeEvent(req.body, function(err, events) {
     if (err) {
       res.send(err);
     } else {
       res.status(204).send();
     }
-  })
+  });
 });
 
-app.post('/createTrip', function(req, res) {
+app.post('/createTrip', passport.authenticate('google-token'), function(req, res) {
   const trip = req.body;
   trip.userId = req.session.passport.user;
   db.createTrip(trip, function(err, trip) {
@@ -95,7 +95,7 @@ app.post('/createTrip', function(req, res) {
   });
 });
 
-app.get('/getTrips', function(req, res) {
+app.get('/getTrips', passport.authenticate('google-token'), function(req, res) {
   db.getTrips(req.session.passport.user, function(err, trips) {
     if (err) {
       res.status(500).send(err);
@@ -105,7 +105,7 @@ app.get('/getTrips', function(req, res) {
   });
 });
 
-app.delete('/removeTrip', function(req, res) {
+app.delete('/removeTrip', passport.authenticate('google-token'), function(req, res) {
   db.removeTrip(req.body.ObjectId, function(err, trip) {
     if (err) {
       res.status(500).send(err);
@@ -121,30 +121,15 @@ app.post('/trips/photos', function(req, res) {
   });
 });
 
-app.get('/authenticate', passport.authenticate('google', { scope : ['profile', 'email'] }), function(req, res) {
-});
 
-app.get('/auth/google/callback', passport.authenticate('google'), function(req, res) {
-
-  // var exampleTrip = {
-  //   id: 23,
-  //   events: [{'name': 'hello', 'number': 3}, {'name': 'goodbye', 'number': 4}],
-  //   name: 'this is a string',
-  //   photos: ['string1', 'string2', 'string3'],
-  //   participants: ['nick', 'below', 'anthony', 'gus']
-  // };
-  // db.createTrip(exampleTrip, function(err, events) {
-  //   if (err) {
-  //     console.log(err, 'this is my err');
-  //   } else {
-  //     console.log(events, 'this is my event');
-  //   }
-  // });
+app.get('/authenticate', passport.authenticate('google-token'), function(req, res) {
+  console.log(req, 'this is the req');
+  console.log(res, 'this is the res');
   res.redirect('/');
 });
 
 // GET for Search component
-app.get('/search', function(req, res) {
+app.get('/search', passport.authenticate('google-token'), function(req, res) {
 	console.log('YELP QUERY', req.query);
 
   var yelpRequest = {
@@ -164,6 +149,10 @@ app.get('/search', function(req, res) {
       res.status(201).send(body.businesses);
     }
   });
+});
+
+app.get('*', passport.authenticate('google-token'), function(req, res) {
+  res.redirect('/');
 });
 
 app.listen(process.env.PORT || 3000, function() {
