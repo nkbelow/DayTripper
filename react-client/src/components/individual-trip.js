@@ -28,7 +28,11 @@ class IndividualTrip extends React.Component {
     return (
       <div>
         <Navbar />
-        <TripEventList events={this.props.events} mapUrl={this.props.mapUrl}/>
+        <TripEventList 
+        removeEvent={this.props.removeEvent}
+        updateEvent={this.props.updateEvent}
+        events={this.props.events} 
+        mapUrl={this.props.mapUrl}/>
       </div>
     );
   };

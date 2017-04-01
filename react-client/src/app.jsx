@@ -230,6 +230,8 @@ class App extends React.Component {
 >>>>>>> Add IndividualTrip view component, update app.jsx to import it
 =======
         <IndividualTrip 
+        removeEvent={this.removeEvent}
+        updateEvent={this.updateEvent}
         mapUrl={this.state.mapUrl}
         events={this.state.events}/>
 >>>>>>> Change file name from _ to -. Update app.jsx. Pass props down from app
