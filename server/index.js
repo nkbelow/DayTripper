@@ -26,9 +26,9 @@ app.get('/getEvents', function(req, res) {
 	
   db.getEvents(req.session.passport.user, function(err, events){
 		if (err) {
-			res.send(err);
+			res.status(500).send(err);
 		} else {
-			res.send(events);
+			res.status(200).json(events);
 		}
 	})
 });
@@ -70,10 +70,40 @@ app.delete('/removeEvent', function(req, res) {
     if (err) {
       res.send(err);
     } else {
-      res.status(200).send();
+      res.status(204).send();
     }
   })
 });
+
+app.post('/createTrip', function(req, res) {
+  db.createTrip(req.body, function(err, trip) {
+    if (err) {
+      res.status(500).send(err);
+    } else {
+      res.status(201).json(trip);
+    }
+  });
+});
+
+app.get('/getTrips', function(req, res) {
+  db.getTrips(req.session.passport.user, function(err, trips) {
+    if (err) {
+      res.status(500).send(err);
+    } else {
+      res.status(200).json(trips);
+    }
+  });
+});
+
+app.delete('/removeTrip', function(req, res) {
+  db.removeTrip(req.body.ObjectId, function(err, trip) {
+    if (err) {
+      res.status(500).send(err);
+    } else {
+      res.status(204).send();
+    }
+  })
+})
 
 app.get('/authenticate', passport.authenticate('google', { scope : ['profile', 'email'] }), function(req, res) {
 });

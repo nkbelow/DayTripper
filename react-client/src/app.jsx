@@ -120,7 +120,7 @@ class App extends React.Component {
       error: (error) => {
         console.error(error);
       }
-    })
+    });
   };
 
   mapRender() {

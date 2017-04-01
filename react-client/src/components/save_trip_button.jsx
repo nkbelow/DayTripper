@@ -29,26 +29,28 @@ class SaveTripButton extends React.Component {
     this.setState(newState);
   }
 
-  handleSubmit (trip) {
-    let context = this;
-    event.preventDefault();
+
+  handleSubmit () {
+    let trip = {
+      events: this.props.events,
+      name: this.state.name,
+      photos: [],
+      participants: []
+    };
 
     $.ajax({
-      url: '',
-      method: 'POST',
-      data: JSON.stringify(trip),
+      url: '/createTrip',
+      type: 'POST',
       contentType: 'application/json',
-      success: function(data) {
-        console.log('Save trip');
+      data: JSON.stringify(trip),
+      success: (trip) => {
+        console.log('sucess', trip);
       },
-      error: function(err) {
-        console.log('Error in saving trip');
-        // this.props.history.push('/');
+      error: (error) => {
+        console.log(error);
       }
     });
-
   }
-
 
   render () {
 
