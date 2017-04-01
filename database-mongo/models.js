@@ -28,7 +28,7 @@ var UserSchema = mongoose.Schema({
 var User = mongoose.model('User', UserSchema);
 
 var TripSchema = mongoose.Schema({
-  user: String,
+  userId: String,
   events: Array, 
   name: String,
   photos: Array,
@@ -49,7 +49,7 @@ var createTrip = function(obj, callback) {
 };
 
 var getTrips = function(id, callback) {
-  Trip.find({user: id}, function(err, trips) {
+  Trip.find({userId: id}, function(err, trips) {
     if (err) {
       callback(err, null);
     } else {
