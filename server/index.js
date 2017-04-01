@@ -77,16 +77,18 @@ app.delete('/removeEvent', passport.authenticate('google-token'), function(req, 
   });
 });
 
-app.post('/createTrip', passport.authenticate('google-token'), function(req, res) {
+app.post('/createTrip', function(req, res) {
   const trip = req.body;
   trip.userId = req.session.passport.user;
   db.createTrip(trip, function(err, trip) {
     if (err) {
+      console.log(err, 'there is an error');
       res.status(500).send(err);
     } else {
       db.removeEvent(req.session.passport.user, function(err, events) {
         if (err) {
           res.status(404).send(err);
+          console.log('there is another error', err);
         } else {
           res.status(201).json(trip);
         }
@@ -96,6 +98,7 @@ app.post('/createTrip', passport.authenticate('google-token'), function(req, res
 });
 
 app.get('/getTrips', passport.authenticate('google-token'), function(req, res) {
+  console.log(req.session);
   db.getTrips(req.session.passport.user, function(err, trips) {
     if (err) {
       res.status(500).send(err);
@@ -123,8 +126,10 @@ app.post('/trips/photos', function(req, res) {
 
 
 app.get('/authenticate', passport.authenticate('google-token'), function(req, res) {
-  console.log(req, 'this is the req');
-  console.log(res, 'this is the res');
+  console.log(req.user, 'this is the req user');
+  console.log(req.body, 'this the req body');
+  console.log(req.session, 'this is the req session');
+  // console.log(res, 'this is the res');
   res.redirect('/');
 });
 
@@ -151,9 +156,9 @@ app.get('/search', passport.authenticate('google-token'), function(req, res) {
   });
 });
 
-app.get('*', passport.authenticate('google-token'), function(req, res) {
-  res.redirect('/');
-});
+// app.get('*', function(req, res) {
+//   res.redirect('/');
+// });
 
 app.listen(process.env.PORT || 3000, function() {
   console.log('Magic happens on port 3000!');

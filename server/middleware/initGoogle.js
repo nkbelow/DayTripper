@@ -5,14 +5,14 @@ let passport = require('passport');
 let db = require('../../database-mongo/models.js');
 
 passport.use(new GoogleTokenStrategy({
-  clientID: '898316907945-kk9tkv33a46v17qej06tfce8hmv88g44.apps.googleusercontent.com',
-  clientSecret: 'SE4ddGm2SWQt8jezDRARRl7U',
+  clientID: process.env.GOOGLE_CLIENT_ID,
+  clientSecret: process.env.GOOGLE_CLIENT_SECRET,
   // callbackURL: process.env.GOOGLE_CALLBACK_URL
 },
 function(accesstoken, refreshToken, profile, done) {
-  console.log('this is the accesstoken', accesstoken);
-  console.log('this is the refreshToken', refreshToken);
-  console.log('this is the profile', profile);
+  // console.log('this is the accesstoken', accesstoken);
+  // console.log('this is the refreshToken', refreshToken);
+  // console.log('this is the profile', profile);
   let user = {
     userId: profile.id,
     token: accesstoken,
