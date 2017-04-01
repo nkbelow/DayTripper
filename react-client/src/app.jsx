@@ -37,7 +37,10 @@ class App extends React.Component {
           <Route path='/homepage' component={(props) => {
             return (<Homepage authtoken={this.state.authtoken} />)
           }} />
-
+          <Route path='/logout' component={(props) => {
+            return (<Login history={props.history} setToken={this.setToken.bind(this)} />)
+          }} />
+          <Route path='/trips' component={TripGridList} />
         </div>
       </Router>
     )

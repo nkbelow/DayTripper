@@ -5,7 +5,7 @@ import Subheader from 'material-ui/Subheader';
 import StarBorder from 'material-ui/svg-icons/toggle/star-border';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import TripGridTile from './trip_grid_tile.jsx';
-
+import Navbar from './navbar.jsx';
 
 const styles = {
   root: {
@@ -38,6 +38,8 @@ class TripGridList extends React.Component {
 
   render() {
     return (
+      <div>
+      <Navbar />
       <MuiThemeProvider>
         <div style={styles.root}>
           <GridList
@@ -53,6 +55,7 @@ class TripGridList extends React.Component {
           </GridList>
         </div>
       </MuiThemeProvider>
+      </div>
     )
   };
 }
