@@ -1,49 +1,51 @@
 import React from 'react';
 import Dialog from 'material-ui/Dialog';
 import FlatButton from 'material-ui/FlatButton';
-import RaisedButton from 'material-ui/RaisedButton';
+
 
 /**
  * A modal dialog can only be closed by selecting one of the actions.
  */
 class PictureModal extends React.Component {
-  state = {
+  constructor(props) {
+    super(props);
+  this.state = {
     open: false,
   };
+  this.handleOpen = this.handleOpen.bind(this);
 
-  handleOpen = () => {
-    this.setState({open: true});
-  };
+}
 
-  handleClose = () => {
-    this.setState({open: false});
-  };
+handleOpen() {
+  this.setState({open: true});
+};
+
+
 
   render() {
     const actions = [
       <FlatButton
         label="Cancel"
         primary={true}
-        onTouchTap={this.handleClose}
+        onClick={this.props.handleClose}
       />,
       <FlatButton
         label="Submit"
         primary={true}
-        disabled={true}
-        onTouchTap={this.handleClose}
+        disabled={false}
+        onClick={this.props.handleClose}
       />,
     ];
 
     return (
       <div>
-        <RaisedButton label="Modal Dialog" onTouchTap={this.handleOpen} />
         <Dialog
-          title="Dialog With Actions"
+          title="Click or tap here to take/upload a photo for this memory"
           actions={actions}
           modal={true}
-          open={this.state.open}
+          open={this.props.open}
         >
-          Click or tap here to take/upload a photo for this memory
+          
           <input type="file" capture="camera" accept="image/*" id="takePictureField"/>
         </Dialog>
       </div>
