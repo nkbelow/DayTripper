@@ -44,7 +44,7 @@ class SaveTripButton extends React.Component {
       contentType: 'application/json',
       data: JSON.stringify(trip),
       success: (trip) => {
-        console.log('sucess', trip);
+        console.log('success', trip);
       },
       error: (error) => {
         console.log(error);
