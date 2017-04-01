@@ -16,17 +16,27 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-
+      authtoken: ''
     };
 
-  };
+  }
+  setToken(authtoken) {
+    console.log(authtoken, 'this is the token');
+    this.setState({
+      authtoken: authtoken
+    });
+  }
 
   render() {
     return (
       <Router>
         <div>
-          <Route exact path='/' component={Login} />
-          <Route path='/homepage' component={Homepage} />
+          <Route exact path='/' component={(props) => {
+            return (<Login history={props.history} setToken={this.setToken.bind(this)} />)
+          }} />
+          <Route path='/homepage' component={(props) => {
+            return (<Homepage authtoken={this.state.authtoken} />)
+          }} />
 
         </div>
       </Router>

@@ -21,7 +21,18 @@ class Login extends React.Component {
         xhr.setRequestHeader('access_token', response.accessToken);
       }
     });
+    $.ajax({
+      url: '/authenticate',
+      type: 'GET',
+      success: (data) => {
+        console.log(data);
+      },
+      error: (err) => {
+        console.log(err);
+      }
+    });
     this.props.history.push('/homepage');
+    this.props.setToken(response.accessToken);
   }
   render() {
     return (
