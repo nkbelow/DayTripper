@@ -13,6 +13,7 @@ var EventSchema = mongoose.Schema({
   address: String,
   latitude: Number,
   longitude: Number,
+  
 });
 
 var Event = mongoose.model('Event', EventSchema);
@@ -121,6 +122,12 @@ var updateEvent = function(id, newInfo, callback) {
   });
 };
 
+var addPhoto = function(tripId, photo, callback) {
+  Trip.update({'_id': tripId},
+    {$push: {'photos': photo}},
+    callback);
+};
+
 var removeEvent = function(obj, callback) {
   Event.remove(obj, function(err, events) {
     if (err) {
@@ -143,3 +150,4 @@ module.exports.findUser = findUser;
 module.exports.createTrip = createTrip;
 module.exports.getTrips = getTrips;
 module.exports.removeTrip = removeTrip;
+module.exports.addPhoto = addPhoto;
