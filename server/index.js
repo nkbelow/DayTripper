@@ -126,10 +126,6 @@ app.post('/trips/photos', function(req, res) {
 
 
 app.get('/authenticate', passport.authenticate('google-token'), function(req, res) {
-  console.log(req.user, 'this is the req user');
-  console.log(req.body, 'this the req body');
-  console.log(req.session, 'this is the req session');
-  // console.log(res, 'this is the res');
   res.redirect('/');
 });
 
