@@ -20,7 +20,9 @@ class Login extends React.Component {
         xhr.setRequestHeader('Authorization', 'Bearer ' + response.accessToken);
       }
     });
-    
+
+    this.props.history.push('/homepage');
+
   }
   render() {
     return (

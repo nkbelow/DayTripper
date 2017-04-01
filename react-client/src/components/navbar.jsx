@@ -1,15 +1,22 @@
 import React from 'react';
 import TripGridList from './trip_grid.jsx';
 import App from '../app.jsx';
-import { Router, Route, Link, IndexRoute, hashHistory, browserHistory } from 'react-router';
+import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
+import Homepage from './homepage.jsx';
 
 const Navbar = (props) => (
-  <header style={bannerStyle}>
+  <Router>
+    <div>
+      <header style={bannerStyle}>
+        <Link to='/homepage' className="navItem">Home</Link>
+        <Link to='/trips' className="navItem">Trips</Link>
+        <Link to='/homepage' className="navItem" id="logout">Logout</Link>
+      </header>
 
-    <a href='#' className="navItem">Home</a>
-    <a href='#' className="navItem">Trips</a>
-    <a href="#" className="navItem" id="logout">Logout</a>
-  </header>
+      {/*Route path='/homepage' component={Homepage} />*/}
+      <Route path='/trips' component={TripGridList} />
+    </div>
+  </Router>
 );
 
 const bannerStyle = {
