@@ -4,6 +4,9 @@ import IconButton from 'material-ui/IconButton';
 import Subheader from 'material-ui/Subheader';
 import StarBorder from 'material-ui/svg-icons/toggle/star-border';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
+import IndividualTrip from './individual-trip.js';
+
 
 
 class TripGridTile extends React.Component {
@@ -21,20 +24,26 @@ class TripGridTile extends React.Component {
 
   render () {
     return (
-      <GridTile
-        key={this.props.result.id}
-        title={this.props.result.name}
-        actionPosition="left"
-        titlePosition="top"
-        titleBackground="linear-gradient(to bottom, rgba(0,0,0,0.7) 0%,rgba(0,0,0,0.3) 70%,rgba(0,0,0,0) 100%)"
-      > 
-        <img 
-          className = "tile"
-          onClick={this.clickImage} 
-          src={this.props.result.image_url}
-        />
-      </GridTile>
-    )    
+      <div>
+      <Link to='individualtrip'>
+        <GridTile
+          key={this.props.result.id}
+          title={this.props.result.name}
+          actionPosition="left"
+          titlePosition="top"
+          titleBackground="linear-gradient(to bottom, rgba(0,0,0,0.7) 0%,rgba(0,0,0,0.3) 70%,rgba(0,0,0,0) 100%)"
+        >
+          <img
+            className = "tile"
+            onClick={this.clickImage}
+            src={this.props.result.image_url}
+          />
+        </GridTile>
+      </Link>
+
+
+      </div>
+    )
   }
 };
 

@@ -9,8 +9,6 @@ import TripGridList from './components/trip_grid.jsx';
 import Navbar from './components/navbar.jsx';
 import IndividualTrip from './components/individual-trip.js';
 
-
-
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -137,6 +135,7 @@ class App extends React.Component {
             return (<Login history={props.history} setToken={this.setToken.bind(this)} />)
           }} />
           <Route path='/trips' component={TripGridList} />
+          <Route path='/individualtrip' component={IndividualTrip} />
         </div>
       </Router>
     )
