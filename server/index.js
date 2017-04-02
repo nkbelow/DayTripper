@@ -157,6 +157,7 @@ app.get('/search', passport.authenticate('google-token'), function(req, res) {
     if (error) {
       console.error('---> YELP ERROR', error);
     } else {
+      console.log('yelp business information -----> ',body.businesses);
       res.status(201).send(body.businesses);
     }
   });
