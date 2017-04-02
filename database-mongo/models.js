@@ -106,6 +106,7 @@ var getEvents = function(id, callback) {
 var createEvent = function(obj, callback) {
   Event.create(obj, function(err, event) {
     if (err) {
+      console.log('error in models.js createEvent', err);
       callback(err, null);
     } else {
       console.log('CREATE --->', event)

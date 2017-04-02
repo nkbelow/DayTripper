@@ -30,7 +30,7 @@ export default class SearchDialogModal extends React.Component {
       longitude: this.props.result.coordinates.longitude,
       image_url: this.props.result.image_url
     };
-    console.log('on create event info', eventInfo)
+    console.log('on create event info in search_dialog.jsx', eventInfo)
     this.props.createEvent(eventInfo);
     this.props.handleClose();
   };

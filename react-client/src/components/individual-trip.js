@@ -9,14 +9,16 @@ class IndividualTrip extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      //data that will be needed
-        //events - populates from table of events associated with the trip.
-        //trip id?  user id? title of trip?
-        //map url
-      clicked: false
 
+      // data that will be needed
+      //   events - populates from table of events associated with the trip.
+      //   trip id?  user id? title of trip?
+      //   map url
+      clicked: false,
+      // events state variable is temporary, using just until we have proper trip info being passed through.
+      events: []
     };
-    //bind methods here
+    // //bind methods here
     this.showMemoriesClick = this.showMemoriesClick.bind(this);
     this.addMemoriesClick = this.addMemoriesClick.bind(this);
 
@@ -40,23 +42,24 @@ class IndividualTrip extends React.Component {
 
   render() {
     return (
-      <div className="container-fluid">
+     <div className="container-fluid">
         <Navbar />
         <h1 className="text-center">Title of My Trip</h1>
 
           <div className="row">
-            <div className="col-md-6">   
-              <TripEventList 
+            <div className="col-md-6">
+              <TripEventList
               removeEvent={this.props.removeEvent}
               updateEvent={this.props.updateEvent}
               events={this.props.events}
               showMemories={this.showMemoriesClick} 
-            />
+              addMemories={this.addMemoriesClick}
+              />
             </div>
             <div className="col-md-6">
-            { this.state.clicked ? <MuiThemeProvider><Memories /></MuiThemeProvider> : <TripMapView mapUrl={this.props.mapUrl}/> }  
+            { this.state.clicked ? <MuiThemeProvider><Memories /></MuiThemeProvider> : <TripMapView mapUrl={this.props.mapUrl}/> }
             </div>
-            
+
           </div>
 
       </div>
@@ -68,4 +71,4 @@ export default IndividualTrip;
 
         // <MuiThemeProvider>
         //   <PhotoScroller />
-        // </MuiThemeProvider> 
+        // </MuiThemeProvider>
