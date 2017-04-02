@@ -9,6 +9,7 @@ class IndividualTrip extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+
       // data that will be needed
       //   events - populates from table of events associated with the trip.
       //   trip id?  user id? title of trip?
@@ -16,7 +17,6 @@ class IndividualTrip extends React.Component {
       clicked: false,
       // events state variable is temporary, using just until we have proper trip info being passed through.
       events: []
-
     };
     // //bind methods here
     this.showMemoriesClick = this.showMemoriesClick.bind(this);
@@ -51,10 +51,10 @@ class IndividualTrip extends React.Component {
               <TripEventList
               removeEvent={this.props.removeEvent}
               updateEvent={this.props.updateEvent}
-              // this events prop should eventually be the actual trip info
-              events={this.state.events}
-              showMemories={this.showMemoriesClick}
-            />
+              events={this.props.events}
+              showMemories={this.showMemoriesClick} 
+              addMemories={this.addMemoriesClick}
+              />
             </div>
             <div className="col-md-6">
             { this.state.clicked ? <MuiThemeProvider><Memories /></MuiThemeProvider> : <TripMapView mapUrl={this.props.mapUrl}/> }

@@ -25,6 +25,7 @@ class Homepage extends React.Component {
     this.removeEvent = this.removeEvent.bind(this);
     this.updateEvent = this.updateEvent.bind(this);
     this.mapRender = this.mapRender.bind(this);
+    this.clearEvents = this.clearEvents.bind(this);
   }
 
   componentDidMount() {
@@ -104,6 +105,10 @@ class Homepage extends React.Component {
     })
   };
 
+  clearEvents() {
+    this.setState({events: []});
+  }
+
   mapRender() {
     if (this.state.events.length === 0) {
       this.setState({
@@ -162,7 +167,7 @@ class Homepage extends React.Component {
               />
               </div>
               <div>
-              <SaveTripButton accessToken={this.state.accessToken} events={this.state.events}/>
+              <SaveTripButton accessToken={this.state.accessToken} events={this.state.events} clearEvents={this.clearEvents}/>
             </div>
 
           </div>
