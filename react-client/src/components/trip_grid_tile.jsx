@@ -22,7 +22,7 @@ class TripGridTile extends React.Component {
   render () {
     return (
       <GridTile
-        key={this.props.result.id}
+        key={this.props.result._id}
         title={this.props.result.name}
         actionPosition="left"
         titlePosition="top"

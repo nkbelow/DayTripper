@@ -27,7 +27,8 @@ export default class SearchDialogModal extends React.Component {
       phone: this.props.result.display_phone,
       address: this.props.result.location.display_address.join(', '),
       latitude: this.props.result.coordinates.latitude,
-      longitude: this.props.result.coordinates.longitude
+      longitude: this.props.result.coordinates.longitude,
+      image_url: this.props.result.image_url
     };
     console.log('on create event info', eventInfo)
     this.props.createEvent(eventInfo);
