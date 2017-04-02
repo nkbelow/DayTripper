@@ -113,6 +113,7 @@ app.get('/getTrips/', passport.authenticate('google-token'), function(req, res) 
   });
 });
 
+<<<<<<< HEAD
 app.get('/getTrips/:tripId', passport.authenticate('google-token'), function(req, res) {
   console.log(req.params.tripId);
   db.getTrips('_id', req.params.tripId, function(err, trips) {
@@ -125,6 +126,15 @@ app.get('/getTrips/:tripId', passport.authenticate('google-token'), function(req
   });
 });
 
+||||||| merged common ancestors
+=======
+app.post('updateTrip', passport.authenticate('google-token'), function(req, res) {
+  console.log(req.body);
+  // db.updateTrip()
+  res.send('hello');
+});
+
+>>>>>>> Start base for update trips route
 app.delete('/removeTrip', passport.authenticate('google-token'), function(req, res) {
   db.removeTrip(req.body.ObjectId, function(err, trip) {
     if (err) {
