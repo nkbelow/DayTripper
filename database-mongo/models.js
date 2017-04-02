@@ -13,7 +13,8 @@ var EventSchema = mongoose.Schema({
   address: String,
   latitude: Number,
   longitude: Number,
-  photos: Array
+  photos: Array,
+  image_url: String
   
 });
 
@@ -24,7 +25,7 @@ var UserSchema = mongoose.Schema({
   token: String,
   firstname: String,
   lastname: String,
-  email: String
+  email: String,
 });
 
 var User = mongoose.model('User', UserSchema);
@@ -33,7 +34,8 @@ var TripSchema = mongoose.Schema({
   userId: String,
   events: [EventSchema], 
   name: String,
-  participants: Array
+  participants: Array,
+  image_url: String
 });
 
 var Trip = mongoose.model('Trip', TripSchema);
@@ -43,8 +45,8 @@ var createTrip = function(obj, callback) {
     if (err) {
       callback(err, null);
     } else {
-      callback(null, trip);
       console.log(trip);
+      callback(null, trip);
     }
   })
 };
@@ -54,6 +56,7 @@ var getTrips = function(id, callback) {
     if (err) {
       callback(err, null);
     } else {
+      console.log(trips);
       callback(null, trips);
     }
   });
