@@ -23,7 +23,6 @@ class App extends React.Component {
     $.ajax({
       url: '/getEvents',
       type: 'GET',
-      data: userInfo,
       success: (data) => {
         console.log('event data (app.js getEvents) :', data);
         this.setState({
@@ -135,7 +134,7 @@ class App extends React.Component {
             return (<Login history={props.history} setToken={this.setToken.bind(this)} />)
           }} />
           <Route path='/trips' component={TripGridList} />
-          <Route path='/individualtrip' component={IndividualTrip} />
+          <Route name='trip' path='/trip/:tripId' component={IndividualTrip} />
         </div>
       </Router>
     )

@@ -4,6 +4,7 @@ import TripEventList from './trip-event-list.js';
 import TripMapView from './trip-map.js';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import Memories from './memories.js';
+import { ajax } from 'jquery';
 
 class IndividualTrip extends React.Component {
   constructor(props) {
@@ -16,7 +17,7 @@ class IndividualTrip extends React.Component {
       //   map url
       clicked: false,
       // events state variable is temporary, using just until we have proper trip info being passed through.
-      events: []
+      trip: {}
     };
     // //bind methods here
     this.showMemoriesClick = this.showMemoriesClick.bind(this);
@@ -30,35 +31,54 @@ class IndividualTrip extends React.Component {
     //new method for getting data for friends?
     //new method for getting data for photos
       //data for photos should allow for titling of photos
-  showMemoriesClick() {
-    this.setState({clicked: !this.state.clicked});
+  showMemoriesClick(photos) {
+    this.setState({
+      photos: photos,
+      clicked: !this.state.clicked});
   };
 
   addMemoriesClick() {
 
   }
 
-
+  componentDidMount() {
+    ajax({
+      url: `/getTrips/${this.props.match.params.tripId}`,
+      method: 'GET',
+      success: (trip) => {
+        console.log(trip);
+        this.setState({
+          trip: trip
+        });
+      },
+      error: (error) => {
+        console.log(error);
+      }
+    });
+  }
 
   render() {
     return (
      <div className="container-fluid">
         <Navbar />
-        <h1 className="text-center">Title of My Trip</h1>
+        <h1 className="text-center">{this.state.trip.name}</h1>
 
           <div className="row">
             <div className="col-md-6">
-              <TripEventList
-              removeEvent={this.props.removeEvent}
-              updateEvent={this.props.updateEvent}
-              events={this.props.events}
-              showMemories={this.showMemoriesClick} 
-              addMemories={this.addMemoriesClick}
-              />
+              {this.state.trip.events ?
+                <TripEventList
+                // removeEvent={this.props.removeEvent}
+                // updateEvent={this.props.updateEvent}
+                events={this.state.trip.events}
+                showMemories={this.showMemoriesClick} 
+                addMemories={this.addMemoriesClick}
+                /> :
+                ''}
+              </div>
+              <div className="col-md-6">
+              { this.state.clicked ? <MuiThemeProvider><Memories photos={this.state.photos}/></MuiThemeProvider> : <TripMapView /*mapUrl=*//> }
             </div>
-            <div className="col-md-6">
-            { this.state.clicked ? <MuiThemeProvider><Memories /></MuiThemeProvider> : <TripMapView mapUrl={this.props.mapUrl}/> }
-            </div>
+          
 
           </div>
 

@@ -51,12 +51,14 @@ var createTrip = function(obj, callback) {
   })
 };
 
-var getTrips = function(id, callback) {
-  Trip.find({userId: id}, function(err, trips) {
+var getTrips = function(field, id, callback) {
+
+  const params = {};
+  params[field] = id;
+  Trip.find(params, function(err, trips) {
     if (err) {
       callback(err, null);
     } else {
-      console.log(trips);
       callback(null, trips);
     }
   });

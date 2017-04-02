@@ -70,14 +70,14 @@ const Memories = (props) => (
       style={styles.gridList}
     >
       <Subheader>December</Subheader>
-      {tilesData.map((tile) => (
+      {props.photos.map((photo) => (
         <GridTile
-          key={tile.img}
-          title={tile.title}
-          subtitle={<span>by <b>{tile.author}</b></span>}
+          key={photo.public_id}
+          title={photo.original_filename}
+          subtitle={<span>by <b>{photo.original_filename}</b></span>}
           actionIcon={<IconButton><StarBorder color="white" /></IconButton>}
         >
-          <img src={tile.img} />
+          <img src={photo.url} />
         </GridTile>
       ))}
     </GridList>

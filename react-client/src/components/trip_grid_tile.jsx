@@ -25,10 +25,10 @@ class TripGridTile extends React.Component {
   render () {
     return (
       <div>
-      <Link to='individualtrip'>
+      <Link to={`trip/${this.props.trip._id}`}>
         <GridTile
-          key={this.props.result.id}
-          title={this.props.result.name}
+          key={this.props.trip._id}
+          title={this.props.trip.name}
           actionPosition="left"
           titlePosition="top"
           titleBackground="linear-gradient(to bottom, rgba(0,0,0,0.7) 0%,rgba(0,0,0,0.3) 70%,rgba(0,0,0,0) 100%)"
@@ -36,7 +36,7 @@ class TripGridTile extends React.Component {
           <img
             className = "tile"
             onClick={this.clickImage}
-            src={this.props.result.image_url}
+            src={this.props.trip.image_url}
           />
         </GridTile>
       </Link>

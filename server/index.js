@@ -97,13 +97,25 @@ app.post('/createTrip', function(req, res) {
   });
 });
 
-app.get('/getTrips', passport.authenticate('google-token'), function(req, res) {
+app.get('/getTrips/', passport.authenticate('google-token'), function(req, res) {
   console.log(req.session);
-  db.getTrips(req.session.passport.user, function(err, trips) {
+  db.getTrips('userId', req.session.passport.user, function(err, trips) {
     if (err) {
       res.status(500).send(err);
     } else {
       res.status(200).json(trips);
+    }
+  });
+});
+
+app.get('/getTrips/:tripId', passport.authenticate('google-token'), function(req, res) {
+  console.log(req.params.tripId);
+  db.getTrips('_id', req.params.tripId, function(err, trips) {
+    if (err) {
+      res.status(500).send(err);
+    } else {
+      console.log(trips);
+      res.status(200).json(trips[0]);
     }
   });
 });
@@ -132,9 +144,9 @@ app.post('/trips/photos', function(req, res) {
 
 
 app.get('/authenticate', passport.authenticate('google-token'), function(req, res) {
-  console.log(req.user, 'this is the req user');
-  console.log(req.body, 'this the req body');
-  console.log(req.session, 'this is the req session');
+  // console.log(req.user, 'this is the req user');
+  // console.log(req.body, 'this the req body');
+  // console.log(req.session, 'this is the req session');
   // console.log(res, 'this is the res');
   res.redirect('/');
 });
@@ -157,7 +169,7 @@ app.get('/search', passport.authenticate('google-token'), function(req, res) {
     if (error) {
       console.error('---> YELP ERROR', error);
     } else {
-      console.log('yelp business information -----> ',body.businesses);
+      
       res.status(201).send(body.businesses);
     }
   });
