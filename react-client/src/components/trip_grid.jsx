@@ -67,10 +67,10 @@ class TripGridList extends React.Component {
             style={styles.gridList}
             cellHeight={300}
           >
-            {this.state.trips.map((result) => (
+            {this.state.trips.map((trip) => (
               <TripGridTile
-                key={result._id}
-                result={result}
+                key={trip._id}
+                trip={trip}
               />
             ))}
           </GridList>
