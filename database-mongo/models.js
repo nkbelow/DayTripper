@@ -50,9 +50,12 @@ var createTrip = function(obj, callback) {
     }
   })
 };
+var updateTrip = function(tripId, event, callback) {
+  Trip.update({_id: tripId}, 
+    {$push: {events: event}}, callback);
+};
 
 var getTrips = function(field, id, callback) {
-
   const params = {};
   params[field] = id;
   Trip.find(params, function(err, trips) {
@@ -64,7 +67,7 @@ var getTrips = function(field, id, callback) {
   });
 };
 
-var removeTrip =function(objId, callback) {
+var removeTrip = function(objId, callback) {
   Trip.remove({'_id': objId}, function(err, trip) {
     if (err) {
       callback(err, null);
@@ -128,6 +131,7 @@ var updateEvent = function(id, newInfo, callback) {
   });
 };
 
+
 var addPhoto = function(tripId, eventId, photo, callback) {
   // Trip.update({'_id': tripId},
   //   {$push: {'photos': photo}},
@@ -172,3 +176,4 @@ module.exports.createTrip = createTrip;
 module.exports.getTrips = getTrips;
 module.exports.removeTrip = removeTrip;
 module.exports.addPhoto = addPhoto;
+module.exports.updateTrip = updateTrip;
