@@ -11,7 +11,7 @@ class SaveTripButton extends React.Component {
     super(props);
 
     this.state = {
-      title: '',
+      name: '',
       accessToken: this.props.accessToken 
     }
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -38,7 +38,8 @@ class SaveTripButton extends React.Component {
       events: this.props.events,
       name: this.state.name,
       photos: [],
-      participants: []
+      participants: [],
+      image_url: this.props.events[0].image_url
     };
     console.log(this.state.accessToken, 'imm passing down the access token in the savetripbutton file in the handlesubmit func');
     $.ajax({
@@ -48,7 +49,6 @@ class SaveTripButton extends React.Component {
       contentType: 'application/json',
       data: JSON.stringify(trip),
       success: (trip) => {
-        console.log('success', trip);
         this.hideModal();
         //call a function that will remove the events from the array that is passing down to this component
         this.props.clearEvents();
@@ -72,9 +72,9 @@ class SaveTripButton extends React.Component {
               <h4 className='create'>Give your event a title</h4>
 
               <input
-                value={this.state.title}
+                value={this.state.name}
                 type="text"
-                onChange={this.handleChange.bind(this, 'title')} required
+                onChange={this.handleChange.bind(this, 'name')} required
               />
             </div>
             <div className="col-md-4">
