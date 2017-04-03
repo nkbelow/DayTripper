@@ -18,7 +18,7 @@ class TripEventTile extends React.Component {
     this.setState({picModalOpen: true})
   }
   handleClose() {
-  this.setState({open: false});
+  this.setState({picModalOpen: false});
 };
 
 
