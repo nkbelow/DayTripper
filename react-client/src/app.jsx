@@ -20,12 +20,11 @@ class App extends React.Component {
   
   setToken(authtoken) {
     console.log(authtoken, 'this is the token');
-
     this.setState({
       authtoken: authtoken
     });
   }
-
+  
   render() {
 
     return (
@@ -53,7 +52,7 @@ class App extends React.Component {
 //Don't forget to remove the {}, you need to wrap it in {}
        // <Login />
     //        return (
-    //           <IndividualTrip 
+    //           <IndividualTrip
     //     mapUrl={this.state.mapUrl}
     //     events={this.state.events}/>
     // );
