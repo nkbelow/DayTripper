@@ -13,6 +13,11 @@ busboy.extend(app, {
   upload: true
 });
 
+app.post('/test', function(req, res) {
+  
+  res.send();
+});
+
 app.use(express.static(__dirname + '/../react-client/dist'));
 app.use(cookieParser());
 app.use(session({
@@ -140,7 +145,7 @@ app.post('/trips', function(req, res) {
       } else {
         res.status(201).json(photo);
       }
-    })
+    });
   });
 });
 

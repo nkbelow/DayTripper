@@ -17,26 +17,14 @@ class App extends React.Component {
     };
 
   }
+  
   setToken(authtoken) {
     console.log(authtoken, 'this is the token');
-
-    $.ajax({
-      url: '/getEvents',
-      type: 'GET',
-      success: (data) => {
-        console.log('event data (app.js getEvents) :', data);
-        this.setState({
-          events: data
-        })
-        this.mapRender();
-      },
-      error: (error) => {
-        console.error(error)
-      }
-    })
-  };
-
-
+    this.setState({
+      authtoken: authtoken
+    });
+  }
+  
   render() {
 
     return (

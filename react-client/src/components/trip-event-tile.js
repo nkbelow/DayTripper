@@ -20,7 +20,7 @@ class TripEventTile extends React.Component {
     this.setState({picModalOpen: true})
   }
   handleClose() {
-  this.setState({picModalOpen: false});
+    this.setState({picModalOpen: false});
   };
 
    handleSubmit(pictureData) {
@@ -42,8 +42,9 @@ class TripEventTile extends React.Component {
       processData: false,
       contentType: false,
       data: data,
-      success: () => {
-        console.log('success in handleSubmit in trip-event-tile.js')
+      success: (photo) => {
+        console.log('success in handleSubmit in trip-event-tile.js');
+        this.props.updatePhotos(this.props.event._id, photo);
       },
       error: (error) => {
         console.log('error in handleSubmit in trip-event-tile.js', error)
