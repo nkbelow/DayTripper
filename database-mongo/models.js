@@ -35,7 +35,8 @@ var TripSchema = mongoose.Schema({
   events: [EventSchema], 
   name: String,
   participants: Array,
-  image_url: String
+  image_url: String,
+  map_url: String
 });
 
 var Trip = mongoose.model('Trip', TripSchema);
