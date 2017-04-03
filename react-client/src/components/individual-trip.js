@@ -21,6 +21,7 @@ class IndividualTrip extends React.Component {
     };
     // //bind methods here
     this.showMemoriesClick = this.showMemoriesClick.bind(this);
+    this.updatePhotos = this.updatePhotos.bind(this);
 
   };
   //add new methods here
@@ -53,6 +54,18 @@ class IndividualTrip extends React.Component {
     });
   }
 
+  updatePhotos(eventId, photo) {
+    const trip = this.state.trip;
+    for(let event of trip.events) {
+      if (event._id === eventId) {
+        event.photos.push(photo);
+      }
+    }
+    this.setState({
+      trip: trip
+    });
+  }
+
   render() {
     return (
      <div className="container-fluid">
@@ -67,7 +80,8 @@ class IndividualTrip extends React.Component {
                 // updateEvent={this.props.updateEvent}
                 tripId={this.state.trip._id}
                 events={this.state.trip.events}
-                showMemories={this.showMemoriesClick} 
+                showMemories={this.showMemoriesClick}
+                updatePhotos={this.updatePhotos} 
                 /> :
                 ''}
               </div>
