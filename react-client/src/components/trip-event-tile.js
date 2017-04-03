@@ -28,18 +28,18 @@ class TripEventTile extends React.Component {
 
   render() {
 
-    const tile = 
-      {
-        img: 'http://www.goodfood.com.vn/images/I_home.jpg',
-        title: 'Breakfast',
-        author: 'jill111',
-      };
+    // const tile =
+    //   {
+    //     img: 'http://www.goodfood.com.vn/images/I_home.jpg',
+    //     title: 'Breakfast',
+    //     author: 'jill111',
+    //   };
 
     return (
       <div className="container tripEventTile">
         <div className="row">
           <div className="col-md-2 col-xs-12">
-            <img src={tile.img} className="img-thumbnail img-responsive" style={{height: 100}}/>
+            <img src={this.props.event.image_url} className="img-thumbnail img-responsive" style={{height: 100}}/>
           </div>
 
           <div className="col-md-2  col-xs-12">
@@ -56,7 +56,7 @@ class TripEventTile extends React.Component {
             <button onClick={this.props.showMemories} className="btn-info btn-lg">Show Memories</button>
           </div>
           <MuiThemeProvider>
-            <PictureModal 
+            <PictureModal
             open={this.state.picModalOpen}
             handleClose={this.handleClose}
             />
