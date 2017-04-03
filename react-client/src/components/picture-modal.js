@@ -22,8 +22,10 @@ class PictureModal extends React.Component {
 // };
 
 updatePicData(e) {
-console.log('submitted data', e.target.value)
-this.setState({picData: e.target.value})
+// console.log('submitted data', e.target.value)
+const imageData = document.getElementById('takePictureField').files[0];
+this.setState({picData: imageData})
+console.log('submitted data test var', imageData);
 }
 
 handleDataSubmit() {

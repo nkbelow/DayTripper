@@ -2,6 +2,7 @@ import React from 'react';
 import TripEventEntry from './trip-event-entry.js';
 import PictureModal from './picture-modal.js';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import { ajax } from 'jquery';
 
 class TripEventTile extends React.Component {
   constructor(props){
@@ -12,7 +13,7 @@ class TripEventTile extends React.Component {
     //bind methods here
     this.handleOpen = this.handleOpen.bind(this);
     this.handleClose = this.handleClose.bind(this);
-
+    this.handleSubmit = this.handleSubmit.bind(this);
   };
   //add new methods here
   handleOpen() {
@@ -22,7 +23,33 @@ class TripEventTile extends React.Component {
   this.setState({picModalOpen: false});
   };
 
- 
+   handleSubmit(pictureData) {
+    console.log('handleSubmit in trip-event-tile.js', pictureData);
+    // console.log('handleSubmit in trip-event-tile, trip id', this.props.tripId);
+    // console.log('event id', this.props.event._id)
+    const data = new FormData();
+    data.append("photo", pictureData);
+    data.append('tripId', this.props.tripId);
+    data.append('eventId', this.props.event._id);
+    // const photoAndIds = {
+    //   tripId: this.props.tripId,
+    //   photo: pictureData,
+    //   eventId: this.props.event._id
+    // }
+    ajax({
+      url: '/trips',
+      method: 'POST',
+      processData: false,
+      contentType: false,
+      data: data,
+      success: () => {
+        console.log('success in handleSubmit in trip-event-tile.js')
+      },
+      error: (error) => {
+        console.log('error in handleSubmit in trip-event-tile.js', error)
+      }
+    })
+  }
 
   //move picture modal methods here
   //pass state to picture modal
@@ -59,7 +86,7 @@ class TripEventTile extends React.Component {
           </div>
           <MuiThemeProvider>
             <PictureModal
-            handleSubmit={this.props.handleSubmit} 
+            handleSubmit={this.handleSubmit} 
             open={this.state.picModalOpen}
             handleClose={this.handleClose}
             />

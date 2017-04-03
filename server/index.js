@@ -130,13 +130,15 @@ app.delete('/removeTrip', passport.authenticate('google-token'), function(req, r
   });
 });
 
-app.post('/trips/photos', function(req, res) {
-  cloudinary.uploader.upload(req.files.photo.file, function(result) {
-    db.addPhoto(req.body.tripId, req.body.eventId, result, function(err, result) {
+app.post('/trips', function(req, res) {
+  cloudinary.uploader.upload(req.files.photo.file, function(photo) {
+    console.log('response from cloudinary', photo);
+    db.addPhoto(req.body.tripId, req.body.eventId, photo, function(err, result) {
       if (err) {
+        console.log('database error', err);
         res.status(500).send(err);
       } else {
-        res.status(201).json(result);
+        res.status(201).json(photo);
       }
     })
   });
