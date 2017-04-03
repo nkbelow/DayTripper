@@ -110,34 +110,36 @@ class Homepage extends React.Component {
   }
 
   mapRender() {
+    
     if (this.state.events.length === 0) {
       this.setState({
         mapUrl: 'https://www.google.com/maps/embed/v1/place?key=AIzaSyAX5TQtLwqyLjSV4TIk1I0ePRUUut8rAf0&q=944+Market+Street,San+Francisco'
-      })
+      });
     } else if (this.state.events.length === 1) {
       this.setState({
         mapUrl: `https://www.google.com/maps/embed/v1/place?key=AIzaSyAX5TQtLwqyLjSV4TIk1I0ePRUUut8rAf0&q=${this.state.events[0].address.split(' ').join('+')}`
-      })
-    };
+      });
+    } else {
+      var baseUrl = `https://www.google.com/maps/embed/v1/directions?key=AIzaSyAX5TQtLwqyLjSV4TIk1I0ePRUUut8rAf0`;
+      var origin = `&origin=${this.state.events[0].address.split(' ').join('+')}`;
+      var destination = `&destination=${this.state.events[this.state.events.length - 1].address.split(' ').join('+')}`;
+      var url = baseUrl + origin + destination;
 
-    var baseUrl = `https://www.google.com/maps/embed/v1/directions?key=AIzaSyAX5TQtLwqyLjSV4TIk1I0ePRUUut8rAf0`;
-    var origin = `&origin=${this.state.events[0].address.split(' ').join('+')}`;
-    var destination = `&destination=${this.state.events[this.state.events.length - 1].address.split(' ').join('+')}`;
-    var url = baseUrl + origin + destination;
+      for (var i = 1; i < this.state.events.length - 1; i++) {
+        var queried = this.state.events[i].address.split(' ').join('+');
+        if (i === 1) {
+          url += `&waypoints=${queried}|`;
+        } else {
+          url += `${queried}|`;
+        }
+      };
 
-    for (var i = 1; i < this.state.events.length - 1; i++) {
-      var queried = this.state.events[i].address.split(' ').join('+');
-      if (i === 1) {
-        url += `&waypoints=${queried}|`;
-      } else {
-        url += `${queried}|`;
-      }
-    };
+      url = url.slice(0, url.length - 1);
+      this.setState({
+        mapUrl: url,
+      });
+    }
 
-    url = url.slice(0, url.length - 1);
-    this.setState({
-      mapUrl: url,
-    });
   };
 
   render () {

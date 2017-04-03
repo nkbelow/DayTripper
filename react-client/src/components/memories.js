@@ -69,7 +69,7 @@ const Memories = (props) => (
       cellHeight={180}
       style={styles.gridList}
     >
-      <Subheader>December</Subheader>
+      
       {props.photos.map((photo) => (
         <GridTile
           key={photo.public_id}
