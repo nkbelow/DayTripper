@@ -21,7 +21,6 @@ class IndividualTrip extends React.Component {
     };
     // //bind methods here
     this.showMemoriesClick = this.showMemoriesClick.bind(this);
-    this.addMemoriesClick = this.addMemoriesClick.bind(this);
 
   };
   //add new methods here
@@ -37,9 +36,6 @@ class IndividualTrip extends React.Component {
       clicked: !this.state.clicked});
   };
 
-  addMemoriesClick() {
-
-  }
 
   componentDidMount() {
     ajax({
@@ -69,9 +65,9 @@ class IndividualTrip extends React.Component {
                 <TripEventList
                 // removeEvent={this.props.removeEvent}
                 // updateEvent={this.props.updateEvent}
+                tripId={this.state.trip._id}
                 events={this.state.trip.events}
                 showMemories={this.showMemoriesClick} 
-                addMemories={this.addMemoriesClick}
                 /> :
                 ''}
               </div>

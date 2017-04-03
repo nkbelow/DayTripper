@@ -24,12 +24,12 @@ const TripEventList = (props) => (
         <TripEventTile 
           key={index}
           index={index}
+          tripId={props.tripId}
           event={event}
           events={props.events}
           removeEvent={props.removeEvent}
           updateEvent={props.updateEvent} 
           showMemories={() => props.showMemories(event.photos)}
-          addMemories={props.addMemories}
         />
       )}
     </div>
