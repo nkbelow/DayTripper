@@ -21,8 +21,7 @@ class IndividualTrip extends React.Component {
     };
     // //bind methods here
     this.showMemoriesClick = this.showMemoriesClick.bind(this);
-    this.addMemoriesClick = this.addMemoriesClick.bind(this);
-
+    this.handleSubmit = this.handleSubmit.bind(this);
   };
   //add new methods here
     //reuse map methods?
@@ -37,8 +36,9 @@ class IndividualTrip extends React.Component {
       clicked: !this.state.clicked});
   };
 
-  addMemoriesClick() {
-
+//pass this function down to the picture modal to get the data
+  handleSubmit(pictureData) {
+    console.log('handleSubmit in trip-event-tile.js', pictureData);
   }
 
   componentDidMount() {
@@ -71,7 +71,7 @@ class IndividualTrip extends React.Component {
                 // updateEvent={this.props.updateEvent}
                 events={this.state.trip.events}
                 showMemories={this.showMemoriesClick} 
-                addMemories={this.addMemoriesClick}
+                handleSubmit={this.handleSubmit}
                 /> :
                 ''}
               </div>

@@ -12,6 +12,7 @@ class TripEventTile extends React.Component {
     //bind methods here
     this.handleOpen = this.handleOpen.bind(this);
     this.handleClose = this.handleClose.bind(this);
+
   };
   //add new methods here
   handleOpen() {
@@ -19,8 +20,9 @@ class TripEventTile extends React.Component {
   }
   handleClose() {
   this.setState({picModalOpen: false});
-};
+  };
 
+ 
 
   //move picture modal methods here
   //pass state to picture modal
@@ -57,6 +59,7 @@ class TripEventTile extends React.Component {
           </div>
           <MuiThemeProvider>
             <PictureModal
+            handleSubmit={this.props.handleSubmit} 
             open={this.state.picModalOpen}
             handleClose={this.handleClose}
             />

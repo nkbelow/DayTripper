@@ -10,16 +10,26 @@ class PictureModal extends React.Component {
   constructor(props) {
     super(props);
   this.state = {
-    open: false,
+    picData: ''
   };
-  this.handleOpen = this.handleOpen.bind(this);
-
+  // this.handleOpen = this.handleOpen.bind(this);
+  this.updatePicData = this.updatePicData.bind(this);
+  this.handleDataSubmit = this.handleDataSubmit.bind(this);
 }
 
-handleOpen() {
-  this.setState({open: true});
-};
+// handleOpen() {
+//   this.setState({open: true});
+// };
 
+updatePicData(e) {
+console.log('submitted data', e.target.value)
+this.setState({picData: e.target.value})
+}
+
+handleDataSubmit() {
+this.props.handleClose();
+this.props.handleSubmit(this.state.picData);
+}
 
 
   render() {
@@ -33,7 +43,7 @@ handleOpen() {
         label="Submit"
         primary={true}
         disabled={false}
-        onClick={this.props.handleClose}
+        onClick={this.handleDataSubmit}
       />,
     ];
 
@@ -45,8 +55,7 @@ handleOpen() {
           modal={true}
           open={this.props.open}
         >
-          
-          <input type="file" capture="camera" accept="image/*" id="takePictureField"/>
+        <input type="file" capture="camera" accept="image/*" id="takePictureField" onChange={this.updatePicData}/>
         </Dialog>
       </div>
     );
