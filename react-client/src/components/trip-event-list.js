@@ -33,6 +33,7 @@ const TripEventList = (props) => (
           updatePhotos={props.updatePhotos}
           addMemories={props.addMemories}
           showMap={props.showMap}
+
         />
       )}
     </div>
